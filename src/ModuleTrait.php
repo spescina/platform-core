@@ -6,24 +6,31 @@ trait ModuleTrait {
 
     protected $model;
 
-    protected function delete($id)
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
+
+    protected function doDelete($id)
     {
         $this->model->delete($id);
     }
 
-    protected function edit($id)
+    protected function showForm($id)
     {
         var_dump('show form');
     }
 
-    protected function listing()
+    protected function doListing()
     {
-        $this->model->all();
+        $results = $this->model->all();
 
-        var_dump('show listing');
+        View::share('results', $results);
+
+        return View::make('listing');
     }
 
-    protected function store($id)
+    protected function doStore($id)
     {
         $this->model->find($id);
 

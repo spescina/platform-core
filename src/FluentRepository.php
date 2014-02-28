@@ -1,9 +1,9 @@
 <?php
 namespace Psimone\PlatformCore\Classes;
 
-use Psimone\PlatformCore\Classes\RepositoryInterface;
+class FluentRepository implements RepositoryInterface {
 
-class EloquentRepository implements RepositoryInterface {
+    use RepositoryTrait;
 
     public function delete($id)
     {
@@ -17,7 +17,7 @@ class EloquentRepository implements RepositoryInterface {
 
     public function all()
     {
-        var_dump('all');
+        return \DB::table($this->table)->get();
     }
 
     public function store($id = null)

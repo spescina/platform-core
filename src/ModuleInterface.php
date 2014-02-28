@@ -3,12 +3,12 @@ namespace Psimone\PlatformCore\Classes;
 
 interface ModuleInterface {
 
-    public function getDelete($id);
+    public function delete($id);
 
-    public function getEdit($id = null);
+    public function form($id = null);
 
-    public function getListing();
+    public function listing();
 
-    public function postEdit($id = null);
+    public function store($id = null);
 
 }
