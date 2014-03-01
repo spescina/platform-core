@@ -20,7 +20,7 @@ abstract class BaseController extends Controller {
 
 	protected function showForm($id)
 	{
-		var_dump('show form');
+		return 'show form';
 	}
 
 	protected function doListing()
