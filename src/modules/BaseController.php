@@ -29,7 +29,7 @@ abstract class BaseController extends Controller {
 
 		\View::share('results', $results);
 
-		return \View::make('listing');
+		return \View::make('platform-core::listing');
 	}
 
 	protected function doStore($id)
