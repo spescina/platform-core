@@ -35,7 +35,7 @@ abstract class BaseController extends Controller {
 
 		\View::share('results', $results);
 
-		return \View::make('platform-core::listing');
+		return \View::make(Application::getNamespace() . 'listing');
 	}
 
 	protected function doStore($id)

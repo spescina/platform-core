@@ -11,7 +11,7 @@ class Table extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.structures.table';
+		return 'platform.core.html.table';
 	}
 
 }

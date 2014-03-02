@@ -1,8 +1,13 @@
 <?php namespace Psimone\PlatformCore;
 
+use Illuminate\Support\Facades\Config;
 use Teepluss\Asset\Facades\Asset;
 
 class Application {
+
+	public function getNamespace() {
+		return Config::get('psimone\platform-core::package.name') . '::';
+	}
 
 	public function setupAssets()
 	{

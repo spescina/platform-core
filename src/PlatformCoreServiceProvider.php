@@ -34,12 +34,12 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind('Psimone\\PlatformCore\\Repositories\\RepositoryInterface', 'Psimone\\PlatformCore\\Repositories\\FluentRepository');
 
-		$this->app['platform.core.structures.table'] = $this->app->share(function($app){
-                        return new Structures\Table();
+		$this->app['platform.core.html.table'] = $this->app->share(function($app){
+                        return new Html\Table();
                 });
 
-		$this->app['platform.core.structures.form'] = $this->app->share(function($app){
-                        return new Structures\Form();
+		$this->app['platform.core.html.form'] = $this->app->share(function($app){
+                        return new Html\Form();
                 });
 
 		$this->app['platform.core.app'] = $this->app->share(function($app){
@@ -48,12 +48,12 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 
 		$this->app->register('Teepluss\Asset\AssetServiceProvider');
 
-		AliasLoader::getInstance()->alias('TableBuilder', 'Psimone\PlatformCore\Facades\Table');
-		AliasLoader::getInstance()->alias('FormBuilder', 'Psimone\PlatformCore\Facades\Form');
+		AliasLoader::getInstance()->alias('TableBlock', 'Psimone\PlatformCore\Facades\Table');
+		AliasLoader::getInstance()->alias('FormBlock', 'Psimone\PlatformCore\Facades\Form');
 		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
 		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
 
-		View::addNamespace('platform-core', __DIR__ . './views');
+		View::addNamespace('psimone\platform-core', __DIR__ . './views');
 	}
 
 	/**
@@ -64,8 +64,8 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'platform.core.structures.table',
-			'platform.core.structures.form',
+			'platform.core.html.table',
+			'platform.core.html.form',
 		);
 	}
 

@@ -11,7 +11,7 @@ class Form extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.structures.form';
+		return 'platform.core.html.form';
 	}
 
 }
