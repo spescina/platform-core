@@ -2,5 +2,5 @@
 composer.phar
 composer.lock
 .DS_Store
-public/bower_components/
-public/node_modules/
+bower_components/
+node_modules/

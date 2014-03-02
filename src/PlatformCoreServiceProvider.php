@@ -42,8 +42,16 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                         return new Structures\Form();
                 });
 
-		AliasLoader::getInstance()->alias('PcTable', 'Psimone\PlatformCore\Facades\Table');
-		AliasLoader::getInstance()->alias('PcForm', 'Psimone\PlatformCore\Facades\Form');
+		$this->app['platform.core.app'] = $this->app->share(function($app){
+                        return new Application();
+                });
+
+		$this->app->register('Teepluss\Asset\AssetServiceProvider');
+
+		AliasLoader::getInstance()->alias('TableBuilder', 'Psimone\PlatformCore\Facades\Table');
+		AliasLoader::getInstance()->alias('FormBuilder', 'Psimone\PlatformCore\Facades\Form');
+		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
+		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
 
 		View::addNamespace('platform-core', __DIR__ . './views');
 	}

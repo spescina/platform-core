@@ -17,14 +17,14 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         src: [
-                            'bower_components/jquery/jquery.js',
+                            'bower_components/jquery/dist/jquery.js',
                             'bower_components/bootstrap/dist/js/bootstrap.js',
                             'bower_components/moment/moment.js',
                             'bower_components/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
                             'bower_components/fancybox/source/jquery.fancybox.js',
                             'bower_components/summernote/dist/summernote.js'
                         ],
-                        dest: 'src/js/vendor',
+                        dest: 'public/src/js/vendor',
                         flatten: true
                     },
                     {
@@ -36,20 +36,20 @@ module.exports = function(grunt) {
                             'bower_components/font-awesome/css/font-awesome.css',
                             'bower_components/summernote/dist/summernote.css'
                         ],
-                        dest: 'src/css/vendor',
+                        dest: 'public/src/css/vendor',
                         flatten: true
                     },
                     {
                         expand: true,
                         cwd: 'bower_components/bootstrap/dist',
                         src: ['fonts/*'],
-                        dest: 'src/css'
+                        dest: 'public/src/css'
                     },
                     {
                         expand: true,
                         cwd: 'bower_components/font-awesome',
                         src: ['fonts/*'],
-                        dest: 'src/css'
+                        dest: 'public/src/css'
                     }
                 ]
             }
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         watch: {
             publish: {
                 files: [
-                    'src/**/*.*'
+                    'public/src/**/*.*'
                 ],
                 tasks: ['exec'],
                 options: {
@@ -67,8 +67,8 @@ module.exports = function(grunt) {
         },
         clean: {
             dev: [
-                'src/js/vendor',
-                'src/css/vendor'
+                'public/src/js/vendor',
+                'public/src/css/vendor'
             ]
         }
     });

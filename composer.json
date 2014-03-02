@@ -1,21 +1,27 @@
 {
-    "name": "psimone/platform-core",
-    "description": "",
-    "authors": [
-        {
-            "name": "Simone Pescina",
-            "email": "s.pescina@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.0",
-        "illuminate/support": "4.1.*",
-	"stolz/assets": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "Psimone\\PlatformCore\\": "src/"
-        }
-    },
-    "minimum-stability": "stable"
+	"name": "psimone/platform-core",
+	"description": "",
+	"authors": [
+		{
+			"name": "Simone Pescina",
+			"email": "s.pescina@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0",
+		"illuminate/support": "4.1.*",
+		"teepluss/asset": "dev-master"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/antoniofrignani/laravel4-asset.git"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Psimone\\PlatformCore\\": "src/"
+		}
+	},
+	"minimum-stability": "stable"
 }

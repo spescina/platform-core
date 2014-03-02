@@ -1,4 +1,4 @@
-@extends('pangea-core::base')
+@extends('platform-core::base')
 
 @section('header.styles')
         {{ \Asset::container('header.common')->styles() }}
@@ -17,9 +17,9 @@
 @stop
 
 @section('header')
-        @include('pangea-core::partials.header')
+        @include('platform-core::partials.header')
 @stop
 
 @section('footer')
-        @include('pangea-core::partials.footer')
+        @include('platform-core::partials.footer')
 @stop

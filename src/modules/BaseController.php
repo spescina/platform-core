@@ -1,12 +1,18 @@
 <?php namespace Psimone\PlatformCore\Modules;
 
 use Psimone\PlatformCore\Models\BaseModel;
+use Psimone\PlatformCore\Facades\Application;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
 abstract class BaseController extends Controller {
 
 	protected $model;
+
+	public function __construct()
+	{
+		Application::setupAssets();
+	}
 
 	public function setModel(BaseModel $model)
 	{

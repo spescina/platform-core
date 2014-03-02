@@ -1,10 +1,10 @@
-@extends('platform-core::layout')
+@extends ('platform-core::layout')
 
-@section('body')
+@section ('body')
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            {{ \Pangea::getMenu() }}
+            <?/* MENU */?>
         </div>
         <div class="col-md-9">
             @if (\Session::has('messages'))
