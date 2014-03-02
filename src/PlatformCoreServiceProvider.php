@@ -1,8 +1,10 @@
 <?php namespace Psimone\PlatformCore;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class PlatformCoreServiceProvider extends ServiceProvider {
 
@@ -22,6 +24,8 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 	{
 		$this->package('psimone/platform-core');
 
+		$this->addNamespaces();
+
 		include __DIR__ . '/routes.php';
 	}
 
@@ -34,26 +38,11 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind('Psimone\\PlatformCore\\Repositories\\RepositoryInterface', 'Psimone\\PlatformCore\\Repositories\\FluentRepository');
 
-		$this->app['platform.core.html.table'] = $this->app->share(function($app){
-                        return new Html\Table();
-                });
+		$this->registerServices();
 
-		$this->app['platform.core.html.form'] = $this->app->share(function($app){
-                        return new Html\Form();
-                });
+		$this->registerAlias();
 
-		$this->app['platform.core.app'] = $this->app->share(function($app){
-                        return new Application();
-                });
-
-		$this->app->register('Teepluss\Asset\AssetServiceProvider');
-
-		AliasLoader::getInstance()->alias('TableBlock', 'Psimone\PlatformCore\Facades\Table');
-		AliasLoader::getInstance()->alias('FormBlock', 'Psimone\PlatformCore\Facades\Form');
-		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
-		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
-
-		View::addNamespace('psimone\platform-core', __DIR__ . './views');
+		$this->registerDependencies();
 	}
 
 	/**
@@ -64,9 +53,59 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-			'platform.core.html.table',
-			'platform.core.html.form',
+		    'platform.core.html.table',
+		    'platform.core.html.form',
+		    'platform.core.html.navigation',
+		    'platform.core.app',
+		    'platform.core.language'
 		);
+	}
+
+	private function addNamespaces()
+	{
+		Config::addNamespace('platform-core', __DIR__ . './config');
+		Lang::addNamespace('platform-core', __DIR__ . './lang');
+		View::addNamespace('platform-core', __DIR__ . './views');
+	}
+
+	private function registerAlias()
+	{
+		AliasLoader::getInstance()->alias('TableBlock', 'Psimone\PlatformCore\Facades\Table');
+		AliasLoader::getInstance()->alias('FormBlock', 'Psimone\PlatformCore\Facades\Form');
+		AliasLoader::getInstance()->alias('NavigationBlock', 'Psimone\PlatformCore\Facades\Navigation');
+
+		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
+		AliasLoader::getInstance()->alias('Language', 'Psimone\PlatformCore\Facades\Language');
+
+		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
+	}
+
+	private function registerDependencies()
+	{
+		$this->app->register('Teepluss\Asset\AssetServiceProvider');
+	}
+
+	private function registerServices()
+	{
+		$this->app['platform.core.html.table'] = $this->app->share(function($app) {
+			return new Html\Table();
+		});
+
+		$this->app['platform.core.html.form'] = $this->app->share(function($app) {
+			return new Html\Form();
+		});
+
+		$this->app['platform.core.html.navigation'] = $this->app->share(function($app) {
+			return new Html\Navigation();
+		});
+
+		$this->app['platform.core.app'] = $this->app->share(function($app) {
+			return new Application();
+		});
+
+		$this->app['platform.core.language'] = $this->app->share(function($app) {
+			return new Language();
+		});
 	}
 
 }

@@ -4,6 +4,6 @@ use Psimone\PlatformCore\Html\BaseComponent;
 
 class Table extends BaseComponent {
 
-	protected $view = 'table';
+	protected $view = 'html/table';
 
 }

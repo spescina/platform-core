@@ -2,6 +2,7 @@
 
 use Psimone\PlatformCore\Models\BaseModel;
 use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Navigation;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
@@ -9,9 +10,13 @@ abstract class BaseController extends Controller {
 
 	protected $model;
 
-	public function __construct()
+	public function __construct() {}
+
+	public function start()
 	{
 		Application::setupAssets();
+
+		Navigation::load();
 	}
 
 	public function setModel(BaseModel $model)
@@ -35,7 +40,7 @@ abstract class BaseController extends Controller {
 
 		\View::share('results', $results);
 
-		return \View::make(Application::getNamespace() . 'listing');
+		return \View::make('platform-core::listing');
 	}
 
 	protected function doStore($id)

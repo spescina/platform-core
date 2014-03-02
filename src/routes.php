@@ -23,5 +23,7 @@ Route::get('{model}/{action?}/{id?}', function($model, $action = 'listing', $id 
 
 	$controller->setModel($model);
 
+	$controller->start();
+
 	return $controller->$action();
 });

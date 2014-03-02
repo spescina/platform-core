@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <?/* MENU */?>
+            {{ NavigationBlock::show() }}
         </div>
         <div class="col-md-9">
             @if (\Session::has('messages'))
