@@ -22,9 +22,7 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('psimone/platform-core');
-
-		$this->addNamespaces();
+		$this->package('psimone/platform-core', 'platform-core', __DIR__);
 
 		include __DIR__ . '/routes.php';
 	}
@@ -59,13 +57,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 		    'platform.core.app',
 		    'platform.core.language'
 		);
-	}
-
-	private function addNamespaces()
-	{
-		Config::addNamespace('platform-core', __DIR__ . './config');
-		Lang::addNamespace('platform-core', __DIR__ . './lang');
-		View::addNamespace('platform-core', __DIR__ . './views');
 	}
 
 	private function registerAlias()
