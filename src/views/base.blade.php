@@ -11,7 +11,7 @@
         @yield('header.styles')
         @yield('header.scripts')
         
-        @if (\App::environment() == 'production')
+        @if (App::environment() == 'production')
         <script>
         //Google Analytics
         </script>

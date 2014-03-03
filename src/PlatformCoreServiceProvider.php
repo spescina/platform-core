@@ -57,9 +57,9 @@ class PlatformCoreServiceProvider extends ServiceProvider
 
 	private function registerAlias()
 	{
-		AliasLoader::getInstance()->alias('TableBlock', 'Psimone\PlatformCore\Facades\Table');
-		AliasLoader::getInstance()->alias('FormBlock', 'Psimone\PlatformCore\Facades\Form');
-		AliasLoader::getInstance()->alias('NavigationBlock', 'Psimone\PlatformCore\Facades\Navigation');
+		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
+		AliasLoader::getInstance()->alias('PForm', 'Psimone\PlatformCore\Facades\Form');
+		AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
 
 		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
 		AliasLoader::getInstance()->alias('Controller', 'Psimone\PlatformCore\Facades\Controller');

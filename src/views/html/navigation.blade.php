@@ -10,7 +10,7 @@
         </ul>
     </li>
     @else
-	@if ($value === \Route::current()->getAction())
+	@if ($value === Route::current()->getAction())
     <li class="active">
         @else
     <li>

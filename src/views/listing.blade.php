@@ -1,5 +1,5 @@
 @extends ('platform-core::module')
 
 @section ('content')
-    {{ TableBlock::show() }}
+    {{ PTable::show() }}
 @stop
