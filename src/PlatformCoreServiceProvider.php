@@ -51,7 +51,6 @@ class PlatformCoreServiceProvider extends ServiceProvider
 			'platform.core.html.table',
 			'platform.core.html.form',
 			'platform.core.html.navigation',
-			'platform.core.app',
 			'platform.core.language'
 		);
 	}
@@ -88,11 +87,6 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		$this->app['platform.core.html.navigation'] = $this->app->share(function($app)
 		{
 			return new Html\Navigation();
-		});
-
-		$this->app['platform.core.app'] = $this->app->share(function($app)
-		{
-			return new Application();
 		});
 
 		$this->app['platform.core.language'] = $this->app->share(function($app)

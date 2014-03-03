@@ -1,19 +1,62 @@
 <?php namespace Psimone\PlatformCore;
 
+use Psimone\PlatformCore\Repositories\FluentRepository;
+use Illuminate\Support\Facades\App;
 use Teepluss\Asset\Facades\Asset;
 
-class Application {
+class Application
+{
+	public $module;
+
+	public function __construct($module)
+	{
+		$this->module = $module;
+	}
 	
-	private $module;
-	
-	public function getModule()
+	public function module()
 	{
 		return $this->module;
 	}
 
+	public function register()
+	{
+		$className = ucfirst($this->module);
+
+
+		App::singleton('platform.core.model', function() use ($className)
+		{
+			$modelName = 'Psimone\\PlatformCore\\Models\\' . $className;
+
+			return new $modelName(new FluentRepository);
+		});
+
+		App::singleton('platform.core.controller', function() use ($className)
+		{
+			$controllerName = 'Psimone\\PlatformCore\\Modules\\' . $className . 'Controller';
+
+			return new $controllerName;
+		});
+	}
+	
+	public function run($action)
+	{
+		$model = App::make('platform.core.model');
+
+		$controller = App::make('platform.core.controller');
+
+
+		$controller->setModel($model);
+
+		$controller->start();
+		
+
+		return $controller->$action();
+	}
+
 	public function setupAssets()
 	{
-		switch (\App::environment()) {
+		switch (App::environment())
+		{
 
 			case 'staging':
 			case 'production':
@@ -38,10 +81,4 @@ class Application {
 				break;
 		}
 	}
-	
-	public function setModule($module)
-	{
-		$this->module = $module;
-	}
-
 }

@@ -1,23 +1,25 @@
 <ol class="breadcrumb">
     <li><a href="">Home</a></li>
-    <li class="active">{{ \Lang::get(Application::getModule().".section.title") }}</li>
+    <li class="active">{{ Language::get(Application::module().".section.title") }}</li>
 </ol>
-<?/*
 <div class="panel panel-default">
     <div class="panel-heading clearfix">
-        <h3 class="panel-title pull-left">{{ \Lang::get(\Pangea::getModelName().".section.title") }}</h3>
+        <h3 class="panel-title pull-left">{{ Language::get(Application::module().".section.title") }}</h3>
         <div class="btn-group btn-group-xs pull-right">
-            <a href="{{ \URL::action(\Pangea::getController() . '@getEdit')}}" class="btn btn-default">{{ \Lang::get('ui.create_new_element') }}</a>
+            <a href="" class="btn btn-default">{{ Language::get('ui.create_new_element') }}</a>
         </div>
     </div>
     <div class="panel-body">
-        <p>{{ \Lang::get(\Pangea::getModelName().".section.subtitle") }}</p>
-        @if (!count(\PangeaTable::getData()))
+        <p>{{ Language::get(Application::module().".section.subtitle") }}</p>
+        <?/*
+	@if (!count(\PangeaTable::getData()))
         <div class="well well-sm">
             <span>{{ \Lang::get('ui.no_results') }}</span>
         </div>
         @endif
+	*/?>
     </div>
+	<?/*
     @if (count(\PangeaTable::getData()))
     <table class="table table-bordered table-hover">
         <thead>
@@ -47,9 +49,11 @@
     </table>
     @endif
     <div class="panel-footer"></div>
+    */?>
 </div>
+<?/*
 <div class="pull-left">
-    <p class="text-muted">{{ \Lang::get('ui.pagination', array('low' => \PangeaTable::getRecordset()->getFrom(), 'high' => \PangeaTable::getRecordset()->getTo(), 'total' => \PangeaTable::getRecordset()->getTotal())) }}</p>
+    <p class="text-muted">{{ Language::get('ui.pagination', array('low' => \PangeaTable::getRecordset()->getFrom(), 'high' => \PangeaTable::getRecordset()->getTo(), 'total' => \PangeaTable::getRecordset()->getTotal())) }}</p>
 </div>
 <div class="pull-right">
     {{ \PangeaTable::getPagination() }}

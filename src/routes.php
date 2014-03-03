@@ -9,24 +9,22 @@
   | and give it the Closure to execute when that URI is requested.
   |
  */
-Route::get('{model}/{action?}/{id?}', function($model, $action = 'listing', $id = null)
+Route::get('{model}/{action?}/{id?}', function($module, $action = 'listing', $id = null)
 {
+	App::singleton('platform.core.app', function() use ($module)
+	{
+		return new Psimone\PlatformCore\Application($module);
+	});
 
-	Psimone\PlatformCore\Facades\Application::setModule($model);
 
-	$className = ucfirst($model);
 
-	$controllerName = 'Psimone\\PlatformCore\\Modules\\' . $className . 'Controller';
+	$platform = App::make('platform.core.app');
 
-	$modelName = 'Psimone\\PlatformCore\\Models\\' . $className;
 
-	$model = App::make($modelName);
 
-	$controller = App::make($controllerName);
+	$platform->register();
 
-	$controller->setModel($model);
 
-	$controller->start();
 
-	return $controller->$action();
+	return $platform->run($action);
 });
