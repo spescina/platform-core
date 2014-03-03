@@ -11,35 +11,35 @@
 	</div>
 	<div class="panel-body">
 		<p>{{ Language::get(Application::module().".section.subtitle") }}</p>
-		@if (!count(PTable::entries()))
+		@if (!count(PTable::getEntries()))
 		<div class="well well-sm">
 			<span>{{ Language::get('ui.no_results') }}</span>
 		</div>
 		@endif
 	</div>
-	@if (count(PTable::entries()))
+	@if (count(PTable::getEntries()))
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th></th>
 				@foreach (PTable::heading() as $column)
-				@if ($column === 'actions')
+				@if ($column === '__actions__')
 				<th class="col-md-3">
-					@else
+				@else
 				<th>
-					@endif
+				@endif
 					{{ Language::get(Application::module().".listing.".$column) }}
 				</th>
 				@endforeach
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (PTable::entries() as $entry)
-			<tr data-id="{{ $entry->id }}">
-				@foreach ($entry as $field => $value)
+			@foreach (PTable::body() as $row)
+			<tr data-id="{{ $row['__id__'] }}">
+				@foreach ($row as $column => $value)
+				@if ($column <> '__id__')
 				<td>{{ $value }}</td>
+				@endif
 				@endforeach
-				<td></td>
 			</tr>
 			@endforeach
 		</tbody>

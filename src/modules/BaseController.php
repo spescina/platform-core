@@ -2,6 +2,7 @@
 
 use Psimone\PlatformCore\Facades\Application;
 use Psimone\PlatformCore\Facades\Navigation;
+use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
@@ -28,6 +29,10 @@ abstract class BaseController extends Controller {
 
 	protected function doListing()
 	{
+		Table::setEntries();
+
+		//var_dump(Table::body());die;
+
 		return View::make('platform-core::listing');
 	}
 

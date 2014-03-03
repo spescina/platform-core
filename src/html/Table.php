@@ -8,43 +8,66 @@ class Table extends BaseComponent {
 	protected $view = 'html/table';
 	
 	private $columns;
+
+	private $entries;
 	
-	public function columns(array $columns = null)
+	public function getColumns()
 	{
-		if ($columns)
-		{
-			$this->columns = $columns;
-		}
-		else
-		{
-			return $this->columns;
-		}
+		return $this->columns;
 	}
 	
-	public function entries()
+	public function setColumns(array $columns)
 	{
-		return Model::all();
+		$this->columns = $columns;
+	}
+
+	public function getEntries()
+	{
+		return $this->entries;
+	}
+
+	public function setEntries()
+	{
+		$this->entries = Model::all();
 	}
 	
 	public function heading()
 	{
 		$heading = array();
 		
-		foreach ($this->columns as $field => $options)
+		foreach ($this->getColumns() as $field => $options)
 		{
 			$cell = $field;
 			 
 			$heading[] = $cell;
 		}
 		
-		$heading[] = 'actions';
+		$heading[] = '__actions__';
 		
 		return $heading;
 	}
 	
-	public function load()
+	public function body()
 	{
-		
+		$body = array();
+
+		foreach ($this->entries as $entry)
+		{
+			$row = array();
+
+			$row['__id__'] = $entry->id;
+
+			foreach ($this->columns as $column => $options)
+			{
+				$row[$column] = $entry->$column;
+			}
+
+			$row['__actions__'] = '__actions__';
+
+			$body[] = $row;
+		}
+
+		return $body;
 	}
 
 }
