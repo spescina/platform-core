@@ -1,7 +1,8 @@
-<?/*<ol class="breadcrumb">
-    <li><a href="{{ \URL::action('Psimone\PangeaCore\Controllers\DashboardController@getPanel') }}">Home</a></li>
-    <li class="active">{{ \Lang::get(\Pangea::getModelName().".section.title") }}</li>
+<ol class="breadcrumb">
+    <li><a href="">Home</a></li>
+    <li class="active">{{ \Lang::get(Application::getModule().".section.title") }}</li>
 </ol>
+<?/*
 <div class="panel panel-default">
     <div class="panel-heading clearfix">
         <h3 class="panel-title pull-left">{{ \Lang::get(\Pangea::getModelName().".section.title") }}</h3>

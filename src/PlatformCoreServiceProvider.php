@@ -1,13 +1,10 @@
 <?php namespace Psimone\PlatformCore;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class PlatformCoreServiceProvider extends ServiceProvider {
-
+class PlatformCoreServiceProvider extends ServiceProvider
+{
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
@@ -51,11 +48,11 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 	public function provides()
 	{
 		return array(
-		    'platform.core.html.table',
-		    'platform.core.html.form',
-		    'platform.core.html.navigation',
-		    'platform.core.app',
-		    'platform.core.language'
+			'platform.core.html.table',
+			'platform.core.html.form',
+			'platform.core.html.navigation',
+			'platform.core.app',
+			'platform.core.language'
 		);
 	}
 
@@ -78,25 +75,29 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 
 	private function registerServices()
 	{
-		$this->app['platform.core.html.table'] = $this->app->share(function($app) {
+		$this->app['platform.core.html.table'] = $this->app->share(function($app)
+		{
 			return new Html\Table();
 		});
 
-		$this->app['platform.core.html.form'] = $this->app->share(function($app) {
+		$this->app['platform.core.html.form'] = $this->app->share(function($app)
+		{
 			return new Html\Form();
 		});
 
-		$this->app['platform.core.html.navigation'] = $this->app->share(function($app) {
+		$this->app['platform.core.html.navigation'] = $this->app->share(function($app)
+		{
 			return new Html\Navigation();
 		});
 
-		$this->app['platform.core.app'] = $this->app->share(function($app) {
+		$this->app['platform.core.app'] = $this->app->share(function($app)
+		{
 			return new Application();
 		});
 
-		$this->app['platform.core.language'] = $this->app->share(function($app) {
+		$this->app['platform.core.language'] = $this->app->share(function($app)
+		{
 			return new Language();
 		});
 	}
-
 }

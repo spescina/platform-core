@@ -9,7 +9,10 @@
   | and give it the Closure to execute when that URI is requested.
   |
  */
-Route::get('{model}/{action?}/{id?}', function($model, $action = 'listing', $id = null) {
+Route::get('{model}/{action?}/{id?}', function($model, $action = 'listing', $id = null)
+{
+
+	Psimone\PlatformCore\Facades\Application::setModule($model);
 
 	$className = ucfirst($model);
 

@@ -38,9 +38,9 @@ abstract class BaseController extends Controller {
 	{
 		$results = $this->model->all();
 
-		\View::share('results', $results);
+		View::share('results', $results);
 
-		return \View::make('platform-core::listing');
+		return View::make('platform-core::listing');
 	}
 
 	protected function doStore($id)

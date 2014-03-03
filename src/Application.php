@@ -3,6 +3,13 @@
 use Teepluss\Asset\Facades\Asset;
 
 class Application {
+	
+	private $module;
+	
+	public function getModule()
+	{
+		return $this->module;
+	}
 
 	public function setupAssets()
 	{
@@ -30,6 +37,11 @@ class Application {
 				Asset::container('footer.common')->add('application-js', 'packages/psimone/platform-core/src/js/app.js', array('bootstrap', 'bootstrap-datetimepicker-js'));
 				break;
 		}
+	}
+	
+	public function setModule($module)
+	{
+		$this->module = $module;
 	}
 
 }
