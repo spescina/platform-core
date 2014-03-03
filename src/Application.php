@@ -1,5 +1,6 @@
 <?php namespace Psimone\PlatformCore;
 
+use Psimone\PlatformCore\Facades\Controller;
 use Psimone\PlatformCore\Repositories\FluentRepository;
 use Illuminate\Support\Facades\App;
 use Teepluss\Asset\Facades\Asset;
@@ -12,7 +13,7 @@ class Application
 	{
 		$this->module = $module;
 	}
-	
+
 	public function module()
 	{
 		return $this->module;
@@ -37,27 +38,18 @@ class Application
 			return new $controllerName;
 		});
 	}
-	
+
 	public function run($action)
 	{
-		$model = App::make('platform.core.model');
+		Controller::start();
 
-		$controller = App::make('platform.core.controller');
-
-
-		$controller->setModel($model);
-
-		$controller->start();
-		
-
-		return $controller->$action();
+		return Controller::$action();
 	}
 
 	public function setupAssets()
 	{
 		switch (App::environment())
 		{
-
 			case 'staging':
 			case 'production':
 				break;

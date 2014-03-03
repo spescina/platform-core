@@ -62,6 +62,8 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		AliasLoader::getInstance()->alias('NavigationBlock', 'Psimone\PlatformCore\Facades\Navigation');
 
 		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
+		AliasLoader::getInstance()->alias('Controller', 'Psimone\PlatformCore\Facades\Controller');
+		AliasLoader::getInstance()->alias('Model', 'Psimone\PlatformCore\Facades\Model');
 		AliasLoader::getInstance()->alias('Language', 'Psimone\PlatformCore\Facades\Language');
 
 		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
