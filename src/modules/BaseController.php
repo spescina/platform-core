@@ -23,7 +23,12 @@ abstract class BaseController extends Controller {
 
 	protected function showForm($id)
 	{
-		return 'show form';
+		if ($id)
+		{
+			Model::find($id);
+		}
+		
+		return View::make('platform-core::form');
 	}
 
 	protected function doListing()

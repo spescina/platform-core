@@ -1,8 +1,12 @@
 <?php namespace Psimone\PlatformCore\Repositories;
 
+use Illuminate\Support\Facades\DB;
+
 class FluentRepository implements RepositoryInterface {
 
 	public $table;
+	
+	private $result;
 
 	public function setTable($table)
 	{
@@ -16,12 +20,22 @@ class FluentRepository implements RepositoryInterface {
 
 	public function find($id)
 	{
-		var_dump('find ' . $id);
+		if ( empty($this->result) ) 
+		{
+			$this->result = DB::table($this->table)->where('id', $id)->first();
+		}
+		
+		return $this->result;
 	}
 
 	public function all()
 	{
-		return \DB::table($this->table)->get();
+		if ( ! is_array($this->result) ) 
+		{
+			$this->result = DB::table($this->table)->get();
+		}
+		
+		return $this->result;
 	}
 
 	public function store($id = null)
