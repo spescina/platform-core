@@ -11,34 +11,30 @@
 	</div>
 	<div class="panel-body">
 		<p>{{ Language::get(Application::module().".section.subtitle") }}</p>
-		@if (!count(PTable::getEntries()))
+		@if ( PTable::isEmpty() )
 		<div class="well well-sm">
 			<span>{{ Language::get('ui.no_results') }}</span>
 		</div>
 		@endif
 	</div>
-	@if (count(PTable::getEntries()))
+	@if ( ! PTable::isEmpty() )
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				@foreach (PTable::heading() as $column)
-				@if ($column === '__actions__')
-				<th class="col-md-3">
+				@foreach (PTable::headings() as $cell)
+				@if ($cell->isAction())
+				<th class="col-md-3">{{ $cell->show() }}</th>
 				@else
-				<th>
+				<th>{{ $cell->show() }}</th>
 				@endif
-					{{ Language::get(Application::module().".listing.".$column) }}
-				</th>
 				@endforeach
 			</tr>
 		</thead>
 		<tbody>
 			@foreach (PTable::body() as $row)
 			<tr data-id="{{ $row['__id__'] }}">
-				@foreach ($row as $column => $value)
-				@if ($column <> '__id__')
-				<td>{{ $value }}</td>
-				@endif
+				@foreach ($row['data'] as $field => $cell)
+				<td>{{ $cell->show() }}</td>
 				@endforeach
 			</tr>
 			@endforeach

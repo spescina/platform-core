@@ -1,6 +1,9 @@
 <?php
 return array(
-	'actions' => 'Actions',
+	'__actions__' => 'Actions',
+	'_action_CPY_' => 'Copy record',
+	'_action_DLT_' => 'Delete record',
+	'_action_EDT_' => 'Edit record',
 	'listing' => 'Listing',
 	'no_results' => 'This section is still empty',
 	'create_new_element' => 'Create new element',
@@ -14,9 +17,6 @@ return array(
 	'created' => 'The record has been succesfully inserted',
 	'deleted' => 'The record has been succesfully deleted',
 	'delete_confirm_record_text' => 'This record will be deleted permanently. Are you sure?',
-	'delete_record' => 'Delete record?',
-	'action_destroy' => 'Delete record',
-	'action_update' => 'Edit record',
 	'logout' => 'Logout',
 	'welcome' => 'Welcome',
 	'go_to_dashboard' => 'Dashboard',

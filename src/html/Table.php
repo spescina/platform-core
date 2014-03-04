@@ -2,72 +2,82 @@
 
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Html\BaseComponent;
+use Psimone\PlatformCore\Html\Table\Actions;
+use Psimone\PlatformCore\Html\Table\ColumnHeading;
+use Psimone\PlatformCore\Html\Table\Content;
 
 class Table extends BaseComponent {
+	
+	const actionColumn = '__actions__';
+	
+	const idColumn = '__id__';
+	
+	const editAction = '_EDT_';
+	
+	const deleteAction = '_DLT_';
+	
+	const copyAction = '_CPY_';
 
 	protected $view = 'html/table';
 	
 	private $columns;
-
-	private $entries;
 	
-	public function getColumns()
-	{
-		return $this->columns;
-	}
+	public $actions = array(
+		self::editAction,
+		self::deleteAction
+	);
 	
-	public function setColumns(array $columns)
+	public function columns(array $columns)
 	{
 		$this->columns = $columns;
 	}
-
-	public function getEntries()
+	
+	public function isEmpty()
 	{
-		return $this->entries;
-	}
-
-	public function setEntries()
-	{
-		$this->entries = Model::all();
+		return ( count(Model::all()) === 0 );
 	}
 	
-	public function heading()
+	public function headings()
 	{
-		$heading = array();
+		$headings = array();
 		
-		foreach ($this->getColumns() as $field => $options)
+		foreach ($this->columns as $field => $options)
 		{
-			$cell = $field;
-			 
-			$heading[] = $cell;
+			$headings[$field] = new ColumnHeading($field, $options);
 		}
 		
-		$heading[] = '__actions__';
+		$headings[self::actionColumn] = new ColumnHeading(self::actionColumn);
 		
-		return $heading;
+		return $headings;
 	}
 	
 	public function body()
 	{
 		$body = array();
 
-		foreach ($this->entries as $entry)
+		foreach (Model::all() as $record)
 		{
-			$row = array();
+			$row = array(
+				self::idColumn => $record->id,
+				'data' => array()
+			);
 
-			$row['__id__'] = $entry->id;
-
-			foreach ($this->columns as $column => $options)
+			foreach ($this->columns as $field => $options)
 			{
-				$row[$column] = $entry->$column;
+				$row['data'][$field] = new Content($field, $record, $options);
 			}
-
-			$row['__actions__'] = '__actions__';
+			
+			$row['data'][self::actionColumn] = new Actions($record);
 
 			$body[] = $row;
 		}
 
 		return $body;
+	}
+	
+	public function actions()
+	{
+		return $this->actions;
 	}
 
 }
