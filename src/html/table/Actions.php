@@ -44,7 +44,7 @@ class Actions implements TableCell
 	{
 		switch ($action) {
 			case TableClass::editAction:
-				$method = 'edit';
+				$method = 'form';
 				break;
 			
 			case TableClass::deleteAction:

@@ -1,7 +1,10 @@
 <?php namespace Psimone\PlatformCore\Modules;
 
 use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Form;
+use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Navigation;
+use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 
@@ -23,16 +26,15 @@ abstract class BaseController extends Controller {
 
 	protected function showForm($id)
 	{
-		if ($id)
-		{
-			Model::find($id);
-		}
+		Form::load($id);
 		
-		return View::make('platform-core::form');
+		return View::make('platform-core::edit');
 	}
 
 	protected function doListing()
 	{
+		Table::load();
+
 		return View::make('platform-core::listing');
 	}
 

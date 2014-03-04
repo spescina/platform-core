@@ -4,15 +4,15 @@
 </ol>
 <div class="panel panel-default">
     <div class="panel-heading">
-        @if (\PangeaForm::isEmpty())
-        <h3 class="panel-title">{{ \Lang::get('ui.create_new_element') }}</h3>
+        @if (PForm::isEmpty())
+        <h3 class="panel-title">{{ Language::get('ui.create_new_element') }}</h3>
         @else
-        <h3 class="panel-title">{{ \Lang::get('ui.edit_element_id') }}{{ \PangeaForm::getData()->id }}</h3>
+        <h3 class="panel-title">{{ Language::get('ui.edit_element_id') }}{{ PForm::record()->id }}</h3>
         @endif
     </div>
     <div class="panel-body">
         <form class="form-horizontal" role="form" action="" method="post" autocomplete="off">
-            <ul class="nav nav-tabs">
+            <?/*<ul class="nav nav-tabs">
                 @foreach (\PangeaForm::getStructure() as $panel => $structure)
                 @if ($panel === 'main')
                 <li class="active">
@@ -44,7 +44,7 @@
                 <button name="save" value="save" type="submit" class="btn btn-success">{{ \Lang::get('ui.button_save')}}</button>
                 <button name="save_back" value="save_back" type="submit" class="btn btn-info">{{ \Lang::get('ui.button_save_back')}}</button>
                 <a href="{{ \URL::action(\Pangea::getController() . '@getListing') }}" class="btn btn-warning">{{ \Lang::get('ui.button_back') }}</a>
-            </div>
+            </div>*/?>
         </form>
     </div>
     <div class="panel-footer">

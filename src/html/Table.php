@@ -80,4 +80,9 @@ class Table extends BaseComponent {
 		return $this->actions;
 	}
 
+	public function load()
+	{
+
+	}
+
 }
