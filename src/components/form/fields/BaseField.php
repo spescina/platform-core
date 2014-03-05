@@ -10,13 +10,19 @@ abstract class BaseField implements Displayable
 	
 	protected $help;
 	protected $label;
+	protected $options = array(
+		'fieldWidth' => 4,
+		'labelWidth' => 2
+	);
 	protected $slug;
 	protected $value;
 	protected $viewData = true;
 	
-	public function __construct($slug)
+	public function __construct($slug,array $options)
 	{
-		$this->label = new Label($slug);
+		$this->options($options);
+		
+		$this->label = new Label($slug, $this->options);
 		
 		$this->slug = $slug;
 	}
@@ -39,5 +45,15 @@ abstract class BaseField implements Displayable
 	public function hasHelp()
 	{
 		return false;
+	}
+	
+	public function options(array $options)
+	{
+		$this->options = array_merge($this->options, $options);
+	}
+	
+	public function width()
+	{
+		return $this->options['fieldWidth'];
 	}
 }

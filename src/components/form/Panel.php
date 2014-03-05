@@ -35,7 +35,7 @@ class Panel implements Displayable
 		{
 			$fieldType = self::_namespace_ . ucfirst($options['type']);
 			
-			$this->fields[$field] = new $fieldType($field);
+			$this->fields[$field] = new $fieldType($field, $options);
 		}
 	}
 	
