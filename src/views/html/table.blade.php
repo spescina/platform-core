@@ -1,7 +1,4 @@
-<ol class="breadcrumb">
-	<li><a href="">Home</a></li>
-	<li class="active">{{ Language::get(Application::module().".section.title") }}</li>
-</ol>
+{{ PBreadcrumbs::show() }}
 <div class="panel panel-default">
 	<div class="panel-heading clearfix">
 		<h3 class="panel-title pull-left">{{ Language::get(Application::module().".section.title") }}</h3>

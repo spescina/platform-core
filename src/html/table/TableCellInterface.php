@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Html\Table;
 
-interface TableCell
+interface TableCellInterface
 {
 	public function show();
 }

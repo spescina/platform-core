@@ -26,5 +26,5 @@ Route::get('{model}/{action?}/{id?}', array('as' => 'module', function($module, 
 
 
 
-	return $platform->run($action);
+	return $platform->run($action, $id);
 }));

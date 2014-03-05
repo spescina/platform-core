@@ -3,8 +3,9 @@
 use Psimone\PlatformCore\Facades\Application;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Html\Table;
+use Psimone\PlatformCore\i18n\TranslatableInterface;
 
-class ColumnHeading implements TableCell
+class ColumnHeading implements TableCellInterface, TranslatableInterface
 {
 	private $field;
 	
@@ -19,26 +20,31 @@ class ColumnHeading implements TableCell
 	
 	public function show()
 	{
-		if ($this->field === Table::actionColumn)
-		{
-			return Language::get('ui.' . Table::actionColumn);
-		}
-		
 		if ( ! array_key_exists('sortable', $this->options) || $this->options['sortable'] !== false )
 		{
 			return $this->sortable();
 		}
 		
-		return Language::get(Application::module() . '.listing.' . $this->field);
+		return $this->i18n();
 	}
 	
 	private function sortable()
 	{
-		return "<a href=\"\">" . Language::get(Application::module() . '.listing.' . $this->field) . "</a>";
+		return "<a href=\"\">" . $this->i18n() . "</a>";
 	}
 	
 	public function isAction()
 	{
 		return ($this->field === Table::actionColumn);
+	}
+	
+	public function i18n()
+	{
+		if ($this->field === Table::actionColumn)
+		{
+			return Language::get('listing.' . Table::actionColumn);
+		}
+		
+		return Language::get(Application::module() . '.listing.' . $this->field);
 	}
 }

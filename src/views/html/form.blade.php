@@ -1,7 +1,4 @@
-<ol class="breadcrumb">
-	<li><a href="">Home</a></li>
-	<li class="active">{{ Language::get(Application::module().".section.title") }}</li>
-</ol>
+{{ PBreadcrumbs::show() }}
 <div class="panel panel-default">
     <div class="panel-heading">
         @if (PForm::isEmpty())
@@ -12,20 +9,14 @@
     </div>
     <div class="panel-body">
         <form class="form-horizontal" role="form" action="" method="post" autocomplete="off">
-            <?/*<ul class="nav nav-tabs">
-                @foreach (\PangeaForm::getStructure() as $panel => $structure)
-                @if ($panel === 'main')
+            <ul class="nav nav-tabs">
+                @foreach (PForm::panels() as $panel)
                 <li class="active">
-                    <a href="#{{ $panel }}" data-toggle="tab">{{ \Lang::get('ui.main_panel') }}</a>
+			<a href="#{{ $panel->slug() }}" data-toggle="tab">{{ $panel->i18n() }}</a>
                 </li>
-                @else
-                <li>
-                    <a href="#{{ $panel }}" data-toggle="tab">{{ \Lang::get(\Pangea::getModelName().'.panels.'.$panel) }}</a>
-                </li>
-                @endif
                 @endforeach
             </ul>
-            <div class="tab-content">
+            <?/*<div class="tab-content">
                 @foreach (\PangeaForm::getStructure() as $panel => $structure)
                 @if ($panel === 'main')
                 <div class="tab-pane active" id="{{ $panel }}">

@@ -1,7 +1,6 @@
 <?php namespace Psimone\PlatformCore\Html;
 
 use Illuminate\Support\Facades\View;
-use Psimone\PlatformCore\Facades\Application;
 
 abstract class BaseComponent {
 

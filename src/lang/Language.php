@@ -1,4 +1,4 @@
-<?php namespace Psimone\PlatformCore;
+<?php namespace Psimone\PlatformCore\i18n;
 
 use Illuminate\Support\Facades\Lang;
 

@@ -1,11 +1,5 @@
 <?php
-return array(
-	'__actions__' => 'Actions',
-	'_action_CPY_' => 'Copy record',
-	'_action_DLT_' => 'Delete record',
-	'_action_EDT_' => 'Edit record',
-	'listing' => 'Listing',
-	'no_results' => 'This section is still empty',
+return array(	
 	'create_new_element' => 'Create new element',
 	'edit_element_id' => 'Edit element with id: ',
 	'button_confirm' => 'ok',

@@ -2,15 +2,20 @@
 
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Html\BaseComponent;
+use Psimone\PlatformCore\Html\Form\Panel;
 
-class Form extends BaseComponent {
-
+class Form extends BaseComponent
+{
 	protected $view = 'html/form';
 	
 	private $fields;
-
+	
 	private $id;
 	
+	private $panels = array();
+	
+	private $activePanel;
+
 	public function fields(array $fields)
 	{
 		$this->fields = $fields;
@@ -34,6 +39,27 @@ class Form extends BaseComponent {
 
 			$this->record();
 		}
+		
+		$this->panel('main');
 	}
 
+	public function panel($slug)
+	{
+		if ( ! array_key_exists($slug, $this->panels) )
+		{
+			$this->panels[$slug] = new Panel($slug);
+		}
+
+		$this->activePanel($slug);
+	}
+	
+	public function activePanel($slug)
+	{
+		$this->activePanel = $slug;
+	}
+	
+	public function panels()
+	{
+		return $this->panels;
+	}
 }

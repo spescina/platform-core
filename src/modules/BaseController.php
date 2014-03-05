@@ -1,8 +1,8 @@
 <?php namespace Psimone\PlatformCore\Modules;
 
 use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Form;
-use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Navigation;
 use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
@@ -17,6 +17,8 @@ abstract class BaseController extends Controller {
 		Application::setupAssets();
 
 		Navigation::load();
+		
+		Breadcrumbs::load();
 	}
 
 	protected function doDelete($id)

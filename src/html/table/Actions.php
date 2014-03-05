@@ -1,13 +1,10 @@
 <?php namespace Psimone\PlatformCore\Html\Table;
 
-use Psimone\PlatformCore\Facades\Application;
-use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Table;
-use Psimone\PlatformCore\Html\Table as TableClass;
-use Illuminate\Support\Facades\URL;
+use Psimone\PlatformCore\Html\Table\Action;
 use Illuminate\Support\Facades\View;
 
-class Actions implements TableCell
+class Actions implements TableCellInterface
 {
 	private $record;
 	
@@ -30,36 +27,9 @@ class Actions implements TableCell
 		
 		foreach (Table::actions() as $action)
 		{
-			$actions[] = array(
-				'action' => $action,
-				'label' => Language::get('ui._action' . $action),
-				'url' => $this->url($action)
-			);
+			$actions[] = new Action($action, $this->record);
 		}
 		
 		return $actions;
-	}
-	
-	public function url($action)
-	{
-		switch ($action) {
-			case TableClass::editAction:
-				$method = 'form';
-				break;
-			
-			case TableClass::deleteAction:
-				$method = 'delete';
-				break;
-			
-			case TableClass::deleteAction:
-				$method = 'delete';
-				break;			
-		}		
-		
-		return URL::route('module', array(
-			'module' => Application::module(),
-			'action' => $method,
-			'id' => $this->record->id
-		));
 	}
 }

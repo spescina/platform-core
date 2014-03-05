@@ -1,6 +1,8 @@
 <?php namespace Psimone\PlatformCore\Html\Table;
 
-class Content implements TableCell
+use Psimone\PlatformCore\i18n\TranslatableInterface;
+
+class Content implements TableCellInterface, TranslatableInterface 
 {
 	private $field;
 	
@@ -21,5 +23,10 @@ class Content implements TableCell
 	public function show()
 	{
 		return $this->record->{$this->field};
+	}
+	
+	public function i18n()
+	{
+		
 	}
 }

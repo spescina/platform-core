@@ -39,11 +39,11 @@ class Application
 		});
 	}
 
-	public function run($action)
+	public function run($action, $id)
 	{
 		Controller::start();
 
-		return Controller::$action();
+		return Controller::$action($id);
 	}
 
 	public function setupAssets()

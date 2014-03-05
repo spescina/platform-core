@@ -57,9 +57,10 @@ class PlatformCoreServiceProvider extends ServiceProvider
 
 	private function registerAlias()
 	{
-		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
+		AliasLoader::getInstance()->alias('PBreadcrumbs', 'Psimone\PlatformCore\Facades\Breadcrumbs');
 		AliasLoader::getInstance()->alias('PForm', 'Psimone\PlatformCore\Facades\Form');
 		AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
+		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
 
 		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
 		AliasLoader::getInstance()->alias('Controller', 'Psimone\PlatformCore\Facades\Controller');
@@ -85,6 +86,11 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		{
 			return new Html\Form();
 		});
+		
+		$this->app['platform.core.html.breadcrumbs'] = $this->app->share(function($app)
+		{
+			return new Html\Breadcrumbs();
+		});
 
 		$this->app['platform.core.html.navigation'] = $this->app->share(function($app)
 		{
@@ -93,7 +99,7 @@ class PlatformCoreServiceProvider extends ServiceProvider
 
 		$this->app['platform.core.language'] = $this->app->share(function($app)
 		{
-			return new Language();
+			return new i18n\Language();
 		});
 	}
 }
