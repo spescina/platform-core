@@ -1,11 +1,11 @@
 <?php namespace Psimone\PlatformCore\i18n;
 
-use Psimone\PlatformCore\Application;
+use Psimone\PlatformCore\Application as PKG;
 use Illuminate\Support\Facades\Lang;
 
 class Language
 {
-	const _ns_ = 'platform-core-custom';
+	const NS = 'platform-core-custom';
 
 	public function get($key, array $replace = array(), $locale = null)
 	{
@@ -35,11 +35,11 @@ class Language
 	{
 		if ($custom)
 		{
-			return self::_ns_ . '::' . $key;
+			return self::NS . '::' . $key;
 		}
 		else
 		{
-			return Application::_pkg_ . '::' . $key;
+			return PKG::NAME . '::' . $key;
 		}
 	}
 }

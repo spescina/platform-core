@@ -7,7 +7,7 @@ use Teepluss\Asset\Facades\Asset;
 
 class Application
 {
-	const _pkg_ = 'platform-core';
+	const NAME = 'platform-core';
 	
 	public $module;
 

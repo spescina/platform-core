@@ -1,7 +1,5 @@
 <?php
 return array(
-	'create_new_element' => 'Create new element',
-	'edit_element_id' => 'Edit element with id: ',
 	'button_confirm' => 'ok',
 	'button_cancel' => 'cancel',
 	'saved' => 'Your changes have been succesfully saved',

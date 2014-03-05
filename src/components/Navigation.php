@@ -1,5 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components;
 
+use Psimone\PlatformCore\Application as PKG;
 use Psimone\PlatformCore\Components\Navigation\Item;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Illuminate\Support\Facades\Config;
@@ -14,7 +15,7 @@ class Navigation implements Displayable
 
 	public function load()
 	{
-		$items = Config::get('platform-core::navigation');
+		$items = Config::get(PKG::NAME . '::navigation');
 
 		foreach ($items as $slug => $url)
 		{

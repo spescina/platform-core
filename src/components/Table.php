@@ -1,7 +1,9 @@
 <?php namespace Psimone\PlatformCore\Components;
 
+use Psimone\PlatformCore\Action;
+use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
-use Psimone\PlatformCore\Components\Table\Actions;
+use Psimone\PlatformCore\Components\Table\Operations;
 use Psimone\PlatformCore\Components\Table\ColumnHeading;
 use Psimone\PlatformCore\Components\Table\Content;
 use Psimone\PlatformCore\Interfaces\Displayable;
@@ -10,15 +12,12 @@ class Table implements Displayable
 {
 	use \Psimone\PlatformCore\Traits\Displayable;
 	
-	const actionColumn = '__actions__';
-	const idColumn = '__id__';
-	const editAction = '_EDT_';
-	const deleteAction = '_DLT_';
-	const copyAction = '_CPY_';
+	const COLUMN_ACTIONS = '__actions__';
+	const COLUMN_ID = '__id__';
 
-	private $actions = array(
-		self::editAction,
-		self::deleteAction
+	private $operations = array(
+		Action::ACTION_SHOWFORM,
+		Action::ACTION_DELETE
 	);
 	private $fields;
 	private $view = 'components/table';
@@ -43,7 +42,7 @@ class Table implements Displayable
 			$headings[$field] = new ColumnHeading($field, $options);
 		}
 
-		$headings[self::actionColumn] = new ColumnHeading(self::actionColumn);
+		$headings[self::COLUMN_ACTIONS] = new ColumnHeading(self::COLUMN_ACTIONS);
 
 		return $headings;
 	}
@@ -55,7 +54,7 @@ class Table implements Displayable
 		foreach (Model::all() as $record)
 		{
 			$row = array(
-				self::idColumn => $record->id,
+				self::COLUMN_ID => $record->id,
 				'data' => array()
 			);
 
@@ -64,7 +63,7 @@ class Table implements Displayable
 				$row['data'][$field] = new Content($field, $record, $options);
 			}
 
-			$row['data'][self::actionColumn] = new Actions($record);
+			$row['data'][self::COLUMN_ACTIONS] = new Operations($record);
 
 			$body[] = $row;
 		}
@@ -72,13 +71,18 @@ class Table implements Displayable
 		return $body;
 	}
 
-	public function actions()
+	public function operations()
 	{
-		return $this->actions;
+		return $this->operations;
 	}
 
 	public function load()
 	{
 		
+	}
+	
+	public function i18n($section)
+	{
+		return Language::get('table.' . $section);
 	}
 }

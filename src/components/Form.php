@@ -1,5 +1,7 @@
 <?php namespace Psimone\PlatformCore\Components;
 
+use Psimone\PlatformCore\Action;
+use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Components\Form\Panel;
 use Psimone\PlatformCore\Interfaces\Displayable;
@@ -9,9 +11,11 @@ class Form implements Displayable
 	use \Psimone\PlatformCore\Traits\Displayable;
 	
 	const _main_ = 'main';
+	const _store_method_ = 'store';
 	
+	private $action;
 	private $activePanel;
-	private $id;
+	private $id = null;
 	private $panels = array();
 	private $view = 'components/form';
 	private $viewData = false;
@@ -63,5 +67,25 @@ class Form implements Displayable
 	public function panels()
 	{
 		return $this->panels;
+	}
+	
+	public function action()
+	{
+		if ( ! isset($this->action) )
+		{
+			$this->action = new Action(Action::ACTION_STORE, array('id' => $this->id));
+		}
+		
+		return $this->action;
+	}
+	
+	public function back()
+	{
+		return new Action(Action::ACTION_LISTING);
+	}
+	
+	public function i18n($section)
+	{
+		return Language::get('form.' . $section);
 	}
 }

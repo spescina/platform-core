@@ -56,7 +56,8 @@ class PlatformCoreServiceProvider extends ServiceProvider
 			'platform.core.components.form',
 			'platform.core.components.navigation',
 			'platform.core.components.table',
-			'platform.core.language'
+			'platform.core.language',
+			'platform.core.page'
 		);
 	}
 
@@ -65,13 +66,9 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		AliasLoader::getInstance()->alias('PBreadcrumbs', 'Psimone\PlatformCore\Facades\Breadcrumbs');
 		AliasLoader::getInstance()->alias('PForm', 'Psimone\PlatformCore\Facades\Form');
 		AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
+		AliasLoader::getInstance()->alias('PPage', 'Psimone\PlatformCore\Facades\Page');
 		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
-
-		AliasLoader::getInstance()->alias('Application', 'Psimone\PlatformCore\Facades\Application');
-		AliasLoader::getInstance()->alias('Controller', 'Psimone\PlatformCore\Facades\Controller');
-		AliasLoader::getInstance()->alias('Model', 'Psimone\PlatformCore\Facades\Model');
-		AliasLoader::getInstance()->alias('Language', 'Psimone\PlatformCore\Facades\Language');
-
+		
 		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
 	}
 
@@ -106,10 +103,15 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		{
 			return new i18n\Language();
 		});
+		
+		$this->app['platform.core.page'] = $this->app->share(function($app)
+		{
+			return new Page();
+		});
 	}
 	
 	private function addNamespaces()
 	{
-		Lang::addNamespace(Language::_ns_, app_path() . '/platform-core/lang');
+		Lang::addNamespace(Language::NS, app_path() . '/platform-core/lang');
 	}
 }

@@ -1,15 +1,15 @@
 <div class="panel panel-default">
 	<div class="panel-heading clearfix">
-		<h3 class="panel-title pull-left">{{ Language::get(Application::module().".section.title") }}</h3>
+		<h3 class="panel-title pull-left">{{ PPage::i18n('title') }}</h3>
 		<div class="btn-group btn-group-xs pull-right">
-			<a href="" class="btn btn-default">{{ Language::get('ui.create_new_element') }}</a>
+			<a href="" class="btn btn-default">{{ PTable::i18n('new_element') }}</a>
 		</div>
 	</div>
 	<div class="panel-body">
-		<p>{{ Language::get(Application::module().".section.subtitle") }}</p>
+		<p>{{ PPage::i18n('subtitle') }}</p>
 		@if ( PTable::isEmpty() )
 		<div class="well well-sm">
-			<span>{{ Language::get('ui.no_results') }}</span>
+			<span>{{ PTable::i18n('no_results') }}</span>
 		</div>
 		@endif
 	</div>

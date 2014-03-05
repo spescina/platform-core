@@ -12,7 +12,7 @@ class ColumnHeading implements Displayable, Translatable
 	
 	private $field;
 	private $options;
-	private $view = 'components/table/columnHeading';
+	private $view = 'components/table/column-heading';
 	private $viewData = true;
 
 	public function __construct($field, array $options = array())
@@ -21,29 +21,34 @@ class ColumnHeading implements Displayable, Translatable
 
 		$this->options = $options;
 	}
-	
+
 	public function isSortable()
 	{
-		return !(array_key_exists('sortable', $this->options) && $this->options['sortable'] === false);
-	}
+		if ($this->isAction())
+		{
+			return false;
+		}
 
-	private function sortable()
-	{
-		return "<a href=\"\">" . $this->i18n() . "</a>";
+		if (array_key_exists('sortable', $this->options) && $this->options['sortable'] === false)
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 	public function isAction()
 	{
-		return ($this->field === Table::actionColumn);
+		return ($this->field === Table::COLUMN_ACTIONS);
 	}
 
 	public function i18n()
 	{
-		if ($this->field === Table::actionColumn)
+		if ($this->field === Table::COLUMN_ACTIONS)
 		{
-			return Language::get('listing.' . Table::actionColumn);
+			return Language::get('table.' . Table::COLUMN_ACTIONS);
 		}
 
-		return Language::get(Application::module() . '.listing.' . $this->field);
+		return Language::get(Application::module() . '.table.' . $this->field);
 	}
 }
