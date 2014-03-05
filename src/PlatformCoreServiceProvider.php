@@ -31,7 +31,7 @@ class PlatformCoreServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app->bind('Psimone\\PlatformCore\\Repositories\\RepositoryInterface', 'Psimone\\PlatformCore\\Repositories\\FluentRepository');
+		$this->app->bind('Psimone\\PlatformCore\\Interfaces\\Repository', 'Psimone\\PlatformCore\\Repositories\\Fluent');
 
 		$this->registerServices();
 
@@ -77,24 +77,24 @@ class PlatformCoreServiceProvider extends ServiceProvider
 
 	private function registerServices()
 	{
-		$this->app['platform.core.html.table'] = $this->app->share(function($app)
+		$this->app['platform.core.components.table'] = $this->app->share(function($app)
 		{
-			return new Html\Table();
+			return new Components\Table();
 		});
 
-		$this->app['platform.core.html.form'] = $this->app->share(function($app)
+		$this->app['platform.core.components.form'] = $this->app->share(function($app)
 		{
-			return new Html\Form();
-		});
-		
-		$this->app['platform.core.html.breadcrumbs'] = $this->app->share(function($app)
-		{
-			return new Html\Breadcrumbs();
+			return new Components\Form();
 		});
 
-		$this->app['platform.core.html.navigation'] = $this->app->share(function($app)
+		$this->app['platform.core.components.breadcrumbs'] = $this->app->share(function($app)
 		{
-			return new Html\Navigation();
+			return new Components\Breadcrumbs();
+		});
+
+		$this->app['platform.core.components.navigation'] = $this->app->share(function($app)
+		{
+			return new Components\Navigation();
 		});
 
 		$this->app['platform.core.language'] = $this->app->share(function($app)

@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Navigation extends Facade {
+class Navigation extends Facade
+{
 
 	/**
 	 * Get the registered name of the component.
@@ -11,7 +12,6 @@ class Navigation extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.html.navigation';
+		return 'platform.core.components.navigation';
 	}
-
 }

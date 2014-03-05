@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Breadcrumbs extends Facade {
+class Breadcrumbs extends Facade
+{
 
 	/**
 	 * Get the registered name of the component.
@@ -11,7 +12,6 @@ class Breadcrumbs extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.html.breadcrumbs';
+		return 'platform.core.components.breadcrumbs';
 	}
-
 }

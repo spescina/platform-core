@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Lang;
 
-class Language {
-
+class Language
+{
 	private $packageName = 'platform-core';
 
 	public function get($key, array $replace = array(), $locale = null)
@@ -29,5 +29,4 @@ class Language {
 			return Lang::has($this->packageName . '::' . $key, $locale);
 		}
 	}
-
 }

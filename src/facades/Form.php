@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Form extends Facade {
+class Form extends Facade
+{
 
 	/**
 	 * Get the registered name of the component.
@@ -11,7 +12,6 @@ class Form extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.html.form';
+		return 'platform.core.components.form';
 	}
-
 }

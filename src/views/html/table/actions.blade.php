@@ -1,9 +1,0 @@
-<div class="btn-group btn-group-xs">
-    @foreach ($actions as $action)
-    @if ($action->slug() === '_DLT_')
-    <a href="{{ $action->url() }}" class="btn btn-default modalDelete">{{ $action->i18n() }}</a>
-    @else
-    <a href="{{ $action->url() }}" class="btn btn-default">{{ $action->i18n() }}</a>
-    @endif
-    @endforeach
-</div>

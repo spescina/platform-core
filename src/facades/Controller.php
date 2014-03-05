@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Controller extends Facade {
+class Controller extends Facade
+{
 
 	/**
 	 * Get the registered name of the component.
@@ -13,5 +14,4 @@ class Controller extends Facade {
 	{
 		return 'platform.core.controller';
 	}
-
 }

@@ -1,12 +1,12 @@
 <?php namespace Psimone\PlatformCore\Models;
 
-use Psimone\PlatformCore\Repositories\RepositoryInterface;
+use Psimone\PlatformCore\Interfaces\Repository;
 
-abstract class BaseModel {
-
+abstract class BaseModel
+{
 	private $source;
 
-	public function __construct(RepositoryInterface $source)
+	public function __construct(Repository $source)
 	{
 		$this->source = $source;
 
@@ -17,5 +17,4 @@ abstract class BaseModel {
 	{
 		return call_user_func_array(array($this->source, $name), $arguments);
 	}
-
 }

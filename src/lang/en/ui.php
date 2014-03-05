@@ -1,5 +1,5 @@
 <?php
-return array(	
+return array(
 	'create_new_element' => 'Create new element',
 	'edit_element_id' => 'Edit element with id: ',
 	'button_confirm' => 'ok',

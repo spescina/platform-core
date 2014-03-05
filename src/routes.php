@@ -16,15 +16,9 @@ Route::get('{model}/{action?}/{id?}', array('as' => 'module', function($module, 
 		return new Psimone\PlatformCore\Application($module);
 	});
 
-
-
 	$platform = App::make('platform.core.app');
 
-
-
 	$platform->register();
-
-
 
 	return $platform->run($action, $id);
 }));

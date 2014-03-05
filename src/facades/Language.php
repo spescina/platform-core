@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Language extends Facade {
+class Language extends Facade
+{
 
 	/**
 	 * Get the registered name of the component.
@@ -13,5 +14,4 @@ class Language extends Facade {
 	{
 		return 'platform.core.language';
 	}
-
 }

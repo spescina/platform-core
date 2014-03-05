@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Table extends Facade {
+class Table extends Facade
+{
 
 	/**
 	 * Get the registered name of the component.
@@ -11,7 +12,6 @@ class Table extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.html.table';
+		return 'platform.core.components.table';
 	}
-
 }

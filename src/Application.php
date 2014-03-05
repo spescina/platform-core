@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore;
 
 use Psimone\PlatformCore\Facades\Controller;
-use Psimone\PlatformCore\Repositories\FluentRepository;
+use Psimone\PlatformCore\Repositories\Fluent;
 use Illuminate\Support\Facades\App;
 use Teepluss\Asset\Facades\Asset;
 
@@ -28,12 +28,12 @@ class Application
 		{
 			$modelName = 'Psimone\\PlatformCore\\Models\\' . $className;
 
-			return new $modelName(new FluentRepository);
+			return new $modelName(new Fluent);
 		});
 
 		App::singleton('platform.core.controller', function() use ($className)
 		{
-			$controllerName = 'Psimone\\PlatformCore\\Modules\\' . $className . 'Controller';
+			$controllerName = 'Psimone\\PlatformCore\\Controllers\\' . $className . 'Controller';
 
 			return new $controllerName;
 		});
