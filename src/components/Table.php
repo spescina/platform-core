@@ -20,13 +20,13 @@ class Table implements Displayable
 		self::editAction,
 		self::deleteAction
 	);
-	private $columns;
+	private $fields;
 	private $view = 'components/table';
 	private $viewData = false;
 
-	public function columns(array $columns)
+	public function fields(array $fields)
 	{
-		$this->columns = $columns;
+		$this->fields = $fields;
 	}
 
 	public function isEmpty()
@@ -34,11 +34,11 @@ class Table implements Displayable
 		return ( count(Model::all()) === 0 );
 	}
 
-	public function headings()
+	public function head()
 	{
 		$headings = array();
 
-		foreach ($this->columns as $field => $options)
+		foreach ($this->fields as $field => $options)
 		{
 			$headings[$field] = new ColumnHeading($field, $options);
 		}
@@ -59,7 +59,7 @@ class Table implements Displayable
 				'data' => array()
 			);
 
-			foreach ($this->columns as $field => $options)
+			foreach ($this->fields as $field => $options)
 			{
 				$row['data'][$field] = new Content($field, $record, $options);
 			}

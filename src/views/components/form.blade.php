@@ -10,7 +10,7 @@
 		<form class="form-horizontal" role="form" action="" method="post" autocomplete="off">
 			<ul class="nav nav-tabs">
 				@foreach (PForm::panels() as $panel)
-				{{ $panel->tab->show() }}
+				{{ $panel->tab()->show() }}
 				@endforeach
 			</ul>
 			<div class="tab-content">

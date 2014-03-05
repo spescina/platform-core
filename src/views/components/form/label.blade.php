@@ -1,0 +1,1 @@
+<label for="{{ $obj->slug() }}" class="col-sm-4 control-label">{{ $obj->i18n() }}</label>

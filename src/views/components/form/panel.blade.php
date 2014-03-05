@@ -3,9 +3,9 @@
 @else
 <div class="tab-pane" id="{{ $obj->slug() }}">
 @endif
-<?/*@foreach ($structure as $fieldName => $fieldAttributes)
+@foreach ($obj->fields() as $field)
 <div class="form-group">
-{{ \PangeaHtml::create($fieldName, $fieldAttributes)->show() }}
+	{{ $field->show() }}
 </div>
-@endforeach*/?>
+@endforeach
 </div>

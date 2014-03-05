@@ -8,16 +8,23 @@ class Form implements Displayable
 {
 	use \Psimone\PlatformCore\Traits\Displayable;
 	
+	const _main_ = 'main';
+	
 	private $activePanel;
-	private $fields;
 	private $id;
 	private $panels = array();
 	private $view = 'components/form';
 	private $viewData = false;
+	
+	public function __construct()
+	{
+		$this->panel(self::_main_, true);
+		$this->activePanel(self::_main_);
+	}
 
 	public function fields(array $fields)
 	{
-		$this->fields = $fields;
+		$this->panels[$this->activePanel]->components($fields);
 	}
 
 	public function record()
@@ -38,18 +45,14 @@ class Form implements Displayable
 
 			$this->record();
 		}
-
-		$this->panel('main');
 	}
 
-	public function panel($slug)
+	public function panel($slug, $active = false)
 	{
 		if (!array_key_exists($slug, $this->panels))
 		{
-			$this->panels[$slug] = new Panel($slug);
+			$this->panels[$slug] = new Panel($slug, $active);
 		}
-
-		$this->activePanel($slug);
 	}
 
 	public function activePanel($slug)
