@@ -1,6 +1,8 @@
 <?php namespace Psimone\PlatformCore;
 
+use Psimone\PlatformCore\i18n\Language;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
 
 class PlatformCoreServiceProvider extends ServiceProvider
@@ -20,6 +22,8 @@ class PlatformCoreServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->package('psimone/platform-core', 'platform-core', __DIR__);
+		
+		$this->addNamespaces();
 
 		include __DIR__ . '/routes.php';
 	}
@@ -48,9 +52,10 @@ class PlatformCoreServiceProvider extends ServiceProvider
 	public function provides()
 	{
 		return array(
-			'platform.core.html.table',
-			'platform.core.html.form',
-			'platform.core.html.navigation',
+			'platform.core.components.breadcrumbs',
+			'platform.core.components.form',
+			'platform.core.components.navigation',
+			'platform.core.components.table',
 			'platform.core.language'
 		);
 	}
@@ -77,29 +82,34 @@ class PlatformCoreServiceProvider extends ServiceProvider
 
 	private function registerServices()
 	{
-		$this->app['platform.core.components.table'] = $this->app->share(function($app)
-		{
-			return new Components\Table();
-		});
-
-		$this->app['platform.core.components.form'] = $this->app->share(function($app)
-		{
-			return new Components\Form();
-		});
-
 		$this->app['platform.core.components.breadcrumbs'] = $this->app->share(function($app)
 		{
 			return new Components\Breadcrumbs();
+		});
+		
+		$this->app['platform.core.components.form'] = $this->app->share(function($app)
+		{
+			return new Components\Form();
 		});
 
 		$this->app['platform.core.components.navigation'] = $this->app->share(function($app)
 		{
 			return new Components\Navigation();
 		});
+		
+		$this->app['platform.core.components.table'] = $this->app->share(function($app)
+		{
+			return new Components\Table();
+		});
 
 		$this->app['platform.core.language'] = $this->app->share(function($app)
 		{
 			return new i18n\Language();
 		});
+	}
+	
+	private function addNamespaces()
+	{
+		Lang::addNamespace(Language::_ns_, app_path() . '/platform-core/lang');
 	}
 }

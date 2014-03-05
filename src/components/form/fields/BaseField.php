@@ -1,6 +1,7 @@
 <?php namespace Psimone\PlatformCore\Components\Form\Fields;
 
 use Psimone\PlatformCore\Components\Form\Label;
+use Psimone\PlatformCore\Facades\Form;
 use Psimone\PlatformCore\Interfaces\Displayable;
 
 abstract class BaseField implements Displayable
@@ -39,7 +40,14 @@ abstract class BaseField implements Displayable
 	
 	public function value()
 	{
-		return $this->value;
+		if ( ! Form::isEmpty() )
+		{
+			return Form::record()->{$this->slug};
+		}
+		else
+		{
+			return;
+		}
 	}
 	
 	public function hasHelp()

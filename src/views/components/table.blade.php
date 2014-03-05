@@ -17,7 +17,7 @@
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				@foreach (PTable::headings() as $cell)
+				@foreach (PTable::head() as $cell)
 				@if ($cell->isAction())
 				<th class="col-md-3">{{ $cell->show() }}</th>
 				@else
