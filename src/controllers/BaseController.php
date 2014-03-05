@@ -1,9 +1,11 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
+use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Facades\Application;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Form;
 use Psimone\PlatformCore\Facades\Navigation;
+use Psimone\PlatformCore\Facades\Page;
 use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
@@ -40,6 +42,8 @@ abstract class BaseController extends Controller
 	protected function doListing()
 	{
 		Table::load();
+		
+		Page::task(new Task('form', null, 'form_new'));
 
 		return View::make('platform-core::listing');
 	}

@@ -2,7 +2,9 @@
 	<div class="panel-heading clearfix">
 		<h3 class="panel-title pull-left">{{ PPage::i18n('title') }}</h3>
 		<div class="btn-group btn-group-xs pull-right">
-			<a href="" class="btn btn-default">{{ PTable::i18n('new_element') }}</a>
+			@foreach (PPage::toolbar() as $task)
+			{{ $task->show() }}
+			@endforeach
 		</div>
 	</div>
 	<div class="panel-body">

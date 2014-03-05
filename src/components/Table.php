@@ -3,7 +3,7 @@
 use Psimone\PlatformCore\Action;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
-use Psimone\PlatformCore\Components\Table\Operations;
+use Psimone\PlatformCore\Components\Table\Taskbar;
 use Psimone\PlatformCore\Components\Table\ColumnHeading;
 use Psimone\PlatformCore\Components\Table\Content;
 use Psimone\PlatformCore\Interfaces\Displayable;
@@ -15,7 +15,7 @@ class Table implements Displayable
 	const COLUMN_ACTIONS = '__actions__';
 	const COLUMN_ID = '__id__';
 
-	private $operations = array(
+	private $tasks = array(
 		Action::ACTION_SHOWFORM,
 		Action::ACTION_DELETE
 	);
@@ -63,7 +63,7 @@ class Table implements Displayable
 				$row['data'][$field] = new Content($field, $record, $options);
 			}
 
-			$row['data'][self::COLUMN_ACTIONS] = new Operations($record);
+			$row['data'][self::COLUMN_ACTIONS] = new Taskbar($record);
 
 			$body[] = $row;
 		}
@@ -71,9 +71,9 @@ class Table implements Displayable
 		return $body;
 	}
 
-	public function operations()
+	public function tasks()
 	{
-		return $this->operations;
+		return $this->tasks;
 	}
 
 	public function load()

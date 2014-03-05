@@ -1,15 +1,15 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
 use Psimone\PlatformCore\Facades\Table;
-use Psimone\PlatformCore\Components\Table\Operation;
+use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Interfaces\Displayable;
 
-class Operations implements Displayable
+class Taskbar implements Displayable
 {
 	use \Psimone\PlatformCore\Traits\Displayable;
 	
 	private $record;
-	private $view = 'components/table/operations';
+	private $view = 'components/table/taskbar';
 	private $viewData = true;
 
 	public function __construct($record)
@@ -17,15 +17,15 @@ class Operations implements Displayable
 		$this->record = $record;
 	}
 
-	public function operations()
+	public function tasks()
 	{
-		$operations = array();
+		$tasks = array();
 
-		foreach (Table::operations() as $operation)
+		foreach (Table::tasks() as $task)
 		{
-			$operations[] = new Operation($operation, $this->record);
+			$tasks[] = new Task($task, $this->record);
 		}
 
-		return $operations;
+		return $tasks;
 	}
 }

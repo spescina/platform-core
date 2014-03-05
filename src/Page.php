@@ -1,6 +1,7 @@
 <?php namespace Psimone\PlatformCore;
 
 use Psimone\PlatformCore\Application as PKG;
+use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Facades\Application;
 use Psimone\PlatformCore\Facades\Language;
 use Illuminate\Support\Facades\Session;
@@ -10,6 +11,7 @@ class Page
 {
 	private $errors = array();
 	private $messages = array();
+	private $toolbar = array();
 	
 	public function __construct()
 	{
@@ -48,6 +50,16 @@ class Page
 		}
 	}
 	
+	public function task(Task $task)
+	{
+		$this->toolbar[] = $task;
+	}
+	
+	public function toolbar()
+	{
+		return $this->toolbar;
+	}
+	
 	public function i18n($section)
 	{
 		return Language::get(Application::module() . '.section.' . $section);
@@ -56,5 +68,5 @@ class Page
 	public function i18n_ui($element, $section = 'ui')
 	{
 		return Language::get($section . '.' . $element);
-	}
+	}	
 }
