@@ -11,5 +11,5 @@ interface Repository
 
 	public function all();
 
-	public function store($id = null);
+	public function store(array $data, $id = null);
 }

@@ -17,6 +17,7 @@ class Form implements Displayable
 	private $activePanel;
 	private $id = null;
 	private $panels = array();
+	private $rules = array();
 	private $view = 'components/form';
 	private $viewData = false;
 	
@@ -87,5 +88,17 @@ class Form implements Displayable
 	public function i18n($section)
 	{
 		return Language::get('form.' . $section);
+	}
+
+	public function rules(array $rules = null)
+	{
+		if ($rules)
+		{
+			$this->rules = $rules;
+		}
+		else
+		{
+			return $this->rules;
+		}
 	}
 }

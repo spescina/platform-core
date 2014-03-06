@@ -1,13 +1,20 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
+use Psimone\PlatformCore\Action;
 use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Facades\Application;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Form;
+use Psimone\PlatformCore\Facades\Language;
+use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Navigation;
 use Psimone\PlatformCore\Facades\Page;
 use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
 abstract class BaseController extends Controller
@@ -29,7 +36,14 @@ abstract class BaseController extends Controller
 
 	protected function doDelete($id)
 	{
-		//$this->model->delete($id);
+		Model::delete($id);
+
+		Session::flash('messages', array(Language::get('ui.deleted')));
+
+		return Redirect::route('module', array(
+		    Application::module(),
+		    Action::ACTION_LISTING
+		));
 	}
 
 	protected function showForm($id)
@@ -50,8 +64,55 @@ abstract class BaseController extends Controller
 
 	protected function doStore($id)
 	{
-		/* $this->model->find($id);
+		$data = Input::except('save', 'save_back');
 
-		  $this->model->store($id); */
+		$validator = Validator::make($data, Form::rules());
+
+		if ($validator->fails())
+		{
+			Session::flash('errors', $validator->messages());
+
+			if ($id)
+			{
+				return Redirect::route('module', array(
+					    Application::module(),
+					    Action::ACTION_SHOWFORM,
+					    $id
+					))->withInput();
+			}
+			else
+			{
+				return Redirect::route('module', array(
+					    Application::module(),
+					    Action::ACTION_SHOWFORM
+					))->withInput();
+			}
+		}
+
+		$objId = Model::store($data, $id);
+
+		if ($id)
+		{
+			Session::flash('messages', array(Language::get('ui.saved')));
+		}
+		else
+		{
+			Session::flash('messages', array(Language::get('ui.created')));
+		}
+
+		if (Input::has('save'))
+		{
+			return Redirect::route('module', array(
+				    Application::module(),
+				    Action::ACTION_SHOWFORM,
+				    $objId
+			));
+		}
+
+		return Redirect::route('module', array(
+			    Application::module(),
+			    Action::ACTION_LISTING
+		));
 	}
 }
+

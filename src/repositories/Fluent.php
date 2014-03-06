@@ -15,14 +15,18 @@ class Fluent implements Repository
 
 	public function delete($id)
 	{
-		var_dump('delete ' . $id);
+		DB::table($this->table)
+			->where('id', $id)
+			->delete();
 	}
 
 	public function find($id)
 	{
 		if (empty($this->result))
 		{
-			$this->result = DB::table($this->table)->where('id', $id)->first();
+			$this->result = DB::table($this->table)
+				->where('id', $id)
+				->first();
 		}
 
 		return $this->result;
@@ -32,21 +36,28 @@ class Fluent implements Repository
 	{
 		if (!is_array($this->result))
 		{
-			$this->result = DB::table($this->table)->get();
+			$this->result = DB::table($this->table)
+				->get();
 		}
 
 		return $this->result;
 	}
 
-	public function store($id = null)
+	public function store(array $data, $id = null)
 	{
 		if ($id)
 		{
-			var_dump('save ' . $id);
+			DB::table($this->table)
+				->where('id', $id)
+				->update($data);
 		}
 		else
 		{
-			var_dump('create');
+			$id = DB::table($this->table)
+				->insertGetId($data);
 		}
+
+		return $id;
 	}
+
 }

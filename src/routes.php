@@ -9,7 +9,7 @@
   | and give it the Closure to execute when that URI is requested.
   |
  */
-Route::get('{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null)
+Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null)
 {
 	App::singleton('platform.core.app', function() use ($module)
 	{

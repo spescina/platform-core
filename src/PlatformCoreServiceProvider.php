@@ -1,6 +1,11 @@
 <?php namespace Psimone\PlatformCore;
 
+use Psimone\PlatformCore\Components\Breadcrumbs;
+use Psimone\PlatformCore\Components\Form;
+use Psimone\PlatformCore\Components\Navigation;
+use Psimone\PlatformCore\Components\Table;
 use Psimone\PlatformCore\i18n\Language;
+use Psimone\PlatformCore\Page;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
@@ -81,27 +86,27 @@ class PlatformCoreServiceProvider extends ServiceProvider
 	{
 		$this->app['platform.core.components.breadcrumbs'] = $this->app->share(function($app)
 		{
-			return new Components\Breadcrumbs();
+			return new Breadcrumbs();
 		});
 		
 		$this->app['platform.core.components.form'] = $this->app->share(function($app)
 		{
-			return new Components\Form();
+			return new Form();
 		});
 
 		$this->app['platform.core.components.navigation'] = $this->app->share(function($app)
 		{
-			return new Components\Navigation();
+			return new Navigation();
 		});
 		
 		$this->app['platform.core.components.table'] = $this->app->share(function($app)
 		{
-			return new Components\Table();
+			return new Table();
 		});
 
 		$this->app['platform.core.language'] = $this->app->share(function($app)
 		{
-			return new i18n\Language();
+			return new Language();
 		});
 		
 		$this->app['platform.core.page'] = $this->app->share(function($app)
