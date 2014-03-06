@@ -9,6 +9,6 @@
 </li>
 @else
 <li>
-	<a href="">{{ $obj->i18n() }}</a>
+	<a href="{{ $obj->url() }}">{{ $obj->i18n() }}</a>
 </li>
 @endif

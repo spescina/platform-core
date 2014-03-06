@@ -3,6 +3,7 @@
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;
+use Illuminate\Support\Facades\URL;
 
 class Item implements Displayable, Translatable
 {
@@ -18,9 +19,9 @@ class Item implements Displayable, Translatable
 	{
 		$this->slug = $slug;
 
-		if (is_array($url))
+		if (is_array($url) && array_key_exists('__childrens__', $url))
 		{
-			foreach ($url as $childSlug => $childUrl)
+			foreach ($url['__childrens__'] as $childSlug => $childUrl)
 			{
 				$this->child($childSlug, $childUrl);
 			}
@@ -44,5 +45,10 @@ class Item implements Displayable, Translatable
 	public function children()
 	{
 		return $this->children;
+	}
+
+	public function url()
+	{
+		return URL::route('module', $this->url);
 	}
 }
