@@ -19,8 +19,8 @@
 		}
 	],
 	"autoload": {
-		"psr-4": {
-			"Psimone\\PlatformCore\\": "src/"
+		"psr-0": {
+			"Psimone\\PlatformCore": "src/"
 		}
 	},
 	"minimum-stability": "stable"

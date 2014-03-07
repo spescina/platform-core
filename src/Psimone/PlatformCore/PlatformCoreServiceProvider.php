@@ -26,11 +26,11 @@ class PlatformCoreServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		$this->package('psimone/platform-core', 'platform-core', __DIR__);
+		$this->package('psimone/platform-core');
 		
 		$this->addNamespaces();
 
-		include __DIR__ . '/routes.php';
+		include __DIR__ . '/../../routes.php';
 	}
 
 	/**
