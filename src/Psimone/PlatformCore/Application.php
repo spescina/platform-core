@@ -30,7 +30,7 @@ class Application
 		{
 			$modelName = 'Psimone\\PlatformCore\\Models\\' . $className;
 
-			return new $modelName(new Fluent);
+			return new $modelName;
 		});
 
 		App::singleton('platform.core.controller', function() use ($className)

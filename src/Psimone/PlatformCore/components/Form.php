@@ -101,4 +101,17 @@ class Form implements Displayable
 			return $this->rules;
 		}
 	}
+
+	public function modelToDropdown($model, $labelField, $valueField = 'id', $nullable = true)
+	{
+		$collection = ($nullable) ? array('null' => '---') : array();
+
+		foreach ($model as $record)
+		{
+			$collection[$record->$valueField] = $record->$labelField;
+		}
+
+		return $collection;
+	}
+
 }
