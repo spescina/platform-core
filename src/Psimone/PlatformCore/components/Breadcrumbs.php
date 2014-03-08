@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components;
 
-use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Psimone\PlatformCore\Components\Breadcrumbs\Item;
 use Psimone\PlatformCore\Interfaces\Displayable;
 
@@ -16,7 +16,7 @@ class Breadcrumbs implements Displayable
 	{
 		$this->item('root');
 
-		$this->item(Application::module());
+		$this->item(Platform::module());
 	}
 
 	public function item($slug)

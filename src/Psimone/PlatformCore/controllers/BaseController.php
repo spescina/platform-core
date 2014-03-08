@@ -2,7 +2,7 @@
 
 use Psimone\PlatformCore\Action;
 use Psimone\PlatformCore\Components\Task;
-use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Form;
 use Psimone\PlatformCore\Facades\Language;
@@ -27,7 +27,7 @@ abstract class BaseController extends Controller
 
 	public function start()
 	{
-		Application::setupAssets();
+		Platform::setupAssets();
 
 		Navigation::load();
 
@@ -41,7 +41,7 @@ abstract class BaseController extends Controller
 		Session::flash('messages', array(Language::get('ui.deleted')));
 
 		return Redirect::route('module', array(
-		    Application::module(),
+		    Platform::module(),
 		    Action::ACTION_LISTING
 		));
 	}
@@ -75,7 +75,7 @@ abstract class BaseController extends Controller
 			if ($id)
 			{
 				return Redirect::route('module', array(
-					    Application::module(),
+					    Platform::module(),
 					    Action::ACTION_SHOWFORM,
 					    $id
 					))->withInput();
@@ -83,7 +83,7 @@ abstract class BaseController extends Controller
 			else
 			{
 				return Redirect::route('module', array(
-					    Application::module(),
+					    Platform::module(),
 					    Action::ACTION_SHOWFORM
 					))->withInput();
 			}
@@ -103,14 +103,14 @@ abstract class BaseController extends Controller
 		if (Input::has('save'))
 		{
 			return Redirect::route('module', array(
-				    Application::module(),
+				    Platform::module(),
 				    Action::ACTION_SHOWFORM,
 				    $objId
 			));
 		}
 
 		return Redirect::route('module', array(
-			    Application::module(),
+			    Platform::module(),
 			    Action::ACTION_LISTING
 		));
 	}

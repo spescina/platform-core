@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Components\Table;
 use Psimone\PlatformCore\Interfaces\Displayable;
@@ -49,6 +49,6 @@ class ColumnHeading implements Displayable, Translatable
 			return Language::get('table.' . Table::COLUMN_ACTIONS);
 		}
 
-		return Language::get(Application::module() . '.table.' . $this->field);
+		return Language::get(Platform::module() . '.table.' . $this->field);
 	}
 }

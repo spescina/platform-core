@@ -2,7 +2,7 @@
 
 use Psimone\PlatformCore\Application as PKG;
 use Psimone\PlatformCore\Components\Task;
-use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -62,7 +62,7 @@ class Page
 	
 	public function i18n($section)
 	{
-		return Language::get(Application::module() . '.section.' . $section);
+		return Language::get(Platform::module() . '.section.' . $section);
 	}
 	
 	public function i18n_ui($element, $section = 'ui')

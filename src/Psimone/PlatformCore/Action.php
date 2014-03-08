@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore;
 
-use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Illuminate\Support\Facades\URL;
 
 class Action
@@ -25,7 +25,7 @@ class Action
 		$id = array_key_exists('id', $this->options) ? $this->options['id'] : null;
 		
 		return URL::route('module', array(
-			Application::module(),
+			Platform::module(),
 			$this->type,
 			$id
 		));

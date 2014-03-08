@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components\Form;
 
-use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;
@@ -24,7 +24,7 @@ class Label implements Displayable, Translatable
 	
 	public function i18n()
 	{
-		return Language::get(Application::module() . '.form.' . $this->slug);
+		return Language::get(Platform::module() . '.form.' . $this->slug);
 	}
 	
 	public function width()

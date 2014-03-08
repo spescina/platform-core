@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore\Components\Form;
 
 use Psimone\PlatformCore\Components\Form;
-use Psimone\PlatformCore\Facades\Application;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;
@@ -31,7 +31,7 @@ class Tab implements Displayable, Translatable
 		}
 		else
 		{
-			return Language::get(Application::module() . '.panels.' . $this->slug);
+			return Language::get(Platform::module() . '.panels.' . $this->slug);
 		}
 	}
 	
