@@ -1,8 +1,7 @@
 <?php namespace Psimone\PlatformCore\Components\Form\Fields;
 
-use Psimone\PlatformCore\Application as PKG;
 use Psimone\PlatformCore\Components\Form\Label;
-use Psimone\PlatformCore\Facades\Application as Platform;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Form;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;

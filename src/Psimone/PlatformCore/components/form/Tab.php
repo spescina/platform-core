@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore\Components\Form;
 
 use Psimone\PlatformCore\Components\Form;
-use Psimone\PlatformCore\Facades\Application as Platform;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;

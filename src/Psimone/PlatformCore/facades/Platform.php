@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Application extends Facade
+class Platform extends Facade
 {
 
 	/**
@@ -12,6 +12,6 @@ class Application extends Facade
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.app';
+		return 'platform.core.platform';
 	}
 }

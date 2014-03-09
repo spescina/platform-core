@@ -11,12 +11,12 @@
  */
 Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null)
 {
-	App::singleton('platform.core.app', function() use ($module)
+	App::singleton('platform.core.platform', function() use ($module)
 	{
-		return new Psimone\PlatformCore\Application($module);
+		return new Psimone\PlatformCore\Platform($module);
 	});
 
-	$platform = App::make('platform.core.app');
+	$platform = App::make('platform.core.platform');
 
 	$platform->register();
 

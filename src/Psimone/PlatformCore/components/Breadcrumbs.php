@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components;
 
-use Psimone\PlatformCore\Facades\Application as Platform;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Components\Breadcrumbs\Item;
 use Psimone\PlatformCore\Interfaces\Displayable;
 

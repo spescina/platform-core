@@ -1,8 +1,7 @@
 <?php namespace Psimone\PlatformCore;
 
-use Psimone\PlatformCore\Application as PKG;
 use Psimone\PlatformCore\Components\Task;
-use Psimone\PlatformCore\Facades\Application as Platform;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -33,7 +32,7 @@ class Page
 		if ($this->hasErrors()) {
 			$this->errors = Session::get('errors')->all();
 		
-			return View::make(PKG::NAME . '::page/errors')
+			return View::make(Platform::pkg() . '::page/errors')
 				->with('items', $this->errors)
 				->render();
 		}
@@ -44,7 +43,7 @@ class Page
 		if ($this->hasMessages()) {
 			$this->messages = Session::get('messages');
 
-			return View::make(PKG::NAME . '::page/messages')
+			return View::make(Platform::pkg() . '::page/messages')
 				->with('items', $this->messages)
 				->render();
 		}

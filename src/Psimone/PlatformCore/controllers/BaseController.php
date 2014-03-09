@@ -2,7 +2,7 @@
 
 use Psimone\PlatformCore\Action;
 use Psimone\PlatformCore\Components\Task;
-use Psimone\PlatformCore\Facades\Application as Platform;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Form;
 use Psimone\PlatformCore\Facades\Language;

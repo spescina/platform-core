@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Facades\Application as Platform;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Components\Table;
 use Psimone\PlatformCore\Interfaces\Displayable;

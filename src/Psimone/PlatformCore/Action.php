@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore;
 
-use Psimone\PlatformCore\Facades\Application as Platform;
+use Psimone\PlatformCore\Facades\Platform;
 use Illuminate\Support\Facades\URL;
 
 class Action

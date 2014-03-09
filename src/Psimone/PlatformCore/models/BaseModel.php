@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Models;
 
-use Psimone\PlatformCore\Application as PKG;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Interfaces\Repository;
 use Psimone\PlatformCore\Repositories\Fluent;
 use Illuminate\Support\Facades\Config;
@@ -13,7 +13,7 @@ abstract class BaseModel
 	{
 		if ( ! isset($source) )
 		{
-			$driver = 'Psimone\PlatformCore\\Repositories\\' . ucfirst(Config::get(PKG::NAME . '::database.driver'));
+			$driver = 'Psimone\PlatformCore\\Repositories\\' . ucfirst(Config::get(Platform::pkg() . '::database.driver'));
 
 			$source = new $driver;
 		}

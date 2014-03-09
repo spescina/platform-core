@@ -5,15 +5,20 @@ use Psimone\PlatformCore\Repositories\Fluent;
 use Illuminate\Support\Facades\App;
 use Teepluss\Asset\Facades\Asset;
 
-class Application
+class Platform
 {
-	const NAME = 'platform-core';
+	const PKG = 'platform-core';
 	
 	public $module;
 
 	public function __construct($module)
 	{
 		$this->module = $module;
+	}
+	
+	public function pkg()
+	{
+		return self::PKG;
 	}
 
 	public function module()

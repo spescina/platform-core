@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\i18n;
 
-use Psimone\PlatformCore\Application as PKG;
+use Psimone\PlatformCore\Facades\Platform;
 use Illuminate\Support\Facades\Lang;
 
 class Language
@@ -39,7 +39,7 @@ class Language
 		}
 		else
 		{
-			return PKG::NAME . '::' . $key;
+			return Platform::pkg() . '::' . $key;
 		}
 	}
 }
