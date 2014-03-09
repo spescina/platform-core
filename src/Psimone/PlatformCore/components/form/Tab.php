@@ -25,7 +25,7 @@ class Tab implements Displayable, Translatable
 
 	public function i18n()
 	{
-		if ($this->slug === Form::_main_)
+		if ($this->slug === Form::MAIN)
 		{
 			return Language::get('ui.main_panel');
 		}

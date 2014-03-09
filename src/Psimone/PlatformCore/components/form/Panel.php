@@ -9,7 +9,7 @@ class Panel implements Displayable
 	use \Psimone\PlatformCore\Traits\Displayable;
 	use \Psimone\PlatformCore\Traits\Slugable;
 	
-	const _namespace_ = 'Psimone\\PlatformCore\\Components\\Form\\Fields\\';
+	const NS = 'Psimone\\PlatformCore\\Components\\Form\\Fields\\';
 	
 	private $fields = array();
 	private $slug;
@@ -26,14 +26,14 @@ class Panel implements Displayable
 	
 	public function isMain()
 	{
-		return ($this->slug === Form::_main_);
+		return ($this->slug === Form::MAIN);
 	}
 	
 	public function components(array $fields)
 	{
 		foreach ($fields as $field => $options)
 		{
-			$fieldType = self::_namespace_ . ucfirst($options['type']);
+			$fieldType = self::NS . ucfirst($options['type']);
 			
 			$this->fields[$field] = new $fieldType($field, $options);
 		}

@@ -1,7 +1,10 @@
 <?php namespace Psimone\PlatformCore\Components\Form\Fields;
 
+use Psimone\PlatformCore\Application as PKG;
 use Psimone\PlatformCore\Components\Form\Label;
+use Psimone\PlatformCore\Facades\Application as Platform;
 use Psimone\PlatformCore\Facades\Form;
+use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;
 
 abstract class BaseField implements Displayable
@@ -16,7 +19,6 @@ abstract class BaseField implements Displayable
 		'labelWidth' => 2
 	);
 	protected $slug;
-	protected $value;
 	protected $viewData = true;
 	
 	public function __construct($slug,array $options)
@@ -63,5 +65,17 @@ abstract class BaseField implements Displayable
 	public function width()
 	{
 		return $this->options['fieldWidth'];
+	}
+
+	public function i18n($label)
+	{
+		$key = Platform::module() . '.form._labels_.' . $this->slug . '.' . $label;
+
+		return Language::get($key);
+	}
+
+	public function equal($value)
+	{
+		return $this->value() == $value;
 	}
 }

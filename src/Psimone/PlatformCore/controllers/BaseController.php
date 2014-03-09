@@ -50,6 +50,8 @@ abstract class BaseController extends Controller
 	{
 		Form::load($id);
 
+		Session::flash('formFields', Form::allFields());
+
 		return View::make('platform-core::edit');
 	}
 
@@ -64,7 +66,7 @@ abstract class BaseController extends Controller
 
 	protected function doStore($id)
 	{
-		$data = Input::except('save', 'save_back');
+		$data = Form::data();
 
 		$validator = Validator::make($data, Form::rules());
 

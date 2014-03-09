@@ -5,16 +5,19 @@ use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Components\Form\Panel;
 use Psimone\PlatformCore\Interfaces\Displayable;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class Form implements Displayable
 {
 	use \Psimone\PlatformCore\Traits\Displayable;
 	
-	const _main_ = 'main';
-	const _store_method_ = 'store';
+	const MAIN = 'main';
+	const ACTION = 'store';
 	
 	private $action;
 	private $activePanel;
+	private $allFields = array();
 	private $id = null;
 	private $panels = array();
 	private $rules = array();
@@ -23,12 +26,14 @@ class Form implements Displayable
 	
 	public function __construct()
 	{
-		$this->panel(self::_main_, true);
-		$this->activePanel(self::_main_);
+		$this->panel(self::MAIN, true);
+		$this->activePanel(self::MAIN);
 	}
 
 	public function fields(array $fields)
 	{
+		$this->allFields = $this->allFields + $fields;
+
 		$this->panels[$this->activePanel]->components($fields);
 	}
 
@@ -112,6 +117,43 @@ class Form implements Displayable
 		}
 
 		return $collection;
+	}
+
+	public function data()
+	{
+		$data = $this->fieldsData();
+
+		$fixed = $this->fixCheckbox($data);
+
+		return $fixed;
+	}
+
+	private function fieldsData()
+	{
+		return Input::except('save', 'save_back', 'files');
+	}
+
+	private function fixCheckbox($data)
+	{
+		$allFields = Session::get('formFields');
+		
+		foreach ($allFields as $field => $options)
+		{
+			if (!array_key_exists($field, $data))
+			{
+				if ($options['type'] === 'checkbox')
+				{
+					$data[$field] = 0;
+				}
+			}
+		}
+
+		return $data;
+	}
+
+	public function allFields()
+	{
+		return $this->allFields;
 	}
 
 }
