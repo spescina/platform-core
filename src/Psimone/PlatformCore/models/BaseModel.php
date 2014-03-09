@@ -9,6 +9,8 @@ abstract class BaseModel
 {
 	private $source;
 
+	protected $order = array('id', 'desc');
+
 	public function __construct(Repository $source = null)
 	{
 		if ( ! isset($source) )
@@ -25,7 +27,14 @@ abstract class BaseModel
 
 	public function __call($method, $parameters)
 	{
-		return call_user_func_array(array($this->source, $method), $parameters);
+		if (!method_exists($this, $method))
+		{
+			return call_user_func_array(array($this->source, $method), $parameters);
+		}
+		else
+		{
+			return $this->$method();
+		}
 	}
 
 	public static function __callStatic($method, $parameters)
@@ -33,5 +42,10 @@ abstract class BaseModel
 		$instance = new static;
 
 		return call_user_func_array(array($instance, $method), $parameters);
+	}
+
+	public function order()
+	{
+		return $this->order;
 	}
 }

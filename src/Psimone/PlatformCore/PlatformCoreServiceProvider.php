@@ -5,6 +5,7 @@ use Psimone\PlatformCore\Components\Form;
 use Psimone\PlatformCore\Components\Navigation;
 use Psimone\PlatformCore\Components\Table;
 use Psimone\PlatformCore\i18n\Language;
+use Psimone\PlatformCore\Order;
 use Psimone\PlatformCore\Page;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
@@ -62,6 +63,7 @@ class PlatformCoreServiceProvider extends ServiceProvider
 			'platform.core.components.navigation',
 			'platform.core.components.table',
 			'platform.core.language',
+			'platform.core.order',
 			'platform.core.page'
 		);
 	}
@@ -71,6 +73,7 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		AliasLoader::getInstance()->alias('PBreadcrumbs', 'Psimone\PlatformCore\Facades\Breadcrumbs');
 		AliasLoader::getInstance()->alias('PForm', 'Psimone\PlatformCore\Facades\Form');
 		AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
+		AliasLoader::getInstance()->alias('POrder', 'Psimone\PlatformCore\Facades\Order');
 		AliasLoader::getInstance()->alias('PPage', 'Psimone\PlatformCore\Facades\Page');
 		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
 		
@@ -107,6 +110,11 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		$this->app['platform.core.language'] = $this->app->share(function($app)
 		{
 			return new Language();
+		});
+
+		$this->app['platform.core.order'] = $this->app->share(function($app)
+		{
+			return new Order();
 		});
 		
 		$this->app['platform.core.page'] = $this->app->share(function($app)

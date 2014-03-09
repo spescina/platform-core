@@ -1,11 +1,10 @@
 @if ( $obj->isSortable() )
-<?/*<a href="?{{ $queryVars }}" title="{{ $obj->i18n() }}">
+<a href="?{{ $obj->link() }}" title="{{ $obj->i18n() }}">
 	{{ $obj->i18n() }}
-	@if (!empty($currentIcon))
-	<span class="glyphicon glyphicon-{{ $currentIcon }}"></span>
+	@if (!empty($obj->icon()))
+	<span class="glyphicon glyphicon-{{ $obj->icon() }}"></span>
 	@endif
-</a>*/?>
-<a href="" title="{{ $obj->i18n() }}">{{ $obj->i18n() }}</a>
+</a>
 @else
 {{ $obj->i18n() }}
 @endif

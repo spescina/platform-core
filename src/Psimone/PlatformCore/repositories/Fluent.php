@@ -1,5 +1,6 @@
 <?php namespace Psimone\PlatformCore\Repositories;
 
+use Psimone\PlatformCore\Facades\Order;
 use Psimone\PlatformCore\Interfaces\Repository;
 use Illuminate\Support\Facades\DB;
 
@@ -34,13 +35,9 @@ class Fluent implements Repository
 
 	public function all()
 	{
-		if (!is_array($this->result))
-		{
-			$this->result = DB::table($this->table)
-				->get();
-		}
-
-		return $this->result;
+		return $this->result = DB::table($this->table)
+			->orderBy(Order::column(), Order::sort())
+			->get();
 	}
 
 	public function store(array $data, $id = null)

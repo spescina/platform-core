@@ -1,15 +1,17 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Facades\Platform;
+use Psimone\PlatformCore\Order as OrderConst;
+use Psimone\PlatformCore\Components\Table as TableConst;
 use Psimone\PlatformCore\Facades\Language;
-use Psimone\PlatformCore\Components\Table;
+use Psimone\PlatformCore\Facades\Order;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;
 
-class ColumnHeading implements Displayable, Translatable
-{
+class ColumnHeading implements Displayable, Translatable {
+
 	use \Psimone\PlatformCore\Traits\Displayable;
-	
+
 	private $field;
 	private $options;
 	private $view = 'components/table/column-heading';
@@ -39,16 +41,74 @@ class ColumnHeading implements Displayable, Translatable
 
 	public function isAction()
 	{
-		return ($this->field === Table::COLUMN_ACTIONS);
+		return ($this->field === TableConst::COLUMN_ACTIONS);
 	}
 
 	public function i18n()
 	{
-		if ($this->field === Table::COLUMN_ACTIONS)
+		if ($this->field === TableConst::COLUMN_ACTIONS)
 		{
-			return Language::get('table.' . Table::COLUMN_ACTIONS);
+			return Language::get('table.' . TableConst::COLUMN_ACTIONS);
 		}
 
 		return Language::get(Platform::module() . '.table.' . $this->field);
 	}
+
+	public function link()
+	{
+		$activeColumn = Order::column() ? : '';
+		$activeSort = Order::sort() ? : '';
+
+		$nextSort = 'asc';
+
+		if ($this->field === $activeColumn)
+		{
+			switch ($activeSort) {
+				case 'asc':
+					$nextSort = 'desc';
+					break;
+				case 'desc':
+					$nextSort = (Order::isBase()) ? 'asc' : '';
+					break;
+			}
+		}
+
+		if (empty($nextSort) && !Order::isBase())
+		{
+			$queryVars = array(OrderConst::RESET_PARAM => 1);
+		}
+		else
+		{
+			$queryVars = array(
+			    OrderConst::COLUMN_PARAM => $this->field,
+			    OrderConst::SORT_PARAM => $nextSort
+			);
+		}
+
+		return http_build_query($queryVars);
+	}
+
+	public function icon()
+	{
+		$activeColumn = Order::column() ? : '';
+		$activeSort = Order::sort() ? : '';
+
+		$icon = '';
+
+		if ($this->field === $activeColumn)
+		{
+			switch ($activeSort) {
+				case 'asc':
+					$icon = 'chevron-down';
+					break;
+
+				case 'desc':
+					$icon = 'chevron-up';
+					break;
+			}
+		}
+
+		return $icon;
+	}
+
 }

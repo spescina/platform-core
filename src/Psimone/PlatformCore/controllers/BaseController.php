@@ -8,6 +8,7 @@ use Psimone\PlatformCore\Facades\Form;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Navigation;
+use Psimone\PlatformCore\Facades\Order;
 use Psimone\PlatformCore\Facades\Page;
 use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
@@ -57,6 +58,8 @@ abstract class BaseController extends Controller
 
 	protected function doListing()
 	{
+		Order::load();
+
 		Table::load();
 		
 		Page::task(new Task('form', null, 'form_new'));
