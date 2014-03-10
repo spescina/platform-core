@@ -41,10 +41,7 @@
 	@endif
 	<div class="panel-footer"></div>
 </div>
-<?/*
 <div class="pull-left">
-<p class="text-muted">{{ Language::get('ui.pagination', array('low' => \PangeaTable::getRecordset()->getFrom(), 'high' => \PangeaTable::getRecordset()->getTo(), 'total' => \PangeaTable::getRecordset()->getTotal())) }}</p>
+<p class="text-muted">{{ PTable::i18n('pagination', array('low' => PTable::results()->getFrom(), 'high' => PTable::results()->getTo(), 'total' => PTable::results()->getTotal())) }}</p>
 </div>
-<div class="pull-right">
-{{ \PangeaTable::getPagination() }}
-</div>*/?>
+<div class="pull-right">{{ PTable::results()->links() }}</div>

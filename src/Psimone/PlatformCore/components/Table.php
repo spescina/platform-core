@@ -20,8 +20,14 @@ class Table implements Displayable
 		Action::ACTION_DELETE
 	);
 	private $fields;
+	private $results;
 	private $view = 'components/table';
 	private $viewData = false;
+
+	public function __construct()
+	{
+		$this->results = Model::all();
+	}
 
 	public function fields(array $fields)
 	{
@@ -30,7 +36,7 @@ class Table implements Displayable
 
 	public function isEmpty()
 	{
-		return ( count(Model::all()) === 0 );
+		return ( count($this->results) === 0 );
 	}
 
 	public function head()
@@ -51,7 +57,7 @@ class Table implements Displayable
 	{
 		$body = array();
 
-		foreach (Model::all() as $record)
+		foreach ($this->results as $record)
 		{
 			$row = array(
 				self::COLUMN_ID => $record->id,
@@ -75,14 +81,14 @@ class Table implements Displayable
 	{
 		return $this->tasks;
 	}
-
-	public function load()
-	{
-		
-	}
 	
-	public function i18n($section)
+	public function i18n($section, $data = null)
 	{
-		return Language::get('table.' . $section);
+		return Language::get('table.' . $section, $data);
+	}
+
+	public function results()
+	{
+		return $this->results;
 	}
 }

@@ -1,6 +1,7 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
 use Psimone\PlatformCore\Action;
+use Psimone\PlatformCore\Platform as PlatformConst;
 use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
@@ -20,12 +21,6 @@ use Illuminate\Support\Facades\View;
 
 abstract class BaseController extends Controller
 {
-
-	public function __construct()
-	{
-		
-	}
-
 	public function start()
 	{
 		Platform::setupAssets();
@@ -53,16 +48,14 @@ abstract class BaseController extends Controller
 
 		Session::flash('formFields', Form::allFields());
 
-		return View::make('platform-core::edit');
+		return View::make(PlatformConst::PKG . '::edit');
 	}
 
 	protected function doListing()
 	{
-		Table::load();
-		
 		Page::task(new Task('form', null, 'form_new'));
 
-		return View::make('platform-core::listing');
+		return View::make(PlatformConst::PKG . '::listing');
 	}
 
 	protected function doStore($id)

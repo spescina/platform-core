@@ -30,7 +30,6 @@ class Platform
 	{
 		$className = ucfirst($this->module);
 
-
 		App::bind('platform.core.model', function() use ($className)
 		{
 			$modelName = 'Psimone\\PlatformCore\\Models\\' . $className;

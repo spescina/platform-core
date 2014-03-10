@@ -15,6 +15,5 @@ return array(
 	'go_to_dashboard' => 'Dashboard',
 	'go_to_front' => 'Go to site',
 	'main_panel' => 'Main',
-	'access_denied' => 'You don\'t have the proper rights to access this page',
-	'pagination' => 'Showing :low to :high of :total entries'
+	'access_denied' => 'You don\'t have the proper rights to access this page'
 );

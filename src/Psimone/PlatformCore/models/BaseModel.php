@@ -22,7 +22,7 @@ abstract class BaseModel
 
 		$this->source = $source;
 
-		$this->source->setTable($this->table);
+		$this->setTable($this->table);
 	}
 
 	public function __call($method, $parameters)
