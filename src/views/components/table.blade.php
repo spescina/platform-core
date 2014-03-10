@@ -2,11 +2,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading clearfix">
 			<h3 class="panel-title pull-left">{{ PPage::i18n('title') }}</h3>
-			<div class="btn-group btn-group-sm pull-right">
-				@foreach (PPage::toolbar() as $task)
-				{{ $task->show() }}
-				@endforeach
-			</div>
+			{{ PPage::toolbar()->show() }}
 		</div>
 		<div class="panel-body">
 			<p>{{ PPage::i18n('subtitle') }}</p>
@@ -17,20 +13,30 @@
 			@endif
 		</div>
 		@if ( ! PTable::isEmpty() )
-		<table class="table table-bordered table-hover">
+		<table class="table table-bordered table-condensed table-hover">
 			<thead>
 				<tr>
 					@foreach (PTable::head() as $cell)
 					@if ($cell->isAction())
-					<th class="col-md-2">{{ $cell->show() }}</th>
+					<th class="col-sm-1">{{ $cell->show() }}</th>
 					@else
-					<th>{{ $cell->show() }}</th>
+					@if ($cell->width())
+					<th class="col-sm-{{ $cell->width() }}">
+					@else
+					<th>
+					@endif
+						{{ $cell->show() }}
+					</th>
 					@endif
 					@endforeach
 				</tr>
 			</thead>
 			<tbody>
+				@if (PTable::hasFilters())
+				<tr class="filters">
+				@else
 				<tr class="filters hidden">
+				@endif
 					@foreach (PTable::searchbar() as $cell)
 					<td>{{ $cell->show() }}</td>
 					@endforeach

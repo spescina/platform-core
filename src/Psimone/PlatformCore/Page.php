@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore;
 
-use Psimone\PlatformCore\Components\Task;
+use Psimone\PlatformCore\Components\Taskbar;
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Illuminate\Support\Facades\Session;
@@ -10,11 +10,11 @@ class Page
 {
 	private $errors = array();
 	private $messages = array();
-	private $toolbar = array();
+	private $toolbar;
 	
 	public function __construct()
 	{
-		
+		$this->toolbar = new Taskbar(array(), array('classes' => 'pull-right'));
 	}
 	
 	public function hasErrors()
@@ -47,11 +47,6 @@ class Page
 				->with('items', $this->messages)
 				->render();
 		}
-	}
-	
-	public function task(Task $task)
-	{
-		$this->toolbar[] = $task;
 	}
 	
 	public function toolbar()

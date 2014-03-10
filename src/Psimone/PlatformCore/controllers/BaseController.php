@@ -49,17 +49,18 @@ abstract class BaseController extends Controller
 
 	protected function doListing()
 	{
-		$task = new Task('search', '');
-		$task->option('label', 'search.table');
-		$task->option('color', 'success');
+		Page::toolbar()->add('search', array(
+			'action' => 'search',
+			'url' => '',
+			'label' => 'search.table',
+			'color' => 'success'
+		));
 		
-		Page::task($task);
-		
-		$task = new Task('form');
-		$task->option('label', 'add');
-		$task->option('color', 'primary');
-		
-		Page::task($task);
+		Page::toolbar()->add('add', array(
+			'action' => 'form',
+			'label' => 'add',
+			'color' => 'primary'
+		));
 
 		return View::make(PlatformConst::PKG . '::listing');
 	}

@@ -1,5 +1,5 @@
 {{ $obj->label()->show() }}
-<div class="col-sm-{{ $obj->width() }}">
+<div class="col-md-{{ $obj->width() }}">
 	@yield('field')
 </div>
 @if ( $obj->hasHelp() )

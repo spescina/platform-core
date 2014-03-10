@@ -5,7 +5,7 @@ use Psimone\PlatformCore\Action as ActionConst;
 use Psimone\PlatformCore\Facades\Filter;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
-use Psimone\PlatformCore\Components\Table\Taskbar;
+use Psimone\PlatformCore\Components\Taskbar;
 use Psimone\PlatformCore\Components\Table\ColumnFilter;
 use Psimone\PlatformCore\Components\Table\ColumnHeading;
 use Psimone\PlatformCore\Components\Table\Content;
@@ -82,7 +82,7 @@ class Table implements Displayable
 				$row['data'][$field] = new Content($field, $record, $options);
 			}
 
-			$row['data'][self::COLUMN_ACTIONS] = new Taskbar($this->tasks, $record);
+			$row['data'][self::COLUMN_ACTIONS] = new Taskbar($this->tasks, array(), $record);
 
 			$body[] = $row;
 		}
@@ -109,7 +109,7 @@ class Table implements Displayable
 			$filters[$field] = new ColumnFilter($field, $options);
 		}
 		
-		$filters[self::COLUMN_ACTIONS] = new Taskbar(Filter::tasks());
+		$filters[self::COLUMN_ACTIONS] = new Taskbar(Filter::tasks(), array('size' => 'sm'));
 		
 		return $filters;
 	}

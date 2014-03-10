@@ -1,4 +1,4 @@
-<?php namespace Psimone\PlatformCore\Components\Table;
+<?php namespace Psimone\PlatformCore\Components;
 
 use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Interfaces\Displayable;
@@ -9,10 +9,11 @@ class Taskbar implements Displayable
 	
 	private $record;
 	private $tasks;
-	private $view = 'components/table/taskbar';
+	private $options;
+	private $view = 'components/taskbar';
 	private $viewData = true;
 
-	public function __construct($tasks, $record = null)
+	public function __construct($tasks, $options = null, $record = null)
 	{
 		$this->tasks = $tasks;
 		
@@ -20,13 +21,23 @@ class Taskbar implements Displayable
 		{
 			$this->record = $record;
 		}
+		
+		if ($options && is_array($options))
+		{
+			$this->options = $options;
+		}
+	}
+	
+	public function add($key, $task)
+	{
+		$this->tasks[$key] = $task;
 	}
 
 	public function tasks()
 	{
 		$tasks = array();
 
-		foreach ($this->tasks as $value)
+		foreach ($this->tasks as $index => $value)
 		{
 			$obj = $this->task($value);
 			
@@ -35,10 +46,20 @@ class Taskbar implements Displayable
 				$obj->record($this->record);
 			}
 			
-			$tasks[] = $obj;
+			$tasks[$index] = $obj;
 		}
 
 		return $tasks;
+	}
+	
+	public function size()
+	{
+		return isset($this->options['size']) ? $this->options['size'] : 'xs';
+	}
+	
+	public function classes()
+	{
+		return isset($this->options['classes']) ? $this->options['classes'] : null;
 	}
 	
 	private function hasRecord()

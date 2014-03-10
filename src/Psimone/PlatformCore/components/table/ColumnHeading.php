@@ -110,5 +110,10 @@ class ColumnHeading implements Displayable, Translatable {
 
 		return $icon;
 	}
+	
+	public function width()
+	{
+		return isset($this->options['columnWidth']) ? $this->options['columnWidth'] : null;
+	}
 
 }

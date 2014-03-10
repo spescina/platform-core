@@ -5,7 +5,7 @@ return array(
 	'form' => '<span class="glyphicon glyphicon-pencil"></span>',
 	'add' => 'New',
 	'search' => array(
-		'table' => 'Search',
+		'table' => 'Filter',
 		'apply' => '<span class="glyphicon glyphicon-ok"></span>',
 		'clear' => '<span class="glyphicon glyphicon-remove"></span>'
 	)

@@ -18,7 +18,7 @@
 			{{ $panel->show() }}
 			@endforeach
 			</div>
-			<div class="col-sm-offset-2 col-sm-10">
+			<div class="col-xs-offset-2 col-xs-10">
 			<button name="save" value="save" type="submit" class="btn btn-success">{{ PForm::i18n('button_save') }}</button>
 			<button name="save_back" value="save_back" type="submit" class="btn btn-info">{{ PForm::i18n('button_save_back') }}</button>
 			<a href="{{ PForm::back()->url() }}" class="btn btn-warning">{{ PForm::i18n('button_back') }}</a>

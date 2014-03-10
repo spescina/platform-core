@@ -1,1 +1,1 @@
-<label for="{{ $obj->slug() }}" class="col-sm-{{ $obj->width() }} control-label">{{ $obj->i18n() }}</label>
+<label for="{{ $obj->slug() }}" class="col-md-{{ $obj->width() }} control-label">{{ $obj->i18n() }}</label>
