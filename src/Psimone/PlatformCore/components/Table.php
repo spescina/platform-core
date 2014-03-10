@@ -23,13 +23,11 @@ class Table implements Displayable
 	private $action;
 	private $tasks = array(
 		'edit' => array(
-			'action' => ActionConst::ACTION_SHOWFORM,
-			'color' => 'warning'
+			'action' => ActionConst::ACTION_SHOWFORM
 		),
 		'delete' => array(
 			'action' => ActionConst::ACTION_DELETE,
-			'modal' => 'modalDelete',
-			'color' => 'danger'
+			'modal' => 'modalDelete'
 		)
 	);
 	private $fields;
@@ -109,7 +107,7 @@ class Table implements Displayable
 			$filters[$field] = new ColumnFilter($field, $options);
 		}
 		
-		$filters[self::COLUMN_ACTIONS] = new Taskbar(Filter::tasks(), array('size' => 'sm'));
+		$filters[self::COLUMN_ACTIONS] = new Taskbar(Filter::tasks());
 		
 		return $filters;
 	}

@@ -1,6 +1,5 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Action;
 use Psimone\PlatformCore\Action as ActionConst;
 use Psimone\PlatformCore\Facades\Platform;
 use Illuminate\Support\Facades\Input;
@@ -113,14 +112,12 @@ class Filter {
 			'apply' => array(
 				'action' => ActionConst::ACTION_SEARCH,
 				'label' => 'search.apply',
-				'button' => true,
-				'color' => 'success'
+				'button' => true
 			),
 			'clear' => array(
 				'action' => ActionConst::ACTION_SEARCH,
 				'label' => 'search.clear',
-				'queryString' => array(self::RESET_PARAM => 1),
-				'color' => 'success'
+				'queryString' => array(self::RESET_PARAM => 1)
 			)
 		);
 	}

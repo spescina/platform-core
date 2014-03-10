@@ -1,12 +1,12 @@
 <?php
 
 return array(
-	'delete' => '<span class="glyphicon glyphicon-trash"></span>',
-	'form' => '<span class="glyphicon glyphicon-pencil"></span>',
+	'delete' => 'Delete',
+	'form' => 'Edit',
 	'add' => 'New',
 	'search' => array(
-		'table' => 'Filter',
-		'apply' => '<span class="glyphicon glyphicon-ok"></span>',
-		'clear' => '<span class="glyphicon glyphicon-remove"></span>'
+		'table' => 'Search',
+		'apply' => 'Apply',
+		'clear' => 'Clear'
 	)
 );

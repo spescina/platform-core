@@ -1,5 +1,5 @@
 <?php
 
 return array(
-    'pagination' => 25
+    'pagination' => 2
 );

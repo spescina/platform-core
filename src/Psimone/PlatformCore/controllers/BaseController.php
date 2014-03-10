@@ -1,7 +1,6 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
 use Psimone\PlatformCore\Platform as PlatformConst;
-use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Filter;
@@ -52,14 +51,12 @@ abstract class BaseController extends Controller
 		Page::toolbar()->add('search', array(
 			'action' => 'search',
 			'url' => '',
-			'label' => 'search.table',
-			'color' => 'success'
+			'label' => 'search.table'
 		));
 		
 		Page::toolbar()->add('add', array(
 			'action' => 'form',
-			'label' => 'add',
-			'color' => 'primary'
+			'label' => 'add'
 		));
 
 		return View::make(PlatformConst::PKG . '::listing');
