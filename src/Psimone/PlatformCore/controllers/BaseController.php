@@ -58,8 +58,6 @@ abstract class BaseController extends Controller
 
 	protected function doListing()
 	{
-		Order::load();
-
 		Table::load();
 		
 		Page::task(new Task('form', null, 'form_new'));

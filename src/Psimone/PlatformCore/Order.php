@@ -15,7 +15,7 @@ class Order {
 	public $sort;
 	public $module;
 
-	public function load()
+	public function __construct()
 	{
 		$newColumn = Input::get(self::COLUMN_PARAM);
 		$newSort = Input::get(self::SORT_PARAM);

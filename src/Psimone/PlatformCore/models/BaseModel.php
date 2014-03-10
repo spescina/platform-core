@@ -48,4 +48,9 @@ abstract class BaseModel
 	{
 		return $this->order;
 	}
+
+	public function entries()
+	{
+		return $this->source->entries($this->order);
+	}
 }

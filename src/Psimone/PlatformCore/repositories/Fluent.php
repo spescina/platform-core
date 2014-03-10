@@ -1,5 +1,6 @@
 <?php namespace Psimone\PlatformCore\Repositories;
 
+use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Order;
 use Psimone\PlatformCore\Interfaces\Repository;
 use Illuminate\Support\Facades\DB;
@@ -55,6 +56,13 @@ class Fluent implements Repository
 		}
 
 		return $id;
+	}
+
+	public function entries($order)
+	{
+		return $this->result = DB::table($this->table)
+			->orderBy($order[0], $order[1])
+			->get();
 	}
 
 }
