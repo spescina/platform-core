@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Order as OrderConst;
 use Psimone\PlatformCore\Components\Table as TableConst;
+use Psimone\PlatformCore\Components\Table\Order as OrderConst;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Order;
 use Psimone\PlatformCore\Facades\Platform;

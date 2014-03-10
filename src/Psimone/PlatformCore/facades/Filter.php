@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Order extends Facade
+class Filter extends Facade
 {
 
 	/**
@@ -12,6 +12,6 @@ class Order extends Facade
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.components.table.order';
+		return 'platform.core.components.table.filter';
 	}
 }

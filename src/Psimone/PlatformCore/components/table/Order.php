@@ -1,4 +1,4 @@
-<?php namespace Psimone\PlatformCore;
+<?php namespace Psimone\PlatformCore\Components\Table;
 
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Platform;

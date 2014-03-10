@@ -1,20 +1,19 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
-use Psimone\PlatformCore\Action;
 use Psimone\PlatformCore\Platform as PlatformConst;
 use Psimone\PlatformCore\Components\Task;
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
+use Psimone\PlatformCore\Facades\Filter;
 use Psimone\PlatformCore\Facades\Form;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Navigation;
-use Psimone\PlatformCore\Facades\Order;
 use Psimone\PlatformCore\Facades\Page;
 use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
@@ -36,10 +35,7 @@ abstract class BaseController extends Controller
 
 		Session::flash('messages', array(Language::get('ui.deleted')));
 
-		return Redirect::route('module', array(
-		    Platform::module(),
-		    Action::ACTION_LISTING
-		));
+		return Response::listing();
 	}
 
 	protected function showForm($id)
@@ -53,7 +49,17 @@ abstract class BaseController extends Controller
 
 	protected function doListing()
 	{
-		Page::task(new Task('form', null, 'form_new'));
+		$task = new Task('search', '');
+		$task->option('label', 'search.table');
+		$task->option('color', 'success');
+		
+		Page::task($task);
+		
+		$task = new Task('form');
+		$task->option('label', 'add');
+		$task->option('color', 'primary');
+		
+		Page::task($task);
 
 		return View::make(PlatformConst::PKG . '::listing');
 	}
@@ -68,21 +74,7 @@ abstract class BaseController extends Controller
 		{
 			Session::flash('errors', $validator->messages());
 
-			if ($id)
-			{
-				return Redirect::route('module', array(
-					    Platform::module(),
-					    Action::ACTION_SHOWFORM,
-					    $id
-					))->withInput();
-			}
-			else
-			{
-				return Redirect::route('module', array(
-					    Platform::module(),
-					    Action::ACTION_SHOWFORM
-					))->withInput();
-			}
+			return Response::showForm($id, true);
 		}
 
 		$objId = Model::store($data, $id);
@@ -98,17 +90,19 @@ abstract class BaseController extends Controller
 
 		if (Input::has('save'))
 		{
-			return Redirect::route('module', array(
-				    Platform::module(),
-				    Action::ACTION_SHOWFORM,
-				    $objId
-			));
+			return Response::showForm($objId);
 		}
 
-		return Redirect::route('module', array(
-			    Platform::module(),
-			    Action::ACTION_LISTING
-		));
+		return Response::listing();
+	}
+	
+	public function filter()
+	{
+		$filters = Table::data();
+		
+		Filter::load($filters);
+		
+		return Response::listing();
 	}
 }
 

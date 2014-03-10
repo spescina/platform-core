@@ -4,8 +4,9 @@ use Psimone\PlatformCore\Components\Breadcrumbs;
 use Psimone\PlatformCore\Components\Form;
 use Psimone\PlatformCore\Components\Navigation;
 use Psimone\PlatformCore\Components\Table;
+use Psimone\PlatformCore\Components\Table\Filter;
+use Psimone\PlatformCore\Components\Table\Order;
 use Psimone\PlatformCore\i18n\Language;
-use Psimone\PlatformCore\Order;
 use Psimone\PlatformCore\Page;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
@@ -32,6 +33,8 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		$this->addNamespaces();
 
 		include __DIR__ . '/../../routes.php';
+		
+		include __DIR__ . '/../../macros.php';
 	}
 
 	/**
@@ -63,7 +66,8 @@ class PlatformCoreServiceProvider extends ServiceProvider
 			'platform.core.components.navigation',
 			'platform.core.components.table',
 			'platform.core.language',
-			'platform.core.order',
+			'platform.core.components.table.filter',
+			'platform.core.components.table.order',
 			'platform.core.page'
 		);
 	}
@@ -73,7 +77,6 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		AliasLoader::getInstance()->alias('PBreadcrumbs', 'Psimone\PlatformCore\Facades\Breadcrumbs');
 		AliasLoader::getInstance()->alias('PForm', 'Psimone\PlatformCore\Facades\Form');
 		AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
-		AliasLoader::getInstance()->alias('POrder', 'Psimone\PlatformCore\Facades\Order');
 		AliasLoader::getInstance()->alias('PPage', 'Psimone\PlatformCore\Facades\Page');
 		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
 		
@@ -111,8 +114,13 @@ class PlatformCoreServiceProvider extends ServiceProvider
 		{
 			return new Language();
 		});
+		
+		$this->app['platform.core.components.table.filter'] = $this->app->share(function($app)
+		{
+			return new Filter();
+		});
 
-		$this->app['platform.core.order'] = $this->app->share(function($app)
+		$this->app['platform.core.components.table.order'] = $this->app->share(function($app)
 		{
 			return new Order();
 		});

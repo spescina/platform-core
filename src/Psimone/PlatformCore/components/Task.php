@@ -8,52 +8,75 @@ use Psimone\PlatformCore\Interfaces\Translatable;
 class Task implements Displayable, Translatable
 {
 	use \Psimone\PlatformCore\Traits\Displayable;
+	use \Psimone\PlatformCore\Traits\Slugable;
 	
-	private $action;
 	private $record;
 	private $options = array();
 	private $slug;
 	private $view = 'components/task';
 	private $viewData = true;
+	
+	static $opts = array('label', 'url', 'queryString', 'button', 'modal', 'color');
 
-	public function __construct($slug, $record = null, $translation_label = null)
+	public function __construct($slug, $url = null)
 	{
 		$this->slug = $slug;
 		
-		if ($translation_label)
+		if (isset($url))
 		{
-			$this->options['translation_label'] = $translation_label;
+			$this->option('url', $url);
 		}
-		
-		if ($record)
-		{
-			$this->record = $record;
+	}
+	
+	public function record($record)
+	{
+		$this->record = $record;
 			
-			$this->options['id'] = $this->record->id;
-		}
-		
-		$this->action = new Action($slug, $this->options);
+		$this->options['id'] = $this->record->id;
 	}
 
 	public function i18n()
 	{
-		if (array_key_exists('translation_label', $this->options))
+		if (array_key_exists('label', $this->options))
 		{
-			return Language::get('actions.' . $this->options['translation_label']);
+			return Language::get('tasks.' . $this->options['label']);
 		}
 		else
 		{
-			return Language::get('actions.' . $this->slug);
+			return Language::get('tasks.' . $this->slug);
 		}
 	}
-
-	public function hasModal()
+	
+	public function color()
 	{
-		return ($this->slug === Action::ACTION_DELETE);
+		return isset($this->options['color']) ? $this->options['color'] : 'default';
+	}
+
+	public function modal()
+	{		
+		return isset($this->options['modal']) ? $this->options['modal'] : null;
 	}
 	
 	public function action()
 	{
-		return $this->action;
+		return new Action($this->slug, $this->options);
+	}
+	
+	public function option($option, $value)
+	{
+		if (in_array($option, self::$opts))
+		{
+			$this->options[$option] = $value;
+		}
+	}
+	
+	public function button()
+	{
+		return (isset($this->options['button']) && $this->options['button']);
+	}
+	
+	static function opts()
+	{
+		return self::$opts;
 	}
 }

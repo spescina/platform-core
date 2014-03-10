@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore\Repositories;
 
 use Psimone\PlatformCore\Platform as PlatformConst;
-use Psimone\PlatformCore\Facades\Model;
+use Psimone\PlatformCore\Facades\Filter;
 use Psimone\PlatformCore\Facades\Order;
 use Psimone\PlatformCore\Interfaces\Repository;
 use Illuminate\Support\Facades\Config;
@@ -38,9 +38,12 @@ class Fluent implements Repository
 
 	public function all()
 	{
-		return $this->result = DB::table($this->table)
-			->orderBy(Order::column(), Order::sort())
-			->paginate(Config::get(PlatformConst::PKG . '::table.pagination'));
+		$query = DB::table($this->table)
+			->orderBy(Order::column(), Order::sort());
+		
+		$filtered = $this->filter($query);			
+			
+		return $this->result = $this->paginate($filtered);
 	}
 
 	public function store(array $data, $id = null)
@@ -67,6 +70,25 @@ class Fluent implements Repository
 		return $this->result = DB::table($this->table)
 			->orderBy($column, $sort)
 			->get();
+	}
+	
+	private function filter($query)
+	{
+		$filters = Filter::filters();
+		
+		foreach ($filters as $field => $value)
+		{
+			$query->where($field, '=', $value);
+		}
+		
+		return $query;
+	}
+	
+	private function paginate($query)
+	{
+		$paging = Config::get(PlatformConst::PKG . '::table.pagination');
+		
+		return $query->paginate($paging);
 	}
 
 }
