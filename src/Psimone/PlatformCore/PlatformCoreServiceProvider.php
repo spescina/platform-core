@@ -7,7 +7,7 @@ use Psimone\PlatformCore\Components\Page\Page;
 use Psimone\PlatformCore\Components\Table\Table;
 use Psimone\PlatformCore\Components\Table\Filter;
 use Psimone\PlatformCore\Components\Table\Order;
-use Psimone\PlatformCore\i18n\Language;
+use Psimone\PlatformCore\Localization\Language;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;

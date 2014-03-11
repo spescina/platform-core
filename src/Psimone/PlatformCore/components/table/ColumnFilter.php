@@ -56,7 +56,7 @@ class ColumnFilter implements Displayable, Translatable {
 		return $this->value;
 	}
 
-	public function i18n()
+	public function localize()
 	{
 		if ($this->field === TableConst::COLUMN_SEARCH)
 		{

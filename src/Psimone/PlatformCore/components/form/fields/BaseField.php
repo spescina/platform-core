@@ -66,7 +66,7 @@ abstract class BaseField implements Displayable
 		return $this->options['fieldWidth'];
 	}
 
-	public function i18n($label)
+	public function localize($label)
 	{
 		$key = Platform::module() . '.form._labels_.' . $this->slug . '.' . $label;
 

@@ -1,13 +1,13 @@
 <form action="{{ PTable::action()->url() }}" method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading clearfix">
-			<h3 class="panel-title pull-left">{{ PPage::i18n('title') }}</h3>
+			<h3 class="panel-title pull-left">{{ PPage::localize('title') }}</h3>
 		</div>
 		<div class="panel-body">
-			<p>{{ PPage::i18n('subtitle') }}</p>
+			<p>{{ PPage::localize('subtitle') }}</p>
 			@if ( PTable::isEmpty() )
 			<div class="well well-sm">
-				<span>{{ PTable::i18n('no_results') }}</span>
+				<span>{{ PTable::localize('no_results') }}</span>
 			</div>
 			@endif
 		</div>
@@ -60,7 +60,7 @@
 	</div>
 	@endif
 	<div class="pull-left">
-		<p class="text-muted">{{ PTable::i18n('pagination', array('low' => PTable::results()->getFrom(), 'high' => PTable::results()->getTo(), 'total' => PTable::results()->getTotal())) }}</p>
+		<p class="text-muted">{{ PTable::localize('pagination', array('low' => PTable::results()->getFrom(), 'high' => PTable::results()->getTo(), 'total' => PTable::results()->getTotal())) }}</p>
 	</div>
 	<div class="pull-right">{{ PTable::results()->links() }}</div>
 </form>

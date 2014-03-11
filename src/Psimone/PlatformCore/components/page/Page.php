@@ -54,12 +54,12 @@ class Page
 		return $this->toolbar;
 	}
 	
-	public function i18n($section)
+	public function localize($section)
 	{
 		return Language::get(Platform::module() . '.section.' . $section);
 	}
 	
-	public function i18n_ui($element, $section = 'ui')
+	public function localize_ui($element, $section = 'ui')
 	{
 		return Language::get($section . '.' . $element);
 	}	

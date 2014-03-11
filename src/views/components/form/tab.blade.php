@@ -3,5 +3,5 @@
 @else
 <li>
 @endif
-	<a href="#{{ $obj->slug() }}" data-toggle="tab">{{ $obj->i18n() }}</a>
+	<a href="#{{ $obj->slug() }}" data-toggle="tab">{{ $obj->localize() }}</a>
 </li>

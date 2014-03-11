@@ -88,7 +88,7 @@ class Table implements Displayable
 		return $body;
 	}
 	
-	public function i18n($section, $data = array())
+	public function localize($section, $data = array())
 	{
 		return Language::get('table.' . $section, $data);
 	}

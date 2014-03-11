@@ -90,7 +90,7 @@ class Form implements Displayable
 		return new Action(Action::ACTION_LISTING);
 	}
 	
-	public function i18n($section)
+	public function localize($section)
 	{
 		return Language::get('form.' . $section);
 	}

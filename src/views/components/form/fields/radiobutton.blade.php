@@ -6,7 +6,7 @@
 	<label>
 	{{ Form::radio($obj->slug(), $value, $obj->equal($value)) }}
 	</label>
-	{{ $obj->i18n($label) }}
+	{{ $obj->localize($label) }}
 </div>
 @endforeach
 @overwrite

@@ -22,7 +22,7 @@ class Label implements Displayable, Translatable
 		$this->options = $options;
 	}
 	
-	public function i18n()
+	public function localize()
 	{
 		return Language::get(Platform::module() . '.form.' . $this->slug);
 	}

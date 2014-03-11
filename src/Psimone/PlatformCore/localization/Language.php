@@ -1,4 +1,4 @@
-<?php namespace Psimone\PlatformCore\i18n;
+<?php namespace Psimone\PlatformCore\Localization;
 
 use Psimone\PlatformCore\Facades\Platform;
 use Illuminate\Support\Facades\Lang;

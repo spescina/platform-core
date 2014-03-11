@@ -44,7 +44,7 @@ class ColumnHeading implements Displayable, Translatable {
 		return ($this->field === TableConst::COLUMN_ACTIONS);
 	}
 
-	public function i18n()
+	public function localize()
 	{
 		if ($this->field === TableConst::COLUMN_ACTIONS)
 		{

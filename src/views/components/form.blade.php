@@ -1,9 +1,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		@if (PForm::isEmpty())
-		<h3 class="panel-title">{{ PForm::i18n('new_element') }}</h3>
+		<h3 class="panel-title">{{ PForm::localize('new_element') }}</h3>
 		@else
-		<h3 class="panel-title">{{ PForm::i18n('edit_element') }}{{ PForm::record()->id }}</h3>
+		<h3 class="panel-title">{{ PForm::localize('edit_element') }}{{ PForm::record()->id }}</h3>
 		@endif
 	</div>
 	<div class="panel-body">
@@ -19,9 +19,9 @@
 			@endforeach
 			</div>
 			<div class="col-xs-offset-2 col-xs-10">
-			<button name="save" value="save" type="submit" class="btn btn-success">{{ PForm::i18n('button_save') }}</button>
-			<button name="save_back" value="save_back" type="submit" class="btn btn-info">{{ PForm::i18n('button_save_back') }}</button>
-			<a href="{{ PForm::back()->url() }}" class="btn btn-warning">{{ PForm::i18n('button_back') }}</a>
+			<button name="save" value="save" type="submit" class="btn btn-success">{{ PForm::localize('button_save') }}</button>
+			<button name="save_back" value="save_back" type="submit" class="btn btn-info">{{ PForm::localize('button_save_back') }}</button>
+			<a href="{{ PForm::back()->url() }}" class="btn btn-warning">{{ PForm::localize('button_back') }}</a>
 			</div>
 		</form>
 	</div>

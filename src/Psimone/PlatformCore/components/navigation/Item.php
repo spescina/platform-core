@@ -32,7 +32,7 @@ class Item implements Displayable, Translatable
 		}
 	}
 
-	public function i18n()
+	public function localize()
 	{
 		return Language::get('navigation.' . $this->slug);
 	}

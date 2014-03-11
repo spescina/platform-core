@@ -3,5 +3,5 @@
 interface Translatable
 {
 
-	public function i18n();
+	public function localize();
 }

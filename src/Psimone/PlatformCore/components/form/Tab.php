@@ -23,7 +23,7 @@ class Tab implements Displayable, Translatable
 		$this->active = $active;
 	}
 
-	public function i18n()
+	public function localize()
 	{
 		if ($this->slug === Form::MAIN)
 		{

@@ -35,7 +35,7 @@ class Task implements Displayable, Translatable
 		$this->options['id'] = $this->record->id;
 	}
 
-	public function i18n()
+	public function localize()
 	{
 		if (array_key_exists('label', $this->options))
 		{

@@ -22,7 +22,7 @@ class Content implements Displayable, Translatable
 		$this->record = $record;
 	}
 
-	public function i18n()
+	public function localize()
 	{
 		
 	}

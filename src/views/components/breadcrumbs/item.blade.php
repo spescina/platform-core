@@ -1,5 +1,5 @@
 @if ( $obj->isRoot() )
-<li>{{ $obj->i18n() }}</li>
+<li>{{ $obj->localize() }}</li>
 @else
-<li class="active">{{ $obj->i18n() }}</li>
+<li class="active">{{ $obj->localize() }}</li>
 @endif

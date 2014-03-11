@@ -17,7 +17,7 @@ class Item implements Displayable, Translatable
 		$this->slug = $slug;
 	}
 
-	public function i18n()
+	public function localize()
 	{
 		if ($this->isRoot())
 		{
