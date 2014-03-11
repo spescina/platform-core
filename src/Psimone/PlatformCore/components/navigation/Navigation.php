@@ -1,4 +1,4 @@
-<?php namespace Psimone\PlatformCore\Components;
+<?php namespace Psimone\PlatformCore\Components\Navigation;
 
 use Psimone\PlatformCore\Components\Navigation\Item;
 use Psimone\PlatformCore\Facades\Platform;

@@ -1,13 +1,13 @@
 <?php namespace Psimone\PlatformCore;
 
-use Psimone\PlatformCore\Components\Breadcrumbs;
-use Psimone\PlatformCore\Components\Form;
-use Psimone\PlatformCore\Components\Navigation;
-use Psimone\PlatformCore\Components\Table;
+use Psimone\PlatformCore\Components\Breadcrumbs\Breadcrumbs;
+use Psimone\PlatformCore\Components\Form\Form;
+use Psimone\PlatformCore\Components\Navigation\Navigation;
+use Psimone\PlatformCore\Components\Page\Page;
+use Psimone\PlatformCore\Components\Table\Table;
 use Psimone\PlatformCore\Components\Table\Filter;
 use Psimone\PlatformCore\Components\Table\Order;
 use Psimone\PlatformCore\i18n\Language;
-use Psimone\PlatformCore\Page;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;

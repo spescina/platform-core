@@ -1,6 +1,6 @@
-<?php namespace Psimone\PlatformCore\Components;
+<?php namespace Psimone\PlatformCore\Components\Task;
 
-use Psimone\PlatformCore\Action;
+use Psimone\PlatformCore\Components\Action\Action;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;

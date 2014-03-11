@@ -1,7 +1,6 @@
-<?php namespace Psimone\PlatformCore;
+<?php namespace Psimone\PlatformCore\Components;
 
 use Psimone\PlatformCore\Facades\Controller;
-use Psimone\PlatformCore\Repositories\Fluent;
 use Illuminate\Support\Facades\App;
 use Teepluss\Asset\Facades\Asset;
 

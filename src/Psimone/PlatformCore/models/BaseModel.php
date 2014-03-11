@@ -2,7 +2,6 @@
 
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Interfaces\Repository;
-use Psimone\PlatformCore\Repositories\Fluent;
 use Illuminate\Support\Facades\Config;
 
 abstract class BaseModel

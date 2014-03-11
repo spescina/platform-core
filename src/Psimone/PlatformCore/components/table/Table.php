@@ -1,14 +1,14 @@
-<?php namespace Psimone\PlatformCore\Components;
+<?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Action;
-use Psimone\PlatformCore\Action as ActionConst;
-use Psimone\PlatformCore\Facades\Filter;
-use Psimone\PlatformCore\Facades\Language;
-use Psimone\PlatformCore\Facades\Model;
-use Psimone\PlatformCore\Components\Taskbar;
+use Psimone\PlatformCore\Components\Action\Action;
+use Psimone\PlatformCore\Components\Action\Action as ActionConst;
+use Psimone\PlatformCore\Components\Task\Taskbar;
 use Psimone\PlatformCore\Components\Table\ColumnFilter;
 use Psimone\PlatformCore\Components\Table\ColumnHeading;
 use Psimone\PlatformCore\Components\Table\Content;
+use Psimone\PlatformCore\Facades\Filter;
+use Psimone\PlatformCore\Facades\Language;
+use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Illuminate\Support\Facades\Input;
 

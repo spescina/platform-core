@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Action as ActionConst;
+use Psimone\PlatformCore\Components\Action\Action as ActionConst;
 use Psimone\PlatformCore\Facades\Platform;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;

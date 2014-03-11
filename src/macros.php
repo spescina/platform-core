@@ -5,7 +5,7 @@
   |--------------------------------------------------------------------------
  */
 
-use Psimone\PlatformCore\Action as ActionConst;
+use Psimone\PlatformCore\Components\Action\Action as ActionConst;
 use Psimone\PlatformCore\Facades\Platform;
 
 Response::macro('showForm', function($objId = null, $withInput = false)

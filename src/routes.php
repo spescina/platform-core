@@ -13,7 +13,7 @@ Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'mod
 {
 	App::singleton('platform.core.platform', function() use ($module)
 	{
-		return new Psimone\PlatformCore\Platform($module);
+		return new Psimone\PlatformCore\Components\Platform($module);
 	});
 
 	$platform = App::make('platform.core.platform');

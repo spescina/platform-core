@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components\Form;
 
-use Psimone\PlatformCore\Components\Form;
+use Psimone\PlatformCore\Components\Form\Form;
 use Psimone\PlatformCore\Components\Form\Tab;
 use Psimone\PlatformCore\Interfaces\Displayable;
 

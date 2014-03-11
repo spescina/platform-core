@@ -1,6 +1,6 @@
-<?php namespace Psimone\PlatformCore\Components;
+<?php namespace Psimone\PlatformCore\Components\Form;
 
-use Psimone\PlatformCore\Action;
+use Psimone\PlatformCore\Components\Action\Action;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Components\Form\Panel;

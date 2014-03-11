@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Components\Table;
 
-use Psimone\PlatformCore\Components\Table as TableConst;
+use Psimone\PlatformCore\Components\Table\Table as TableConst;
 use Psimone\PlatformCore\Facades\Filter;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Platform;

@@ -1,6 +1,6 @@
-<?php namespace Psimone\PlatformCore\Components;
+<?php namespace Psimone\PlatformCore\Components\Task;
 
-use Psimone\PlatformCore\Components\Task;
+use Psimone\PlatformCore\Components\Task\Task;
 use Psimone\PlatformCore\Interfaces\Displayable;
 
 class Taskbar implements Displayable

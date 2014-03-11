@@ -1,6 +1,6 @@
-<?php namespace Psimone\PlatformCore;
+<?php namespace Psimone\PlatformCore\Components\Page;
 
-use Psimone\PlatformCore\Components\Taskbar;
+use Psimone\PlatformCore\Components\Task\Taskbar;
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Language;
 use Illuminate\Support\Facades\Session;

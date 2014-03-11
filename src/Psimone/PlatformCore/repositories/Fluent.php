@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Repositories;
 
-use Psimone\PlatformCore\Platform as PlatformConst;
+use Psimone\PlatformCore\Components\Platform as PlatformConst;
 use Psimone\PlatformCore\Facades\Filter;
 use Psimone\PlatformCore\Facades\Order;
 use Psimone\PlatformCore\Interfaces\Repository;

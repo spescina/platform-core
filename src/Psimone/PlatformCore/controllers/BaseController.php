@@ -1,6 +1,6 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
-use Psimone\PlatformCore\Platform as PlatformConst;
+use Psimone\PlatformCore\Components\Platform as PlatformConst;
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Filter;

@@ -1,4 +1,4 @@
-<?php namespace Psimone\PlatformCore;
+<?php namespace Psimone\PlatformCore\Components\Action;
 
 use Psimone\PlatformCore\Facades\Platform;
 use Illuminate\Support\Facades\URL;

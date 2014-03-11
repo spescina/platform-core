@@ -1,4 +1,4 @@
-<?php namespace Psimone\PlatformCore\Components;
+<?php namespace Psimone\PlatformCore\Components\Breadcrumbs;
 
 use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Components\Breadcrumbs\Item;
