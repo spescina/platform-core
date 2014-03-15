@@ -21,7 +21,7 @@ class Form implements Displayable
 	private $id = null;
 	private $panels = array();
 	private $rules = array();
-	private $view = 'components/form';
+	private $view = 'components/form/form';
 	private $viewData = false;
 	
 	public function __construct()

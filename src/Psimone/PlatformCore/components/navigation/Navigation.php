@@ -10,7 +10,7 @@ class Navigation implements Displayable
 	use \Psimone\PlatformCore\Traits\Displayable;
 	
 	private $items = array();
-	private $view = 'components/navigation';
+	private $view = 'components/navigation/navigation';
 	private $viewData = false;	
 
 	public function load()

@@ -10,7 +10,7 @@ class Taskbar implements Displayable
 	private $record;
 	private $tasks;
 	private $options;
-	private $view = 'components/taskbar';
+	private $view = 'components/task/taskbar';
 	private $viewData = true;
 
 	public function __construct($tasks, $options = null, $record = null)

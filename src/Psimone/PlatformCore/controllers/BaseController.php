@@ -47,13 +47,7 @@ abstract class BaseController extends Controller
 	}
 
 	protected function doListing()
-	{
-		Page::toolbar()->add('search', array(
-			'action' => 'search',
-			'url' => '',
-			'label' => 'search.table'
-		));
-		
+	{		
 		Page::toolbar()->add('add', array(
 			'action' => 'form',
 			'label' => 'add'

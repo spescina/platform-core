@@ -32,7 +32,7 @@ class Table implements Displayable
 	);
 	private $fields;
 	private $results;
-	private $view = 'components/table';
+	private $view = 'components/table/table';
 	private $viewData = false;
 
 	public function __construct()

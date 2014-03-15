@@ -9,7 +9,7 @@ class Breadcrumbs implements Displayable
 	use \Psimone\PlatformCore\Traits\Displayable;
 	
 	private $items = array();
-	private $view = 'components/breadcrumbs';
+	private $view = 'components/breadcrumbs/breadcrumbs';
 	private $viewData = false;
 
 	public function load()

@@ -13,7 +13,7 @@ class Task implements Displayable, Translatable
 	private $record;
 	private $options = array();
 	private $slug;
-	private $view = 'components/task';
+	private $view = 'components/task/task';
 	private $viewData = true;
 	
 	static $opts = array('label', 'url', 'queryString', 'button', 'modal', 'color');
