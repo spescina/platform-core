@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore\Interfaces;
 
-interface Displayable
-{
+interface Displayable {
 
 	public function show();
+
 }

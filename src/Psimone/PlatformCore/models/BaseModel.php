@@ -14,7 +14,7 @@ abstract class BaseModel
 	{
 		if ( ! isset($source) )
 		{
-			$driver = 'Psimone\PlatformCore\\Repositories\\' . ucfirst(Config::get(Platform::pkg() . '::database.driver'));
+			$driver = 'Psimone\PlatformCore\\Repositories\\' . ucfirst(Config::get(Platform::getPackageName() . '::database.driver'));
 
 			$source = new $driver;
 		}

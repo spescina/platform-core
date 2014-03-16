@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore\Interfaces;
 
-interface Translatable
-{
+interface Translatable {
 
 	public function localize();
+
 }

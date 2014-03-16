@@ -75,7 +75,7 @@ class Filter {
 		}
 		else
 		{
-			$this->module = Platform::module();
+			$this->module = Platform::getModule();
 		}
 	}
 
@@ -103,7 +103,7 @@ class Filter {
 	
 	public function applicable()
 	{
-		return ($this->module === Platform::module());
+		return ($this->module === Platform::getModule());
 	}
 	
 	public function tasks()

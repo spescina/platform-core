@@ -68,7 +68,7 @@ abstract class BaseField implements Displayable
 
 	public function localize($label)
 	{
-		$key = Platform::module() . '.form._labels_.' . $this->slug . '.' . $label;
+		$key = Platform::getModule() . '.form._labels_.' . $this->slug . '.' . $label;
 
 		return Language::get($key);
 	}

@@ -1,8 +1,8 @@
 <?php namespace Psimone\PlatformCore\Repositories;
 
-use Psimone\PlatformCore\Components\Platform as PlatformConst;
 use Psimone\PlatformCore\Facades\Filter;
 use Psimone\PlatformCore\Facades\Order;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Interfaces\Repository;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +86,7 @@ class Fluent implements Repository
 	
 	private function paginate($query)
 	{
-		$paging = Config::get(PlatformConst::PKG . '::table.pagination');
+		$paging = Config::get(Platform::getPackageName() . '::table.pagination');
 		
 		return $query->paginate($paging);
 	}

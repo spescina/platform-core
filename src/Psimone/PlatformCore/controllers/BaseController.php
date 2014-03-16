@@ -1,7 +1,5 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
-use Psimone\PlatformCore\Components\Platform as PlatformConst;
-use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Breadcrumbs;
 use Psimone\PlatformCore\Facades\Filter;
 use Psimone\PlatformCore\Facades\Form;
@@ -9,6 +7,7 @@ use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Facades\Navigation;
 use Psimone\PlatformCore\Facades\Page;
+use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Input;
@@ -19,15 +18,6 @@ use Illuminate\Support\Facades\View;
 
 abstract class BaseController extends Controller
 {
-	public function start()
-	{
-		Platform::setupAssets();
-
-		Navigation::load();
-
-		Breadcrumbs::load();
-	}
-
 	protected function doDelete($id)
 	{
 		Model::delete($id);
@@ -43,7 +33,7 @@ abstract class BaseController extends Controller
 
 		Session::flash('formFields', Form::allFields());
 
-		return View::make(PlatformConst::PKG . '::edit');
+		return View::make(Platform::getPackageName() . '::edit');
 	}
 
 	protected function doListing()
@@ -53,7 +43,7 @@ abstract class BaseController extends Controller
 			'label' => 'add'
 		));
 
-		return View::make(PlatformConst::PKG . '::listing');
+		return View::make(Platform::getPackageName() . '::listing');
 	}
 
 	protected function doStore($id)

@@ -1,7 +1,6 @@
 <?php namespace Psimone\PlatformCore\Interfaces;
 
-interface Module
-{
+interface Module {
 
 	public function delete($id);
 
@@ -10,4 +9,5 @@ interface Module
 	public function listing();
 
 	public function store($id = null);
+
 }

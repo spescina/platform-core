@@ -51,7 +51,7 @@ class ColumnHeading implements Displayable, Translatable {
 			return Language::get('table.' . TableConst::COLUMN_ACTIONS);
 		}
 
-		return Language::get(Platform::module() . '.table.' . $this->field);
+		return Language::get(Platform::getModule() . '.table.' . $this->field);
 	}
 
 	public function link()

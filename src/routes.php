@@ -9,16 +9,12 @@
   | and give it the Closure to execute when that URI is requested.
   |
  */
+
+use Psimone\PlatformCore\Facades\Platform;
+
+Route::get('medialibrary', array('as' => 'medialibrary', 'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@index'));
+
 Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null)
 {
-	App::singleton('platform.core.platform', function() use ($module)
-	{
-		return new Psimone\PlatformCore\Components\Platform($module);
-	});
-
-	$platform = App::make('platform.core.platform');
-
-	$platform->register();
-
-	return $platform->run($action, $id);
+	return Platform::runModule($module, $action, $id);
 }));

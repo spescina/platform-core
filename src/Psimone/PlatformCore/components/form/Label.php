@@ -24,7 +24,7 @@ class Label implements Displayable, Translatable
 	
 	public function localize()
 	{
-		return Language::get(Platform::module() . '.form.' . $this->slug);
+		return Language::get(Platform::getModule() . '.form.' . $this->slug);
 	}
 	
 	public function width()

@@ -12,6 +12,6 @@ class Controller extends Facade
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.controller';
+		return 'platform.core.module.controller';
 	}
 }

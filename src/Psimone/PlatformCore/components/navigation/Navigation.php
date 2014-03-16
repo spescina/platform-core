@@ -15,7 +15,7 @@ class Navigation implements Displayable
 
 	public function load()
 	{
-		$items = Config::get(Platform::pkg(). '::navigation');
+		$items = Config::get(Platform::getPackageName(). '::navigation');
 
 		foreach ($items as $slug => $url)
 		{

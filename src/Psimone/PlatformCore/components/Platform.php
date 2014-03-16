@@ -4,78 +4,93 @@ use Psimone\PlatformCore\Facades\Controller;
 use Illuminate\Support\Facades\App;
 use Teepluss\Asset\Facades\Asset;
 
-class Platform
-{
-	const PKG = 'platform-core';
-	
-	public $module;
+class Platform {
 
-	public function __construct($module)
-	{
-		$this->module = $module;
-	}
-	
-	public function pkg()
+	const PKG = 'platform-core';
+	const VND = 'psimone';
+
+	/**
+	 * The current loaded module
+	 *
+	 * @var int
+	 */
+	private $module;
+
+	/**
+	 * Returns the module package folder
+	 *
+	 * @return string
+	 */
+	public function getPackageName()
 	{
 		return self::PKG;
 	}
 
-	public function module()
+	/**
+	 * Returns the module vendor folder
+	 *
+	 * @return string
+	 */
+	public function getPackageVendor()
+	{
+		return self::VND;
+	}
+
+	/**
+	 * Returns the current loaded module
+	 *
+	 * @return string
+	 */
+	public function getModule()
 	{
 		return $this->module;
 	}
 
-	public function register()
+	/**
+	 * Sets the current loaded module
+	 *
+	 * @param string $module
+	 */
+	public function setModule($module)
+	{
+		$this->module = $module;
+	}
+
+	/**
+	 * Registers the current Model and the current Controllers to the IoC.
+	 * Required for theirs facades
+	 */
+	public function registerModuleFacades()
 	{
 		$className = ucfirst($this->module);
 
-		App::bind('platform.core.model', function() use ($className)
-		{
+		App::bind('platform.core.module.model', function() use ($className) {
 			$modelName = 'Psimone\\PlatformCore\\Models\\' . $className;
 
 			return new $modelName;
 		});
 
-		App::singleton('platform.core.controller', function() use ($className)
-		{
+		App::singleton('platform.core.module.controller', function() use ($className) {
 			$controllerName = 'Psimone\\PlatformCore\\Controllers\\' . $className . 'Controller';
 
 			return new $controllerName;
 		});
 	}
 
-	public function run($action, $id)
+	/**
+	 * Boot the application
+	 *
+	 * @param string $module
+	 * @param string $action
+	 * @param int $id
+	 * @return Illuminate\Http\Response
+	 */
+	public function runModule($module, $action, $id)
 	{
-		Controller::start();
+		$this->setModule($module);
+
+		$this->registerModuleFacades();
 
 		return Controller::$action($id);
-	}
-
-	public function setupAssets()
-	{
-		switch (App::environment())
-		{
-			case 'staging':
-			case 'production':
-				break;
-
-			case 'local':
-				Asset::container('header.common')->add('bootstrap-css', 'packages/psimone/platform-core/src/css/vendor/bootstrap.css');
-				Asset::container('header.common')->add('bootstrap-datetimepicker-css', 'packages/psimone/platform-core/src/css/vendor/bootstrap-datetimepicker.min.css');
-				Asset::container('header.common')->add('fancybox-css', 'packages/psimone/platform-core/src/css/vendor/jquery.fancybox.css');
-				Asset::container('header.common')->add('fontawesome-css', 'packages/psimone/platform-core/src/css/vendor/font-awesome.css');
-				Asset::container('header.common')->add('summernote-css', 'packages/psimone/platform-core/src/css/vendor/summernote.css');
-				Asset::container('header.common')->add('application-css', 'packages/psimone/platform-core/src/css/application.css');
-
-				Asset::container('footer.common')->add('jquery', 'packages/psimone/platform-core/src/js/vendor/jquery.js');
-				Asset::container('footer.common')->add('bootstrap-js', 'packages/psimone/platform-core/src/js/vendor/bootstrap.js', array('jquery'));
-				Asset::container('footer.common')->add('moment', 'packages/psimone/platform-core/src/js/vendor/moment.js');
-				Asset::container('footer.common')->add('bootstrap-datetimepicker-js', 'packages/psimone/platform-core/src/js/vendor/bootstrap-datetimepicker.js', array('bootstrap-js', 'moment'));
-				Asset::container('footer.common')->add('summernote-js', 'packages/psimone/platform-core/src/js/vendor/summernote.js', array('jquery'));
-				Asset::container('footer.common')->add('fancybox-js', 'packages/psimone/platform-core/src/js/vendor/jquery.fancybox.js', array('jquery'));
-
-				Asset::container('footer.common')->add('application-js', 'packages/psimone/platform-core/src/js/app.js', array('bootstrap', 'bootstrap-datetimepicker-js'));
-				break;
-		}
 	}
 }

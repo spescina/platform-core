@@ -7,6 +7,7 @@
 			{{ PNavigation::show() }}
 		</div>
 		<div class="col-md-9">
+			{{ PBreadcrumbs::show() }}
 			{{ PPage::messages() }}
 			{{ PPage::errors() }}
 

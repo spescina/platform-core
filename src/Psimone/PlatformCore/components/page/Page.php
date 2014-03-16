@@ -32,7 +32,7 @@ class Page
 		if ($this->hasErrors()) {
 			$this->errors = Session::get('errors')->all();
 		
-			return View::make(Platform::pkg() . '::page/errors')
+			return View::make(Platform::getPackageName() . '::page/errors')
 				->with('items', $this->errors)
 				->render();
 		}
@@ -43,7 +43,7 @@ class Page
 		if ($this->hasMessages()) {
 			$this->messages = Session::get('messages');
 
-			return View::make(Platform::pkg() . '::page/messages')
+			return View::make(Platform::getPackageName() . '::page/messages')
 				->with('items', $this->messages)
 				->render();
 		}
@@ -56,7 +56,7 @@ class Page
 	
 	public function localize($section)
 	{
-		return Language::get(Platform::module() . '.section.' . $section);
+		return Language::get(Platform::getModule() . '.section.' . $section);
 	}
 	
 	public function localize_ui($element, $section = 'ui')

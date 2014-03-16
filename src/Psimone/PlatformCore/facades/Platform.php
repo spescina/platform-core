@@ -12,6 +12,6 @@ class Platform extends Facade
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.platform';
+		return 'platform.core';
 	}
 }

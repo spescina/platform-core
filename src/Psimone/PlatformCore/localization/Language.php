@@ -39,7 +39,7 @@ class Language
 		}
 		else
 		{
-			return Platform::pkg() . '::' . $key;
+			return Platform::getPackageName() . '::' . $key;
 		}
 	}
 }

@@ -4,6 +4,7 @@ use Psimone\PlatformCore\Components\Breadcrumbs\Breadcrumbs;
 use Psimone\PlatformCore\Components\Form\Form;
 use Psimone\PlatformCore\Components\Navigation\Navigation;
 use Psimone\PlatformCore\Components\Page\Page;
+use Psimone\PlatformCore\Components\Platform;
 use Psimone\PlatformCore\Components\Table\Table;
 use Psimone\PlatformCore\Components\Table\Filter;
 use Psimone\PlatformCore\Components\Table\Order;
@@ -12,8 +13,8 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
 
-class PlatformCoreServiceProvider extends ServiceProvider
-{
+class PlatformCoreServiceProvider extends ServiceProvider {
+
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
@@ -29,12 +30,16 @@ class PlatformCoreServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->package('psimone/platform-core');
-		
+
 		$this->addNamespaces();
 
 		include __DIR__ . '/../../routes.php';
-		
+
 		include __DIR__ . '/../../macros.php';
+
+		include __DIR__ . '/../../filters.php';
+
+		include __DIR__ . '/../../composers.php';
 	}
 
 	/**
@@ -61,25 +66,27 @@ class PlatformCoreServiceProvider extends ServiceProvider
 	public function provides()
 	{
 		return array(
-			'platform.core.components.breadcrumbs',
-			'platform.core.components.form',
-			'platform.core.components.navigation',
-			'platform.core.components.table',
-			'platform.core.language',
-			'platform.core.components.table.filter',
-			'platform.core.components.table.order',
-			'platform.core.page'
+		    'platform.core',
+		    'platform.core.components.breadcrumbs',
+		    'platform.core.components.form',
+		    'platform.core.components.navigation',
+		    'platform.core.components.table',
+		    'platform.core.language',
+		    'platform.core.components.table.filter',
+		    'platform.core.components.table.order',
+		    'platform.core.page'
 		);
 	}
 
 	private function registerAlias()
 	{
+		AliasLoader::getInstance()->alias('Platform', 'Psimone\PlatformCore\Facades\Platform');
 		AliasLoader::getInstance()->alias('PBreadcrumbs', 'Psimone\PlatformCore\Facades\Breadcrumbs');
 		AliasLoader::getInstance()->alias('PForm', 'Psimone\PlatformCore\Facades\Form');
 		AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
 		AliasLoader::getInstance()->alias('PPage', 'Psimone\PlatformCore\Facades\Page');
 		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
-		
+
 		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
 	}
 
@@ -90,49 +97,46 @@ class PlatformCoreServiceProvider extends ServiceProvider
 
 	private function registerServices()
 	{
-		$this->app['platform.core.components.breadcrumbs'] = $this->app->share(function($app)
-		{
+		$this->app['platform.core.components.breadcrumbs'] = $this->app->share(function($app) {
 			return new Breadcrumbs();
 		});
-		
-		$this->app['platform.core.components.form'] = $this->app->share(function($app)
-		{
+
+		$this->app['platform.core.components.form'] = $this->app->share(function($app) {
 			return new Form();
 		});
 
-		$this->app['platform.core.components.navigation'] = $this->app->share(function($app)
-		{
+		$this->app['platform.core.components.navigation'] = $this->app->share(function($app) {
 			return new Navigation();
 		});
-		
-		$this->app['platform.core.components.table'] = $this->app->share(function($app)
-		{
+
+		$this->app['platform.core.components.table'] = $this->app->share(function($app) {
 			return new Table();
 		});
 
-		$this->app['platform.core.language'] = $this->app->share(function($app)
-		{
-			return new Language();
-		});
-		
-		$this->app['platform.core.components.table.filter'] = $this->app->share(function($app)
-		{
+		$this->app['platform.core.components.table.filter'] = $this->app->share(function($app) {
 			return new Filter();
 		});
 
-		$this->app['platform.core.components.table.order'] = $this->app->share(function($app)
-		{
+		$this->app['platform.core.components.table.order'] = $this->app->share(function($app) {
 			return new Order();
 		});
-		
-		$this->app['platform.core.page'] = $this->app->share(function($app)
-		{
+
+		$this->app['platform.core.language'] = $this->app->share(function($app) {
+			return new Language();
+		});
+
+		$this->app['platform.core.page'] = $this->app->share(function($app) {
 			return new Page();
 		});
+
+		$this->app['platform.core'] = $this->app->share(function($app) {
+			return new Platform();
+		});
 	}
-	
+
 	private function addNamespaces()
 	{
 		Lang::addNamespace(Language::NS, app_path() . '/platform-core/lang');
 	}
+
 }

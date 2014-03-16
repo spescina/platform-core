@@ -1,7 +1,6 @@
 <?php namespace Psimone\PlatformCore\Interfaces;
 
-interface Repository
-{
+interface Repository {
 
 	public function setTable($table);
 
@@ -12,4 +11,5 @@ interface Repository
 	public function all();
 
 	public function store(array $data, $id = null);
+
 }

@@ -32,7 +32,7 @@ class Order {
 		{
 			$prevTableSort = $this->get();
 
-			if ($prevTableSort && $prevTableSort->module <> Platform::module())
+			if ($prevTableSort && $prevTableSort->module <> Platform::getModule())
 			{
 				$this->forget();
 
@@ -108,7 +108,7 @@ class Order {
 		}
 		else
 		{
-			$this->module = Platform::module();
+			$this->module = Platform::getModule();
 		}
 	}
 

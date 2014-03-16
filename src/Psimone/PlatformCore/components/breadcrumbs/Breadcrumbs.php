@@ -16,7 +16,7 @@ class Breadcrumbs implements Displayable
 	{
 		$this->item('root');
 
-		$this->item(Platform::module());
+		$this->item(Platform::getModule());
 	}
 
 	public function item($slug)

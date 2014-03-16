@@ -33,7 +33,7 @@ class Action
 		$queryString = array_key_exists('queryString', $this->options) ? $this->options['queryString'] : null;
 		
 		$url = URL::route('module', array(
-			Platform::module(),
+			Platform::getModule(),
 			$this->type,
 			$id
 		));

@@ -12,6 +12,6 @@ class Model extends Facade
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'platform.core.model';
+		return 'platform.core.module.model';
 	}
 }

@@ -31,7 +31,7 @@ class Tab implements Displayable, Translatable
 		}
 		else
 		{
-			return Language::get(Platform::module() . '.panels.' . $this->slug);
+			return Language::get(Platform::getModule() . '.panels.' . $this->slug);
 		}
 	}
 	
