@@ -8,7 +8,7 @@ class MedialibraryController extends Controller {
 
 	public function index()
 	{
-		View::make(Platform::getPackageName() . '::components/medialibrary/medialibrary');
+		return View::make(Platform::getPackageName() . '::components/medialibrary/medialibrary');
 	}
 
 }
