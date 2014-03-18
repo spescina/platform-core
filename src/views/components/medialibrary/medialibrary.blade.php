@@ -3,7 +3,9 @@
 @section ('header.scripts')
         <script type="text/javascript">
                 PlatformCore = {
-                        "medialibrary" : {{ PMedialibrary::config() }}
+                        config: {
+				medialibrary : {{ PMedialibrary::configToJSON() }}
+			}
                 };
         </script>
 @append
@@ -17,7 +19,7 @@
 @section ('body')
 <div class="container">
 	<div class="row">
-                
+                <div id="medialibrary"></div>
 	</div>
 </div>
 @stop

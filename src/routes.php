@@ -17,7 +17,7 @@ Route::get('medialibrary', array(
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@index'
 ));
 
-Route::get('medialibrary/browse/{path?}', array(
+Route::post('medialibrary/browse', array(
     'as' => 'medialibrary.browse',
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@browse'
 ));
