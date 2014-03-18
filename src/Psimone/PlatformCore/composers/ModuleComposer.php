@@ -41,7 +41,7 @@ class ModuleComposer {
 				Asset::container('footer.common')->add('summernote-js', 'packages/psimone/platform-core/src/js/vendor/summernote.js', array('jquery'));
 				Asset::container('footer.common')->add('fancybox-js', 'packages/psimone/platform-core/src/js/vendor/jquery.fancybox.js', array('jquery'));
 
-				Asset::container('footer.common')->add('application-js', 'packages/psimone/platform-core/src/js/app.js', array('bootstrap', 'bootstrap-datetimepicker-js'));
+				Asset::container('footer.common')->add('application-js', 'packages/psimone/platform-core/src/js/app.js', array('bootstrap-js', 'bootstrap-datetimepicker-js'));
 				break;
 		}
 	}

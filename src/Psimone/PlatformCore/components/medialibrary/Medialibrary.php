@@ -30,11 +30,11 @@ class MediaLibrary
 			return false;
 		}
 
-		$folders = $this->getFolders($realPath);
+		$folders = self::getFolders($realPath);
 
 		$this->parseFolders($folders);
 
-		$files = $this->getFiles($realPath);
+		$files = self::getFiles($realPath);
 
 		$this->parseFiles($files);
 	}
@@ -45,7 +45,7 @@ class MediaLibrary
 	 * @param string $path
 	 * @return mixed
 	 */
-	private function getFolders($path)
+	private static function getFolders($path)
 	{
 		return File::directories($path);
 	}
@@ -56,7 +56,7 @@ class MediaLibrary
 	 * @param string $path
 	 * @return mixed
 	 */
-	private function getFiles($path)
+	private static function getFiles($path)
 	{
 		return File::files($path);
 	}
@@ -125,7 +125,12 @@ class MediaLibrary
 	{
 		foreach ($items as $item)
 		{
-			$this->items[] = new Item($item);
+			$extension = self::extension($item);
+			
+			if ($this->allowed($extension))
+			{
+				$this->items[] = new Item($item);
+			}
 		}
 	}
 
@@ -137,5 +142,32 @@ class MediaLibrary
 	public function getItems()
 	{
 		return $this->items;
+	}
+	
+	/**
+	 * Return the type of the resource
+	 * 
+	 * @param string $path
+	 */
+	static function extension($path)
+	{
+		return File::extension($path);
+	}
+	
+	/**
+	 * Check if the resource is allowed
+	 * 
+	 * @return bool
+	 */
+	private function allowed($extension)
+	{
+		$catalogType = $this->config['type'];
+		
+		if (in_array($extension, $this->config['types'][$catalogType]))
+		{
+			return true;
+		}
+		
+		return false;
 	}
 }

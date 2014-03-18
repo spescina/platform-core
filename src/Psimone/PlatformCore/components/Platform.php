@@ -2,7 +2,6 @@
 
 use Psimone\PlatformCore\Facades\Controller;
 use Illuminate\Support\Facades\App;
-use Teepluss\Asset\Facades\Asset;
 
 class Platform {
 

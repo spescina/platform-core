@@ -22,7 +22,8 @@ module.exports = function(grunt) {
                             'bower_components/moment/moment.js',
                             'bower_components/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
                             'bower_components/fancybox/source/jquery.fancybox.js',
-                            'bower_components/summernote/dist/summernote.js'
+                            'bower_components/summernote/dist/summernote.js',
+                            'bower_components/handlebars/handlebars.js'
                         ],
                         dest: 'public/src/js/vendor',
                         flatten: true

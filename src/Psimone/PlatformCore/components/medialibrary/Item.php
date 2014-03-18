@@ -17,6 +17,13 @@ class Item
 	 * @var string
 	 */
 	public $name;
+	
+	/**
+	 * Resource extension
+	 * 
+	 * @var string
+	 */
+	public $extension;
 
 	/**
 	 * Folder flag. True if the resource is a folder
@@ -36,6 +43,8 @@ class Item
 		$this->path = $this->extractPublicPath($fullPath);
 
 		$this->name = $this->extractName($fullPath);
+		
+		$this->extension = Medialibrary::extension($fullPath);
 
 		$this->folder = $folder;
 	}
