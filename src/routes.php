@@ -12,7 +12,15 @@
 
 use Psimone\PlatformCore\Facades\Platform;
 
-Route::get('medialibrary', array('as' => 'medialibrary', 'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@index'));
+Route::get('medialibrary', array(
+    'as' => 'medialibrary',
+    'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@index'
+));
+
+Route::get('medialibrary/browse/{path?}', array(
+    'as' => 'medialibrary.browse',
+    'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@browse'
+));
 
 Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null)
 {

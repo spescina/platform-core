@@ -25,11 +25,9 @@ class MedialibraryComposer {
 			case 'local':
 				Asset::container('header.common')->add('bootstrap-css', 'packages/psimone/platform-core/src/css/vendor/bootstrap.css');
 				Asset::container('header.common')->add('fontawesome-css', 'packages/psimone/platform-core/src/css/vendor/font-awesome.css');
-                                Asset::container('header.common')->add('jstree-css', 'packages/psimone/platform-core/src/css/vendor/style.css');
 
 				Asset::container('footer.common')->add('jquery', 'packages/psimone/platform-core/src/js/vendor/jquery.js');
 				Asset::container('footer.common')->add('bootstrap-js', 'packages/psimone/platform-core/src/js/vendor/bootstrap.js', array('jquery'));
-                                Asset::container('footer.common')->add('jstree-js', 'packages/psimone/platform-core/src/js/vendor/jstree.js', array('jquery'));
 
 				Asset::container('footer.common')->add('application-js', 'packages/psimone/platform-core/src/js/medialibrary.js', array('bootstrap', 'bootstrap-datetimepicker-js'));
 				break;

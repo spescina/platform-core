@@ -16,13 +16,6 @@
 			//Google Analytics
 		</script>
 		@endif
-		<script>
-			Pangea = {
-				config: {
-					locale: "{{ \Config::get('app.locale') }}"
-				}
-			};
-		</script>
 		<link rel="shortcut icon" href="/favicon.ico" />
 	</head>
 	<body>
