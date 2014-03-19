@@ -18,9 +18,7 @@
 
 @section ('body')
 <div class="container">
-	<div class="row">
-                <div id="medialibrary"></div>
-	</div>
+	<div class="row" id="medialibrary"></div>
 </div>
 @stop
 
