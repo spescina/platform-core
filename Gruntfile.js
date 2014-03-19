@@ -51,6 +51,12 @@ module.exports = function(grunt) {
                         cwd: 'bower_components/font-awesome',
                         src: ['fonts/*'],
                         dest: 'public/src/css'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/fancybox/source',
+                        src: ['*.gif', '*.png'],
+                        dest: 'public/src/img/vendor'
                     }
                 ]
             }
@@ -70,6 +76,7 @@ module.exports = function(grunt) {
             dev: [
                 'public/src/js/vendor',
                 'public/src/css/vendor',
+                'public/src/img/vendor',
 		'public/src/img'
             ]
         }

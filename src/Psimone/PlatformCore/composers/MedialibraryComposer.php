@@ -30,6 +30,7 @@ class MedialibraryComposer {
 
                                 case 'local':
                                         Asset::container('header.common')->add('bootstrap-css', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
+                                        Asset::container('header.common')->add('application-css', 'packages/psimone/platform-core/src/css/application.css');
 
                                         Asset::container('footer.common')->add('holder-js', 'holder.js');
                                         Asset::container('footer.common')->add('jquery', 'https://code.jquery.com/jquery-2.1.0.min.js');
@@ -50,6 +51,7 @@ class MedialibraryComposer {
                                 case 'local':
                                         Asset::container('header.common')->add('bootstrap-css', 'packages/psimone/platform-core/src/css/vendor/bootstrap.css');
                                         Asset::container('header.common')->add('fontawesome-css', 'packages/psimone/platform-core/src/css/vendor/font-awesome.css');
+                                        Asset::container('header.common')->add('application-css', 'packages/psimone/platform-core/src/css/application.css');
 
                                         Asset::container('footer.common')->add('holder-js', 'holder.js');
                                         Asset::container('footer.common')->add('jquery', 'packages/psimone/platform-core/src/js/vendor/jquery.js');

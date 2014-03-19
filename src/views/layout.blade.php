@@ -6,6 +6,13 @@
 
 @section('header.scripts')
 {{ Asset::container('header.common')->scripts() }}
+<script type="text/javascript">
+        PlatformCore = {
+                config: {
+                        locale : '{{ Config::get('app.locale') }}'
+                }
+        };
+</script>
 @stop
 
 @section('footer.styles')
