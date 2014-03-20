@@ -9,6 +9,7 @@ class MediaLibrary
 {
 	private $items = array();
 	private $config;
+        private $path;
 
 	public function __construct()
 	{
@@ -29,6 +30,8 @@ class MediaLibrary
 		{
 			return false;
 		}
+
+                $this->path = $path;
 
 		$folders = self::getFolders($realPath);
 
@@ -141,7 +144,16 @@ class MediaLibrary
 	 */
 	public function getItems()
 	{
-		return $this->items;
+                $items = array();
+                
+                if (!$this->isRoot())
+                {
+                        $items[] = new Item($this->parentFolder(), true, true);
+                }
+
+                $final = array_merge($items, $this->items);
+
+		return $final;
 	}
 	
 	/**
@@ -170,4 +182,60 @@ class MediaLibrary
 		
 		return false;
 	}
+
+        /**
+        * Check if the given path is the library root
+        *
+        * @return bool
+        */
+        private function isRoot()
+        {
+                if ($this->path === $this->config['basepath'])
+                {
+                        return true;
+                }
+
+                return false;
+        }
+
+        /**
+         * Return the parent folder
+         *
+         * @return string
+         */
+        private function parentFolder()
+        {
+                if ($this->isRoot())
+                {
+                        return $this->config['basepath'];
+                }
+
+                $segments = $this->pathToArray($this->path);
+
+                array_pop($segments);
+
+                return $this->arrayToPath($segments);
+        }
+
+        /**
+         * Convert given path in an array of segments
+         *
+         * @param string path
+         * @returns array
+         */
+        private function pathToArray($path)
+        {
+                return explode('/', $path);
+        }
+
+        /**
+         * Convert given array of segments in a path
+         *
+         * @param array segments
+         * @returns string
+         */
+        private function arrayToPath($segments)
+        {
+               return implode('/', $segments);
+        }
 }

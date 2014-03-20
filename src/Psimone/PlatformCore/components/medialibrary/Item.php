@@ -1,6 +1,8 @@
 <?php namespace Psimone\PlatformCore\Components\MediaLibrary;
 
 use Psimone\PlatformCore\Facades\Medialibrary;
+use Psimone\PlatformCore\Facades\Platform;
+use Psimone\PlatformCore\Facades\Timthumb;
 
 class Item
 {
@@ -32,21 +34,39 @@ class Item
 	 */
 	public $folder;
 
+        /**
+	 * Back flag. True if the resource is the back link
+	 *
+	 * @var bool
+	 */
+	public $back;
+
+        /**
+	 * Icon url
+	 *
+	 * @var string
+	 */
+	public $icon;
+
 	/**
 	 * Setup of the resource
 	 * 
 	 * @param string $fullPath
 	 * @param bool $folder
 	 */
-	public function __construct($fullPath, $folder = false)
+	public function __construct($fullPath, $folder = false, $back = false)
 	{
 		$this->path = $this->extractPublicPath($fullPath);
 
-		$this->name = $this->extractName($fullPath);
+		$this->name = $back ? '..' : $this->extractName($fullPath);
 		
 		$this->extension = Medialibrary::extension($fullPath);
 
 		$this->folder = $folder;
+
+                $this->back = $back;
+
+                $this->icon = $this->icon();
 	}
 
 	/**
@@ -86,6 +106,45 @@ class Item
 
 		return implode('/', $final);
 	}
+
+        /**
+         * Return the link to the resource icon
+         *
+         * @return string
+         */
+        private function icon()
+        {
+                $preview = array('png', 'jpg', 'gif', 'bmp');
+
+                $publicBaseUrl = 'packages/' . Platform::getPackageVendor() . '/' . Platform::getPackageName() . '/src/img/icons/';
+
+                if ($this->folder)
+                {
+                        if ($this->back)
+                        {
+                                $icon = 'back';
+                        }
+                        else
+                        {
+                                $icon = 'folder';
+                        }
+
+                        $url = $publicBaseUrl . $icon . '.png';
+                }
+                else
+                {
+                        if (in_array($this->extension, $preview))
+                        {
+                                $url = $this->path;
+                        }
+                        else
+                        {
+                                $url = $publicBaseUrl . $this->extension . '.png';
+                        }
+                }
+
+                return Timthumb::link($url, 150, 150);
+        }
 
 	/**
 	 * Convert the path in array splitted by the forward slash separator

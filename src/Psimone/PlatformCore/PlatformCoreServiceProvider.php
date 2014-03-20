@@ -9,6 +9,7 @@ use Psimone\PlatformCore\Components\Platform;
 use Psimone\PlatformCore\Components\Table\Table;
 use Psimone\PlatformCore\Components\Table\Filter;
 use Psimone\PlatformCore\Components\Table\Order;
+use Psimone\PlatformCore\Helpers\Timthumb;
 use Psimone\PlatformCore\Localization\Language;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
@@ -73,9 +74,10 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                     'platform.core.components.medialibrary',
 		    'platform.core.components.navigation',
 		    'platform.core.components.table',
-		    'platform.core.language',
-		    'platform.core.components.table.filter',
+                    'platform.core.components.table.filter',
 		    'platform.core.components.table.order',
+		    'platform.core.helpers.timthumb',
+                    'platform.core.language',
 		    'platform.core.page'
 		);
 	}
@@ -89,6 +91,7 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 		AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
 		AliasLoader::getInstance()->alias('PPage', 'Psimone\PlatformCore\Facades\Page');
 		AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
+                AliasLoader::getInstance()->alias('Timthumb', 'Psimone\PlatformCore\Facades\Timthumb');
 
 		AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
 	}
@@ -126,6 +129,10 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 
 		$this->app['platform.core.components.table.order'] = $this->app->share(function($app) {
 			return new Order();
+		});
+
+                $this->app['platform.core.helpers.timthumb'] = $this->app->share(function($app) {
+			return new Timthumb();
 		});
 
 		$this->app['platform.core.language'] = $this->app->share(function($app) {
