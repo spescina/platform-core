@@ -1,7 +1,7 @@
 @if ( $obj->isActive() )
 <li class="active">
-@else
+        @else
 <li>
-@endif
-	<a href="#{{ $obj->slug() }}" data-toggle="tab">{{ $obj->localize() }}</a>
+        @endif
+        <a href="#{{ $obj->slug() }}" data-toggle="tab">{{ $obj->localize() }}</a>
 </li>

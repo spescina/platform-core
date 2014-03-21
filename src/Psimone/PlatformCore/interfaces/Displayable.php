@@ -2,6 +2,6 @@
 
 interface Displayable {
 
-	public function show();
+        public function show();
 
 }

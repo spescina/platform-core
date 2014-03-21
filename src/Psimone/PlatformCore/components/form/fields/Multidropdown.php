@@ -2,15 +2,13 @@
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
-class Multidropdown extends BaseField
-{
-	protected $view = 'components/form/fields/multidropdown';
+class Multidropdown extends BaseField {
 
-	public function entries()
-	{
-		return $this->options['entries'];
-	}
+        protected $view = 'components/form/fields/multidropdown';
+
+        public function entries()
+        {
+                return $this->options['entries'];
+        }
+
 }
-
-
-

@@ -16,75 +16,77 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
-abstract class BaseController extends Controller
-{
-	protected function doDelete($id)
-	{
-		Model::delete($id);
+abstract class BaseController extends Controller {
 
-		Session::flash('messages', array(Language::get('ui.deleted')));
+        protected function doDelete($id)
+        {
+                Model::delete($id);
 
-		return Response::listing();
-	}
+                Session::flash('messages', array(Language::get('ui.deleted')));
 
-	protected function showForm($id)
-	{
-		Form::load($id);
+                return Response::listing();
+        }
 
-		Session::flash('formFields', Form::allFields());
+        protected function showForm($id)
+        {
+                Form::load($id);
 
-		return View::make(Platform::getPackageName() . '::edit');
-	}
+                Session::put('formFields', Form::allFields());
 
-	protected function doListing()
-	{		
-		Page::toolbar()->add('add', array(
-			'action' => 'form',
-			'label' => 'add'
-		));
+                return View::make(Platform::getPackageName() . '::edit');
+        }
 
-		return View::make(Platform::getPackageName() . '::listing');
-	}
+        protected function doListing()
+        {
+                Page::toolbar()->add('add', array(
+                    'action' => 'form',
+                    'label' => 'add'
+                ));
 
-	protected function doStore($id)
-	{
-		$data = Form::data();
+                return View::make(Platform::getPackageName() . '::listing');
+        }
 
-		$validator = Validator::make($data, Form::rules());
+        protected function doStore($id)
+        {
+                $data = Form::data();
 
-		if ($validator->fails())
-		{
-			Session::flash('errors', $validator->messages());
+                $validator = Validator::make($data, Form::rules());
 
-			return Response::showForm($id, true);
-		}
+                if ($validator->fails())
+                {
+                        Session::flash('errors', $validator->messages());
 
-		$objId = Model::store($data, $id);
+                        return Response::showForm($id, true);
+                }
 
-		if ($id)
-		{
-			Session::flash('messages', array(Language::get('ui.saved')));
-		}
-		else
-		{
-			Session::flash('messages', array(Language::get('ui.created')));
-		}
+                $objId = Model::store($data, $id);
 
-		if (Input::has('save'))
-		{
-			return Response::showForm($objId);
-		}
+                if ($id)
+                {
+                        Session::flash('messages', array(Language::get('ui.saved')));
+                }
+                else
+                {
+                        Session::flash('messages', array(Language::get('ui.created')));
+                }
 
-		return Response::listing();
-	}
-	
-	public function filter()
-	{
-		$filters = Table::data();
-		
-		Filter::load($filters);
-		
-		return Response::listing();
-	}
+                if (Input::has('save'))
+                {
+                        return Response::showForm($objId);
+                }
+
+                Session::forget('formFields');
+
+                return Response::listing();
+        }
+
+        public function filter()
+        {
+                $filters = Table::data();
+
+                Filter::load($filters);
+
+                return Response::listing();
+        }
+
 }
-

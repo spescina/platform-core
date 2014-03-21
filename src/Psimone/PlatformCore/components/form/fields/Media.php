@@ -2,7 +2,8 @@
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
-class Media extends BaseField
-{
-	protected $view = 'components/form/fields/media';
+class Media extends BaseField {
+
+        protected $view = 'components/form/fields/media';
+
 }

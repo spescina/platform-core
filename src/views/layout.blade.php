@@ -9,7 +9,7 @@
 <script type="text/javascript">
         PlatformCore = {
                 config: {
-                        locale : '{{ Config::get('app.locale') }}'
+                        locale: '{{ Config::get('app.locale') }}'
                 }
         };
 </script>

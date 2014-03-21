@@ -2,14 +2,14 @@
 
 interface Repository {
 
-	public function setTable($table);
+        public function setTable($table);
 
-	public function delete($id);
+        public function delete($id);
 
-	public function find($id);
+        public function find($id);
 
-	public function all();
+        public function all();
 
-	public function store(array $data, $id = null);
+        public function store(array $data, $id = null);
 
 }

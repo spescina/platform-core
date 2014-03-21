@@ -2,8 +2,8 @@
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
-class Password extends BaseField
-{
-	protected $view = 'components/form/fields/password';
-}
+class Password extends BaseField {
 
+        protected $view = 'components/form/fields/password';
+
+}

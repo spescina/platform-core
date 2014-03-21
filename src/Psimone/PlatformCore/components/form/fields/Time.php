@@ -2,9 +2,8 @@
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
-class Time extends BaseField
-{
-	protected $view = 'components/form/fields/time';
+class Time extends BaseField {
+
+        protected $view = 'components/form/fields/time';
+
 }
-
-

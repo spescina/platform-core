@@ -2,6 +2,6 @@
 
 interface Translatable {
 
-	public function localize();
+        public function localize();
 
 }

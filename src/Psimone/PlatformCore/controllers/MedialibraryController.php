@@ -9,28 +9,30 @@ use Illuminate\Support\Facades\View;
 
 class MedialibraryController extends Controller {
 
-	/**
-	 * Load the library interface
-	 * 
-	 * @return Response
-	 */
-	public function index()
-	{
-		return View::make(Platform::getPackageName() . '::components/medialibrary/medialibrary');
-	}
+        /**
+         * Load the library interface
+         * 
+         * @return Response
+         */
+        public function index($field, $value = null)
+        {
+                return View::make(Platform::getPackageName() . '::components/medialibrary/medialibrary')
+                                ->with('field', $field)
+                                ->with('value', $value);
+        }
 
-	/**
-	 * Return the list of all resources at the given path
-	 * 
-	 * @return Response
-	 */
+        /**
+         * Return the list of all resources at the given path
+         * 
+         * @return Response
+         */
         public function browse()
         {
                 $path = Input::get('path');
-		
-		Medialibrary::browsePath($path);
-		
-		$data = Medialibrary::getItems();
+
+                Medialibrary::browsePath($path);
+
+                $data = Medialibrary::getItems();
 
                 return Response::json($data);
         }

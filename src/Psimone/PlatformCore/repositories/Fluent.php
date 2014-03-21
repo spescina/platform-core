@@ -7,88 +7,88 @@ use Psimone\PlatformCore\Interfaces\Repository;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
-class Fluent implements Repository
-{
-	public $table;
-	private $result;
+class Fluent implements Repository {
 
-	public function setTable($table)
-	{
-		$this->table = $table;
-	}
+        public $table;
+        private $result;
 
-	public function delete($id)
-	{
-		DB::table($this->table)
-			->where('id', $id)
-			->delete();
-	}
+        public function setTable($table)
+        {
+                $this->table = $table;
+        }
 
-	public function find($id)
-	{
-		if (empty($this->result))
-		{
-			$this->result = DB::table($this->table)
-				->where('id', $id)
-				->first();
-		}
+        public function delete($id)
+        {
+                DB::table($this->table)
+                        ->where('id', $id)
+                        ->delete();
+        }
 
-		return $this->result;
-	}
+        public function find($id)
+        {
+                if (empty($this->result))
+                {
+                        $this->result = DB::table($this->table)
+                                ->where('id', $id)
+                                ->first();
+                }
 
-	public function all()
-	{
-		$query = DB::table($this->table)
-			->orderBy(Order::column(), Order::sort());
-		
-		$filtered = $this->filter($query);			
-			
-		return $this->result = $this->paginate($filtered);
-	}
+                return $this->result;
+        }
 
-	public function store(array $data, $id = null)
-	{
-		if ($id)
-		{
-			DB::table($this->table)
-				->where('id', $id)
-				->update($data);
-		}
-		else
-		{
-			$id = DB::table($this->table)
-				->insertGetId($data);
-		}
+        public function all()
+        {
+                $query = DB::table($this->table)
+                        ->orderBy(Order::column(), Order::sort());
 
-		return $id;
-	}
+                $filtered = $this->filter($query);
 
-	public function entries($order)
-	{
-		list($column, $sort) = $order;
+                return $this->result = $this->paginate($filtered);
+        }
 
-		return $this->result = DB::table($this->table)
-			->orderBy($column, $sort)
-			->get();
-	}
-	
-	private function filter($query)
-	{
-		$filters = Filter::filters();
-		
-		foreach ($filters as $field => $value)
-		{
-			$query->where($field, '=', $value);
-		}
-		
-		return $query;
-	}
-	
-	private function paginate($query)
-	{
-		$paging = Config::get(Platform::getPackageName() . '::table.pagination');
-		
-		return $query->paginate($paging);
-	}
+        public function store(array $data, $id = null)
+        {
+                if ($id)
+                {
+                        DB::table($this->table)
+                                ->where('id', $id)
+                                ->update($data);
+                }
+                else
+                {
+                        $id = DB::table($this->table)
+                                ->insertGetId($data);
+                }
+
+                return $id;
+        }
+
+        public function entries($order)
+        {
+                list($column, $sort) = $order;
+
+                return $this->result = DB::table($this->table)
+                        ->orderBy($column, $sort)
+                        ->get();
+        }
+
+        private function filter($query)
+        {
+                $filters = Filter::filters();
+
+                foreach ($filters as $field => $value)
+                {
+                        $query->where($field, '=', $value);
+                }
+
+                return $query;
+        }
+
+        private function paginate($query)
+        {
+                $paging = Config::get(Platform::getPackageName() . '::table.pagination');
+
+                return $query->paginate($paging);
+        }
 
 }

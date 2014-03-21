@@ -2,8 +2,8 @@
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
-class Date extends BaseField
-{
-	protected $view = 'components/form/fields/date';
-}
+class Date extends BaseField {
 
+        protected $view = 'components/form/fields/date';
+
+}

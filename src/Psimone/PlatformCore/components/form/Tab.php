@@ -6,37 +6,39 @@ use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;
 
-class Tab implements Displayable, Translatable
-{
-	use \Psimone\PlatformCore\Traits\Displayable;
-	use \Psimone\PlatformCore\Traits\Slugable;
+class Tab implements Displayable, Translatable {
 
-	private $active;
-	private $slug;
-	private $view = 'components/form/tab';
-	private $viewData = true;
+        use \Psimone\PlatformCore\Traits\Displayable;
 
-	public function __construct($slug, $active = false)
-	{
-		$this->slug = $slug;
-		
-		$this->active = $active;
-	}
+use \Psimone\PlatformCore\Traits\Slugable;
 
-	public function localize()
-	{
-		if ($this->slug === Form::MAIN)
-		{
-			return Language::get('ui.main_panel');
-		}
-		else
-		{
-			return Language::get(Platform::getModule() . '.panels.' . $this->slug);
-		}
-	}
-	
-	public function isActive()
-	{
-		return $this->active;
-	}
+        private $active;
+        private $slug;
+        private $view = 'components/form/tab';
+        private $viewData = true;
+
+        public function __construct($slug, $active = false)
+        {
+                $this->slug = $slug;
+
+                $this->active = $active;
+        }
+
+        public function localize()
+        {
+                if ($this->slug === Form::MAIN)
+                {
+                        return Language::get('ui.main_panel');
+                }
+                else
+                {
+                        return Language::get(Platform::getModule() . '.panels.' . $this->slug);
+                }
+        }
+
+        public function isActive()
+        {
+                return $this->active;
+        }
+
 }

@@ -2,14 +2,13 @@
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
-class Dropdown extends BaseField
-{
-	protected $view = 'components/form/fields/dropdown';
+class Dropdown extends BaseField {
 
-	public function entries()
-	{
-		return $this->options['entries'];
-	}
+        protected $view = 'components/form/fields/dropdown';
+
+        public function entries()
+        {
+                return $this->options['entries'];
+        }
+
 }
-
-

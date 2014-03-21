@@ -3,32 +3,33 @@
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Psimone\PlatformCore\Interfaces\Translatable;
 
-class Content implements Displayable, Translatable
-{
-	use \Psimone\PlatformCore\Traits\Displayable;
-	
-	private $field;
-	private $options;
-	private $record;
-	private $view = 'components/table/content';
-	private $viewData = true;
+class Content implements Displayable, Translatable {
 
-	public function __construct($field, $record, array $options = array())
-	{
-		$this->field = $field;
+        use \Psimone\PlatformCore\Traits\Displayable;
 
-		$this->options = $options;
+        private $field;
+        private $options;
+        private $record;
+        private $view = 'components/table/content';
+        private $viewData = true;
 
-		$this->record = $record;
-	}
+        public function __construct($field, $record, array $options = array())
+        {
+                $this->field = $field;
 
-	public function localize()
-	{
-		
-	}
-	
-	public function content()
-	{
-		return $this->record->{$this->field};
-	}
+                $this->options = $options;
+
+                $this->record = $record;
+        }
+
+        public function localize()
+        {
+                
+        }
+
+        public function content()
+        {
+                return $this->record->{$this->field};
+        }
+
 }

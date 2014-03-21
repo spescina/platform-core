@@ -9,21 +9,21 @@ use Teepluss\Asset\Facades\Asset;
 
 class ModuleComposer {
 
-	public function compose($view)
-	{
-		$this->setupAssets();
+        public function compose($view)
+        {
+                $this->setupAssets();
 
-		Navigation::load();
+                Navigation::load();
 
-		Breadcrumbs::load();
-	}
+                Breadcrumbs::load();
+        }
 
-	/**
-	 * Load application assets
-	 */
-	private function setupAssets()
-	{
-                $cdn = Config::get(Platform::getPackageName(). '::assets.cdn');
+        /**
+         * Load application assets
+         */
+        private function setupAssets()
+        {
+                $cdn = Config::get(Platform::getPackageName() . '::assets.cdn');
 
                 if ($cdn)
                 {
@@ -76,6 +76,6 @@ class ModuleComposer {
                                         break;
                         }
                 }
-	}
+        }
 
 }

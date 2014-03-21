@@ -7,119 +7,119 @@ use Illuminate\Support\Facades\Session;
 
 class Order {
 
-	const COLUMN_PARAM = 'column';
-	const SORT_PARAM = 'sort';
-	const RESET_PARAM = 'reset';
+        const COLUMN_PARAM = 'column';
+        const SORT_PARAM = 'sort';
+        const RESET_PARAM = 'reset';
 
-	public $column;
-	public $sort;
-	public $module;
+        public $column;
+        public $sort;
+        public $module;
 
-	public function __construct()
-	{
-		$newColumn = Input::get(self::COLUMN_PARAM);
-		$newSort = Input::get(self::SORT_PARAM);
+        public function __construct()
+        {
+                $newColumn = Input::get(self::COLUMN_PARAM);
+                $newSort = Input::get(self::SORT_PARAM);
 
-		$this->reset();
+                $this->reset();
 
-		if ($newColumn && $newSort)
-		{
-			$this->set($newColumn, $newSort);
+                if ($newColumn && $newSort)
+                {
+                        $this->set($newColumn, $newSort);
 
-			$this->put();
-		}
-		else
-		{
-			$prevTableSort = $this->get();
+                        $this->put();
+                }
+                else
+                {
+                        $prevTableSort = $this->get();
 
-			if ($prevTableSort && $prevTableSort->module <> Platform::getModule())
-			{
-				$this->forget();
+                        if ($prevTableSort && $prevTableSort->module <> Platform::getModule())
+                        {
+                                $this->forget();
 
-				$this->base();
-			}
-			else
-			{
-				if (!$prevTableSort)
-				{
-					$this->base();
-				}
-				else
-				{
-					$this->set($prevTableSort->column, $prevTableSort->sort, $prevTableSort->module);
-				}
-			}
-		}
-	}
+                                $this->base();
+                        }
+                        else
+                        {
+                                if (!$prevTableSort)
+                                {
+                                        $this->base();
+                                }
+                                else
+                                {
+                                        $this->set($prevTableSort->column, $prevTableSort->sort, $prevTableSort->module);
+                                }
+                        }
+                }
+        }
 
-	private function base()
-	{
-		list($column, $sort) = Model::order();
+        private function base()
+        {
+                list($column, $sort) = Model::order();
 
-		$this->set($column, $sort);
-	}
+                $this->set($column, $sort);
+        }
 
-	public function isBase()
-	{
-		list($column, $sort) = Model::order();
+        public function isBase()
+        {
+                list($column, $sort) = Model::order();
 
-		if ($column === $this->column && $sort === $this->sort)
-		{
-			return true;
-		}
+                if ($column === $this->column && $sort === $this->sort)
+                {
+                        return true;
+                }
 
-		return false;
-	}
+                return false;
+        }
 
-	private function reset()
-	{
-		$reset = Input::get(self::RESET_PARAM);
+        private function reset()
+        {
+                $reset = Input::get(self::RESET_PARAM);
 
-		if ($reset)
-		{
-			$this->forget();
-		}
-	}
-	
-	private function forget()
-	{
-		Session::forget('tableSort');
-	}
+                if ($reset)
+                {
+                        $this->forget();
+                }
+        }
 
-	private function get()
-	{
-		return Session::get('tableSort');
-	}
+        private function forget()
+        {
+                Session::forget('tableSort');
+        }
 
-	private function put()
-	{
-		Session::put('tableSort', $this);
-	}
+        private function get()
+        {
+                return Session::get('tableSort');
+        }
 
-	private function set($column, $sort, $module = null)
-	{
-		$this->column = $column;
+        private function put()
+        {
+                Session::put('tableSort', $this);
+        }
 
-		$this->sort = $sort;
+        private function set($column, $sort, $module = null)
+        {
+                $this->column = $column;
 
-		if ($module)
-		{
-			$this->module = $module;
-		}
-		else
-		{
-			$this->module = Platform::getModule();
-		}
-	}
+                $this->sort = $sort;
 
-	public function column()
-	{
-		return $this->column;
-	}
+                if ($module)
+                {
+                        $this->module = $module;
+                }
+                else
+                {
+                        $this->module = Platform::getModule();
+                }
+        }
 
-	public function sort()
-	{
-		return $this->sort;
-	}
+        public function column()
+        {
+                return $this->column;
+        }
+
+        public function sort()
+        {
+                return $this->sort;
+        }
 
 }

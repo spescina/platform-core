@@ -4,31 +4,32 @@ use Psimone\PlatformCore\Facades\Platform;
 use Psimone\PlatformCore\Components\Breadcrumbs\Item;
 use Psimone\PlatformCore\Interfaces\Displayable;
 
-class Breadcrumbs implements Displayable
-{	
-	use \Psimone\PlatformCore\Traits\Displayable;
-	
-	private $items = array();
-	private $view = 'components/breadcrumbs/breadcrumbs';
-	private $viewData = false;
+class Breadcrumbs implements Displayable {
 
-	public function load()
-	{
-		$this->item('root');
+        use \Psimone\PlatformCore\Traits\Displayable;
 
-		$this->item(Platform::getModule());
-	}
+        private $items = array();
+        private $view = 'components/breadcrumbs/breadcrumbs';
+        private $viewData = false;
 
-	public function item($slug)
-	{
-		if (!array_key_exists($slug, $this->items))
-		{
-			$this->items[$slug] = new Item($slug);
-		}
-	}
+        public function load()
+        {
+                $this->item('root');
 
-	public function items()
-	{
-		return $this->items;
-	}
+                $this->item(Platform::getModule());
+        }
+
+        public function item($slug)
+        {
+                if (!array_key_exists($slug, $this->items))
+                {
+                        $this->items[$slug] = new Item($slug);
+                }
+        }
+
+        public function items()
+        {
+                return $this->items;
+        }
+
 }

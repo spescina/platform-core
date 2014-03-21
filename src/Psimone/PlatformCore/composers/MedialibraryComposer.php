@@ -9,17 +9,17 @@ use Teepluss\Asset\Facades\Asset;
 
 class MedialibraryComposer {
 
-	public function compose($view)
-	{
-		$this->setupAssets();
-	}
+        public function compose($view)
+        {
+                $this->setupAssets();
+        }
 
-	/**
-	 * Load application assets
-	 */
-	private function setupAssets()
-	{
-                $cdn = Config::get(Platform::getPackageName(). '::assets.cdn');
+        /**
+         * Load application assets
+         */
+        private function setupAssets()
+        {
+                $cdn = Config::get(Platform::getPackageName() . '::assets.cdn');
 
                 if ($cdn)
                 {
@@ -62,6 +62,6 @@ class MedialibraryComposer {
                                         break;
                         }
                 }
-	}
+        }
 
 }

@@ -1,4 +1,4 @@
 <?php
 return array(
-	'root' => 'Home Page'
+    'root' => 'Home Page'
 );

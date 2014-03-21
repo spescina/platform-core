@@ -2,7 +2,8 @@
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
-class Rich extends BaseField
-{
-	protected $view = 'components/form/fields/rich';
+class Rich extends BaseField {
+
+        protected $view = 'components/form/fields/rich';
+
 }

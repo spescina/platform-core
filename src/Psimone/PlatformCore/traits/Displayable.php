@@ -2,17 +2,18 @@
 
 use Illuminate\Support\Facades\View;
 
-trait Displayable
-{
-	public function show()
-	{
-		$view = View::make('platform-core::' . $this->view);
+trait Displayable {
 
-		if ($this->viewData)
-		{
-			$view->with('obj', $this);
-		}
+        public function show()
+        {
+                $view = View::make('platform-core::' . $this->view);
 
-		return $view->render();
-	}
+                if ($this->viewData)
+                {
+                        $view->with('obj', $this);
+                }
+
+                return $view->render();
+        }
+
 }

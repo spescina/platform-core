@@ -2,12 +2,12 @@
 
 interface Module {
 
-	public function delete($id);
+        public function delete($id);
 
-	public function form($id = null);
+        public function form($id = null);
 
-	public function listing();
+        public function listing();
 
-	public function store($id = null);
+        public function store($id = null);
 
 }

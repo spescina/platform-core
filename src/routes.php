@@ -12,17 +12,17 @@
 
 use Psimone\PlatformCore\Facades\Platform;
 
-Route::get('medialibrary', array(
+Route::get('medialibrary/{field}/{value?}', array(
     'as' => 'medialibrary',
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@index'
-));
+))->where('field', '[A-Za-z0-9-_]+')
+        ->where('value', '(.*)');
 
 Route::post('medialibrary/browse', array(
     'as' => 'medialibrary.browse',
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@browse'
 ));
 
-Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null)
-{
-	return Platform::runModule($module, $action, $id);
+Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null) {
+    return Platform::runModule($module, $action, $id);
 }));

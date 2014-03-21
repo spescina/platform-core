@@ -10,110 +10,110 @@ use Psimone\PlatformCore\Interfaces\Translatable;
 
 class ColumnHeading implements Displayable, Translatable {
 
-	use \Psimone\PlatformCore\Traits\Displayable;
+        use \Psimone\PlatformCore\Traits\Displayable;
 
-	private $field;
-	private $options;
-	private $view = 'components/table/column-heading';
-	private $viewData = true;
+        private $field;
+        private $options;
+        private $view = 'components/table/column-heading';
+        private $viewData = true;
 
-	public function __construct($field, array $options = array())
-	{
-		$this->field = $field;
+        public function __construct($field, array $options = array())
+        {
+                $this->field = $field;
 
-		$this->options = $options;
-	}
+                $this->options = $options;
+        }
 
-	public function isSortable()
-	{
-		if ($this->isAction())
-		{
-			return false;
-		}
+        public function isSortable()
+        {
+                if ($this->isAction())
+                {
+                        return false;
+                }
 
-		if (array_key_exists('sortable', $this->options) && $this->options['sortable'] === false)
-		{
-			return false;
-		}
+                if (array_key_exists('sortable', $this->options) && $this->options['sortable'] === false)
+                {
+                        return false;
+                }
 
-		return true;
-	}
+                return true;
+        }
 
-	public function isAction()
-	{
-		return ($this->field === TableConst::COLUMN_ACTIONS);
-	}
+        public function isAction()
+        {
+                return ($this->field === TableConst::COLUMN_ACTIONS);
+        }
 
-	public function localize()
-	{
-		if ($this->field === TableConst::COLUMN_ACTIONS)
-		{
-			return Language::get('table.' . TableConst::COLUMN_ACTIONS);
-		}
+        public function localize()
+        {
+                if ($this->field === TableConst::COLUMN_ACTIONS)
+                {
+                        return Language::get('table.' . TableConst::COLUMN_ACTIONS);
+                }
 
-		return Language::get(Platform::getModule() . '.table.' . $this->field);
-	}
+                return Language::get(Platform::getModule() . '.table.' . $this->field);
+        }
 
-	public function link()
-	{
-		$activeColumn = Order::column() ? : '';
-		$activeSort = Order::sort() ? : '';
+        public function link()
+        {
+                $activeColumn = Order::column() ? : '';
+                $activeSort = Order::sort() ? : '';
 
-		$nextSort = 'asc';
+                $nextSort = 'asc';
 
-		if ($this->field === $activeColumn)
-		{
-			switch ($activeSort) {
-				case 'asc':
-					$nextSort = 'desc';
-					break;
-				case 'desc':
-					$nextSort = (Order::isBase()) ? 'asc' : '';
-					break;
-			}
-		}
+                if ($this->field === $activeColumn)
+                {
+                        switch ($activeSort) {
+                                case 'asc':
+                                        $nextSort = 'desc';
+                                        break;
+                                case 'desc':
+                                        $nextSort = (Order::isBase()) ? 'asc' : '';
+                                        break;
+                        }
+                }
 
-		if (empty($nextSort) && !Order::isBase())
-		{
-			$queryVars = array(OrderConst::RESET_PARAM => 1);
-		}
-		else
-		{
-			$queryVars = array(
-			    OrderConst::COLUMN_PARAM => $this->field,
-			    OrderConst::SORT_PARAM => $nextSort
-			);
-		}
+                if (empty($nextSort) && !Order::isBase())
+                {
+                        $queryVars = array(OrderConst::RESET_PARAM => 1);
+                }
+                else
+                {
+                        $queryVars = array(
+                            OrderConst::COLUMN_PARAM => $this->field,
+                            OrderConst::SORT_PARAM => $nextSort
+                        );
+                }
 
-		return http_build_query($queryVars);
-	}
+                return http_build_query($queryVars);
+        }
 
-	public function icon()
-	{
-		$activeColumn = Order::column() ? : '';
-		$activeSort = Order::sort() ? : '';
+        public function icon()
+        {
+                $activeColumn = Order::column() ? : '';
+                $activeSort = Order::sort() ? : '';
 
-		$icon = '';
+                $icon = '';
 
-		if ($this->field === $activeColumn)
-		{
-			switch ($activeSort) {
-				case 'asc':
-					$icon = 'chevron-down';
-					break;
+                if ($this->field === $activeColumn)
+                {
+                        switch ($activeSort) {
+                                case 'asc':
+                                        $icon = 'chevron-down';
+                                        break;
 
-				case 'desc':
-					$icon = 'chevron-up';
-					break;
-			}
-		}
+                                case 'desc':
+                                        $icon = 'chevron-up';
+                                        break;
+                        }
+                }
 
-		return $icon;
-	}
-	
-	public function width()
-	{
-		return isset($this->options['columnWidth']) ? $this->options['columnWidth'] : null;
-	}
+                return $icon;
+        }
+
+        public function width()
+        {
+                return isset($this->options['columnWidth']) ? $this->options['columnWidth'] : null;
+        }
 
 }

@@ -12,145 +12,146 @@ use Psimone\PlatformCore\Facades\Model;
 use Psimone\PlatformCore\Interfaces\Displayable;
 use Illuminate\Support\Facades\Input;
 
-class Table implements Displayable
-{
-	use \Psimone\PlatformCore\Traits\Displayable;
-	
-	const COLUMN_ACTIONS = '__actions__';
-	const COLUMN_SEARCH = '__search__';
-	const COLUMN_ID = '__id__';
+class Table implements Displayable {
 
-	private $action;
-	private $tasks = array(
-		'edit' => array(
-			'action' => ActionConst::ACTION_SHOWFORM
-		),
-		'delete' => array(
-			'action' => ActionConst::ACTION_DELETE,
-			'modal' => 'modalDelete'
-		)
-	);
-	private $fields;
-	private $results;
-	private $view = 'components/table/table';
-	private $viewData = false;
+        use \Psimone\PlatformCore\Traits\Displayable;
 
-	public function __construct()
-	{
-		$this->results = Model::all();
-	}
+        const COLUMN_ACTIONS = '__actions__';
+        const COLUMN_SEARCH = '__search__';
+        const COLUMN_ID = '__id__';
 
-	public function fields(array $fields)
-	{
-		$this->fields = $fields;
-	}
+        private $action;
+        private $tasks = array(
+            'edit' => array(
+                'action' => ActionConst::ACTION_SHOWFORM
+            ),
+            'delete' => array(
+                'action' => ActionConst::ACTION_DELETE,
+                'modal' => 'modalDelete'
+            )
+        );
+        private $fields;
+        private $results;
+        private $view = 'components/table/table';
+        private $viewData = false;
 
-	public function isEmpty()
-	{
-		return ( count($this->results) === 0 );
-	}
+        public function __construct()
+        {
+                $this->results = Model::all();
+        }
 
-	public function head()
-	{
-		$headings = array();
+        public function fields(array $fields)
+        {
+                $this->fields = $fields;
+        }
 
-		foreach ($this->fields as $field => $options)
-		{
-			$headings[$field] = new ColumnHeading($field, $options);
-		}
+        public function isEmpty()
+        {
+                return ( count($this->results) === 0 );
+        }
 
-		$headings[self::COLUMN_ACTIONS] = new ColumnHeading(self::COLUMN_ACTIONS);
+        public function head()
+        {
+                $headings = array();
 
-		return $headings;
-	}
+                foreach ($this->fields as $field => $options)
+                {
+                        $headings[$field] = new ColumnHeading($field, $options);
+                }
 
-	public function body()
-	{
-		$body = array();
+                $headings[self::COLUMN_ACTIONS] = new ColumnHeading(self::COLUMN_ACTIONS);
 
-		foreach ($this->results as $record)
-		{
-			$row = array(
-				self::COLUMN_ID => $record->id,
-				'data' => array()
-			);
+                return $headings;
+        }
 
-			foreach ($this->fields as $field => $options)
-			{
-				$row['data'][$field] = new Content($field, $record, $options);
-			}
+        public function body()
+        {
+                $body = array();
 
-			$row['data'][self::COLUMN_ACTIONS] = new Taskbar($this->tasks, array(), $record);
+                foreach ($this->results as $record)
+                {
+                        $row = array(
+                            self::COLUMN_ID => $record->id,
+                            'data' => array()
+                        );
 
-			$body[] = $row;
-		}
+                        foreach ($this->fields as $field => $options)
+                        {
+                                $row['data'][$field] = new Content($field, $record, $options);
+                        }
 
-		return $body;
-	}
-	
-	public function localize($section, $data = array())
-	{
-		return Language::get('table.' . $section, $data);
-	}
+                        $row['data'][self::COLUMN_ACTIONS] = new Taskbar($this->tasks, array(), $record);
 
-	public function results()
-	{
-		return $this->results;
-	}
-	
-	public function searchbar()
-	{
-		$filters = array();
-		
-		foreach ($this->fields as $field => $options)
-		{
-			$filters[$field] = new ColumnFilter($field, $options);
-		}
-		
-		$filters[self::COLUMN_ACTIONS] = new Taskbar(Filter::tasks());
-		
-		return $filters;
-	}
-	
-	public function action()
-	{
-		return $this->action = new Action(ActionConst::ACTION_SEARCH);
-	}
-	
-	private function filtersData()
-	{
-		return Input::except('search');
-	}
-	
-	private function valid($data)
-	{
-		foreach ($data as $field => $value)
-		{
-			if (empty($value))
-			{
-				unset ($data[$field]);
-			}
-		}
-		
-		return $data;
-	}
-	
-	public function data()
-	{
-		$data = $this->filtersData();
+                        $body[] = $row;
+                }
 
-		$fixed = $this->valid($data);
+                return $body;
+        }
 
-		return $fixed;
-	}
-	
-	public function hasFilters()
-	{
-		return Filter::hasFilters();
-	}
-	
-	public function resetFilter()
-	{
-		return Filter::actionReset();
-	}
+        public function localize($section, $data = array())
+        {
+                return Language::get('table.' . $section, $data);
+        }
+
+        public function results()
+        {
+                return $this->results;
+        }
+
+        public function searchbar()
+        {
+                $filters = array();
+
+                foreach ($this->fields as $field => $options)
+                {
+                        $filters[$field] = new ColumnFilter($field, $options);
+                }
+
+                $filters[self::COLUMN_ACTIONS] = new Taskbar(Filter::tasks());
+
+                return $filters;
+        }
+
+        public function action()
+        {
+                return $this->action = new Action(ActionConst::ACTION_SEARCH);
+        }
+
+        private function filtersData()
+        {
+                return Input::except('search');
+        }
+
+        private function valid($data)
+        {
+                foreach ($data as $field => $value)
+                {
+                        if (empty($value))
+                        {
+                                unset($data[$field]);
+                        }
+                }
+
+                return $data;
+        }
+
+        public function data()
+        {
+                $data = $this->filtersData();
+
+                $fixed = $this->valid($data);
+
+                return $fixed;
+        }
+
+        public function hasFilters()
+        {
+                return Filter::hasFilters();
+        }
+
+        public function resetFilter()
+        {
+                return Filter::actionReset();
+        }
+
 }
