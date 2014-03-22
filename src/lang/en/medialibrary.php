@@ -5,4 +5,6 @@ return array(
     'delete_folder' => 'Delete Folder',
     'select' => 'Select',
     'cancel' => 'Cancel',
+    'folder' => 'folder',
+    'confirm' => 'Create'
 );

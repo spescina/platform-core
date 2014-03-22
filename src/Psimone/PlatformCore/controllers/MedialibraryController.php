@@ -36,5 +36,20 @@ class MedialibraryController extends Controller {
 
                 return Response::json($data);
         }
+        
+        /**
+         * Creates a folder at the give path
+         * 
+         * @return Response
+         */
+        public function folderCreate()
+        {
+                $path = Input::get('path');
+                $folder = Input::get('folder');
+
+                Medialibrary::folderCreate($path, $folder);
+
+                return Response::json(array(true));
+        }
 
 }

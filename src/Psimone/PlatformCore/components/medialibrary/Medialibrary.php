@@ -250,5 +250,14 @@ class MediaLibrary {
         {
                 return Language::get('medialibrary.' . $section);
         }
+        
+        public function folderCreate($path, $folder)
+        {
+                $realPath = public_path($path . '/' . $folder);
+                
+                File::makeDirectory($realPath);
+                
+                return;
+        }
 
 }
