@@ -257,7 +257,21 @@ class MediaLibrary {
                 
                 File::makeDirectory($realPath);
                 
-                return;
+                return true;
+        }
+        
+        public function folderDelete($folder)
+        {
+                $realPath = public_path($folder);
+                
+                if (!File::isDirectory($realPath))
+                {
+                        return false;
+                }
+                
+                File::deleteDirectory($realPath);
+                
+                return true;
         }
 
 }

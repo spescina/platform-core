@@ -7,7 +7,7 @@
 @section('header.scripts')
 {{ Asset::container('header.common')->scripts() }}
 <script type="text/javascript">
-        PlatformCore = {
+        ZZ = {
                 config: {
                         locale: '{{ Config::get('app.locale') }}'
                 }

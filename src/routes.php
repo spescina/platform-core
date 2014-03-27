@@ -23,6 +23,11 @@ Route::post('medialibrary/folder_create', array(
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@folderCreate'
 ));
 
+Route::post('medialibrary/folder_delete', array(
+    'as' => 'medialibrary.folderDelete',
+    'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@folderDelete'
+));
+
 Route::post('medialibrary/browse', array(
     'as' => 'medialibrary.browse',
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@browse'

@@ -36,8 +36,13 @@ class MedialibraryComposer {
                                         Asset::container('footer.common')->add('jquery', 'https://code.jquery.com/jquery-2.1.0.min.js');
                                         Asset::container('footer.common')->add('bootstrap-js', '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js', array('jquery'));
                                         Asset::container('footer.common')->add('handlebars-js', 'packages/psimone/platform-core/src/js/vendor/handlebars.js', array('jquery'));
+                                        Asset::container('footer.common')->add('jquery-ui-widget', 'packages/psimone/platform-core/src/js/vendor/jquery.ui.widget.js', array('jquery'));
+                                        Asset::container('footer.common')->add('uploader-transport-js', 'packages/psimone/platform-core/src/js/vendor/jquery.iframe-transport.js', array('jquery'));
+                                        Asset::container('footer.common')->add('uploader-js', 'packages/psimone/platform-core/src/js/vendor/jquery.fileupload.js', array('jquery', 'jquery-ui-widget', 'uploader-transport-js'));
 
-                                        Asset::container('footer.common')->add('application-js', 'packages/psimone/platform-core/src/js/medialibrary.js', array('bootstrap-js', 'handlebars-js'));
+                                        
+                                        Asset::container('footer.common')->add('ajax-js', 'packages/psimone/platform-core/src/js/ajax.js', array('jquery'));
+                                        Asset::container('footer.common')->add('medialibrary-js', 'packages/psimone/platform-core/src/js/medialibrary.js', array('jquery', 'ajax-js', 'bootstrap-js', 'handlebars-js'));
                                         break;
                         }
                 }
@@ -57,8 +62,12 @@ class MedialibraryComposer {
                                         Asset::container('footer.common')->add('jquery', 'packages/psimone/platform-core/src/js/vendor/jquery.js');
                                         Asset::container('footer.common')->add('bootstrap-js', 'packages/psimone/platform-core/src/js/vendor/bootstrap.js', array('jquery'));
                                         Asset::container('footer.common')->add('handlebars-js', 'packages/psimone/platform-core/src/js/vendor/handlebars.js', array('jquery'));
-
-                                        Asset::container('footer.common')->add('application-js', 'packages/psimone/platform-core/src/js/medialibrary.js', array('bootstrap-js', 'handlebars-js'));
+                                        Asset::container('footer.common')->add('jquery-ui-widget', 'packages/psimone/platform-core/src/js/vendor/jquery.ui.widget.js', array('jquery'));
+                                        Asset::container('footer.common')->add('uploader-transport-js', 'packages/psimone/platform-core/src/js/vendor/jquery.iframe-transport.js', array('jquery'));
+                                        Asset::container('footer.common')->add('uploader-js', 'packages/psimone/platform-core/src/js/vendor/jquery.fileupload.js', array('jquery', 'jquery-ui-widget', 'uploader-transport-js'));
+                                        
+                                        Asset::container('footer.common')->add('ajax-js', 'packages/psimone/platform-core/src/js/ajax.js', array('jquery'));
+                                        Asset::container('footer.common')->add('medialibrary-js', 'packages/psimone/platform-core/src/js/medialibrary.js', array('jquery', 'ajax-js', 'bootstrap-js', 'handlebars-js'));
                                         break;
                         }
                 }
