@@ -75,10 +75,13 @@ class MedialibraryController extends Controller {
          */
         public function filesUpload()
         {
+                $path = Input::get('path');
+                
                 $options = array(
-                    'script_url' => URL::route('medialibrary.upload'),
-                    'upload_dir' => public_path('uploads'),
-                    'upload_url' => asset('uploads')
+                    'script_url' => URL::route('medialibrary.upload') . '/',
+                    'upload_dir' => public_path($path) . '/',
+                    'upload_url' => asset($path) . '/',
+                    'image_versions' => array()
                 );
                 
                 $upload_handler = new UploadHandler($options);

@@ -27,6 +27,7 @@ module.exports = function(grunt) {
                             'bower_components/jquery-file-upload/js/jquery.fileupload.js',
                             'bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
                             'bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js',
+                            'bower_components/jquery-truncate/jquery.truncate.js',
                         ],
                         dest: 'public/src/js/vendor',
                         flatten: true
@@ -38,7 +39,8 @@ module.exports = function(grunt) {
                             'bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
                             'bower_components/fancybox/source/jquery.fancybox.css',
                             'bower_components/font-awesome/css/font-awesome.css',
-                            'bower_components/summernote/dist/summernote.css'
+                            'bower_components/summernote/dist/summernote.css',
+                            'bower_components/jquery-file-upload/css/jquery.fileupload.css',
                         ],
                         dest: 'public/src/css/vendor',
                         flatten: true

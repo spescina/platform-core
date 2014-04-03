@@ -26,9 +26,16 @@
 </div>
 <div id="bottom-bar">
         <div class="container">
+                <div id="progress" class="progress">
+                        <div class="progress-bar progress-bar-success"></div>
+                </div>
                 <p class="pull-left">
-                        <input id="fileupload" type="file" name="files[]" data-url="/medialibrary/upload" multiple>
-                        <!--  <button id="btn-upload" type="button" class="btn btn-primary btn-sm">{{ PMedialibrary::localize('upload') }}</button> -->
+                        <span class="btn btn-primary btn-sm fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>{{ PMedialibrary::localize('upload') }}</span>
+                                
+                                <input id="fileupload" type="file" name="files[]" multiple>
+                        </span>
                         <button id="btn-create-folder" type="button" class="btn btn-default btn-sm">{{ PMedialibrary::localize('create_folder') }}</button>
                         <button id="btn-delete-folder" type="button" class="hidden btn btn-default btn-sm">{{ PMedialibrary::localize('delete_folder') }}</button>
                         <input id="input-folder" class="hidden form-control input-sm" type="text" name="folder" placeholder="{{ PMedialibrary::localize('folder') }}" />

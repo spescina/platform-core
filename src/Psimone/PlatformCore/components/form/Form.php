@@ -207,7 +207,7 @@ class Form implements Displayable {
          */
         private function fieldsData()
         {
-                return Input::except('save', 'save_back', 'files');
+                return Input::except('save', 'save_back', 'files', '_token');
         }
 
         /**

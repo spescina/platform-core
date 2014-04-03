@@ -20,6 +20,7 @@
     "jquery": "~2.1.0",
     "moment": "~2.5.1",
     "font-awesome": "~4.0.3",
-    "jquery-file-upload": "~9.5.7"
+    "jquery-file-upload": "~9.5.7",
+    "jquery-truncate": "https://github.com/tbasse/jquery-truncate.git"
   }
 }
