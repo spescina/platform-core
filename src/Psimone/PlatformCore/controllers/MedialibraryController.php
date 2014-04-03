@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\View;
 
 class MedialibraryController extends Controller {
 
-        public function __construct() {
-                \Debugbar::disable();
-        }
-        
-        
         /**
          * Load the library interface
          * 
