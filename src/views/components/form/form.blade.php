@@ -7,7 +7,7 @@
                 @endif
         </div>
         <div class="panel-body">
-                <form class="form-horizontal" role="form" action="{{ PForm::action()->url() }}" method="post" autocomplete="off">
+                {{ Form::open(array('url' => PForm::action()->url(), 'class' => 'form-horizontal', 'files' => true)) }}
                         <ul class="nav nav-tabs">
                                 @foreach (PForm::panels() as $panel)
                                 {{ $panel->tab()->show() }}
@@ -23,7 +23,7 @@
                                 <button name="save_back" value="save_back" type="submit" class="btn btn-info">{{ PForm::localize('button_save_back') }}</button>
                                 <a href="{{ PForm::back()->url() }}" class="btn btn-warning">{{ PForm::localize('button_back') }}</a>
                         </div>
-                </form>
+                {{ Form::close() }}
         </div>
         <div class="panel-footer">
 

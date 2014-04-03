@@ -33,6 +33,11 @@ Route::post('medialibrary/browse', array(
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@browse'
 ));
 
+Route::post('medialibrary/upload', array(
+    'as' => 'medialibrary.upload',
+    'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@filesUpload'
+));
+
 Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array(
         'as' => 'module', function($module, $action = 'listing', $id = null) {
                 return Platform::runModule($module, $action, $id);
