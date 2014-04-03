@@ -1,20 +1,18 @@
 <?php namespace Psimone\PlatformCore\Controllers;
 
-use Psimone\PlatformCore\Facades\Breadcrumbs;
-use Psimone\PlatformCore\Facades\Filter;
-use Psimone\PlatformCore\Facades\Form;
-use Psimone\PlatformCore\Facades\Language;
-use Psimone\PlatformCore\Facades\Model;
-use Psimone\PlatformCore\Facades\Navigation;
-use Psimone\PlatformCore\Facades\Page;
-use Psimone\PlatformCore\Facades\Platform;
-use Psimone\PlatformCore\Facades\Table;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
+use Psimone\PlatformCore\Facades\Filter;
+use Psimone\PlatformCore\Facades\Form;
+use Psimone\PlatformCore\Facades\Language;
+use Psimone\PlatformCore\Facades\Model;
+use Psimone\PlatformCore\Facades\Page;
+use Psimone\PlatformCore\Facades\Platform;
+use Psimone\PlatformCore\Facades\Table;
 
 abstract class BaseController extends Controller {
 

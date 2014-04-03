@@ -28,6 +28,8 @@ Route::post('medialibrary/browse', array(
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@browse'
 ));
 
-Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array('as' => 'module', function($module, $action = 'listing', $id = null) {
-    return Platform::runModule($module, $action, $id);
-}));
+Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array(
+        'as' => 'module', function($module, $action = 'listing', $id = null) {
+                return Platform::runModule($module, $action, $id);
+        }
+))->where(array('model' => '[a-z]+', 'action' => '[a-z]+', 'id' => '[0-9]+'));
