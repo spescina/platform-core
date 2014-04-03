@@ -94,6 +94,7 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                 AliasLoader::getInstance()->alias('Timthumb', 'Psimone\PlatformCore\Facades\Timthumb');
 
                 AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
+                AliasLoader::getInstance()->alias('Debugbar', 'Barryvdh\Debugbar\Facade');
         }
 
         private function registerDependencies()

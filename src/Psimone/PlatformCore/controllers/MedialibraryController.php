@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\View;
 
 class MedialibraryController extends Controller {
 
+        public function __construct() {
+                \Debugbar::disable();
+        }
+        
+        
         /**
          * Load the library interface
          * 
@@ -38,7 +43,7 @@ class MedialibraryController extends Controller {
         }
         
         /**
-         * Creates a folder at the give path
+         * Creates a folder at the given path
          * 
          * @return Response
          */
@@ -47,9 +52,23 @@ class MedialibraryController extends Controller {
                 $path = Input::get('path');
                 $folder = Input::get('folder');
 
-                Medialibrary::folderCreate($path, $folder);
+                $exec = Medialibrary::folderCreate($path, $folder);
 
-                return Response::json(array(true));
+                return Response::json(array($exec));
+        }
+        
+        /**
+         * Delete a folder at the given path
+         * 
+         * @return Response
+         */
+        public function folderDelete()
+        {
+                $folder = Input::get('folder');
+
+                $exec = Medialibrary::folderDelete($folder);
+
+                return Response::json(array($exec));
         }
 
 }
