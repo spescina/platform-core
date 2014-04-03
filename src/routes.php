@@ -18,6 +18,11 @@ Route::get('medialibrary/{field}/{value?}', array(
 ))->where('field', '[A-Za-z0-9-_]+')
         ->where('value', '(.*)');
 
+Route::post('medialibrary/file_delete', array(
+    'as' => 'medialibrary.fileDelete',
+    'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@fileDelete'
+));
+
 Route::post('medialibrary/folder_create', array(
     'as' => 'medialibrary.folderCreate',
     'uses' => 'Psimone\\PlatformCore\\Controllers\\MedialibraryController@folderCreate'

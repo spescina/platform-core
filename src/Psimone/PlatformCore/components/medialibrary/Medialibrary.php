@@ -251,6 +251,13 @@ class MediaLibrary {
                 return Language::get('medialibrary.' . $section);
         }
         
+        /**
+         * Create a folder at the given path
+         * 
+         * @param string $path
+         * @param string $folder
+         * @return boolean
+         */
         public function folderCreate($path, $folder)
         {
                 $realPath = public_path($path . '/' . $folder);
@@ -260,6 +267,12 @@ class MediaLibrary {
                 return true;
         }
         
+        /**
+         * Delete the folder with the given path
+         * 
+         * @param string $folder
+         * @return boolean
+         */
         public function folderDelete($folder)
         {
                 $realPath = public_path($folder);
@@ -270,6 +283,26 @@ class MediaLibrary {
                 }
                 
                 File::deleteDirectory($realPath);
+                
+                return true;
+        }
+        
+        /**
+         * Delete the file with the given path
+         * 
+         * @param string $file
+         * @return boolean
+         */
+        public function fileDelete($file)
+        {
+                $realPath = public_path($file);
+                
+                if (!File::isFile($realPath))
+                {
+                        return false;
+                }
+                
+                File::delete($realPath);
                 
                 return true;
         }

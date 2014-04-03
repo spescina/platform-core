@@ -86,5 +86,19 @@ class MedialibraryController extends Controller {
                 
                 $upload_handler = new UploadHandler($options);
         }
+        
+        /**
+         * Handle file deletion
+         * 
+         * @return Response
+         */
+        public function fileDelete()
+        {
+                $file = Input::get('file');
+
+                $exec = Medialibrary::fileDelete($file);
+
+                return Response::json(array($exec));
+        }
 
 }

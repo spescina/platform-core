@@ -28,6 +28,7 @@ module.exports = function(grunt) {
                             'bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
                             'bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js',
                             'bower_components/jquery-truncate/jquery.truncate.js',
+                            'bower_components/blockui/jquery.blockUI.js'
                         ],
                         dest: 'public/src/js/vendor',
                         flatten: true
@@ -66,23 +67,11 @@ module.exports = function(grunt) {
                 ]
             }
         },
-        watch: {
-            publish: {
-                files: [
-                    'public/src/**/*.*'
-                ],
-                tasks: ['exec'],
-                options: {
-                    spawn: false
-                }
-            }
-        },
         clean: {
             dev: [
                 'public/src/js/vendor',
                 'public/src/css/vendor',
                 'public/src/img/vendor',
-		'public/src/img'
             ]
         }
     });
@@ -90,10 +79,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('dev', ['jshint', 'clean:dev', 'copy:dev']);
 
-    grunt.registerTask('default', ['jshint', 'watch']);
+    grunt.registerTask('default', ['jshint']);
 
 };

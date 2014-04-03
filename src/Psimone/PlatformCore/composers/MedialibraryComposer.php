@@ -36,6 +36,7 @@ class MedialibraryComposer {
                                 Asset::container('footer.common')->add('handlebars-js', 'packages/psimone/platform-core/src/js/vendor/handlebars.js', array('jquery'));
                                 Asset::container('footer.common')->add('jquery-ui-widget', 'packages/psimone/platform-core/src/js/vendor/jquery.ui.widget.js', array('jquery'));
                                 Asset::container('footer.common')->add('jquery-truncate', 'packages/psimone/platform-core/src/js/vendor/jquery.truncate.js', array('jquery'));
+                                Asset::container('footer.common')->add('jquery-blockui', 'packages/psimone/platform-core/src/js/vendor/jquery.blockUI.js', array('jquery'));
                                 Asset::container('footer.common')->add('uploader-transport-js', 'packages/psimone/platform-core/src/js/vendor/jquery.iframe-transport.js', array('jquery'));
                                 Asset::container('footer.common')->add('uploader-js', 'packages/psimone/platform-core/src/js/vendor/jquery.fileupload.js', array('jquery', 'jquery-ui-widget', 'uploader-transport-js'));
 
