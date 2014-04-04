@@ -25,6 +25,8 @@ module.exports = function(grunt) {
                             'bower_components/summernote/dist/summernote.js',
                             'bower_components/handlebars/handlebars.js',
                             'bower_components/jquery-file-upload/js/jquery.fileupload.js',
+                            'bower_components/jquery-file-upload/js/jquery.fileupload-process.js',
+                            'bower_components/jquery-file-upload/js/jquery.fileupload-validate.js',
                             'bower_components/jquery-file-upload/js/jquery.iframe-transport.js',
                             'bower_components/jquery-file-upload/js/vendor/jquery.ui.widget.js',
                             'bower_components/jquery-truncate/jquery.truncate.js',
