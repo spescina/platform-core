@@ -13,6 +13,12 @@ class MediaLibrary {
         private $config;
         private $field;
         private $path;
+        
+        const ALL_TYPE = 'all';
+        const AUDIO_TYPE = 'audio';
+        const DOC_TYPE = 'doc';
+        const IMAGE_TYPE = 'image';
+        const VIDEO_TYPE = 'video';
 
         public function __construct()
         {
@@ -322,6 +328,18 @@ class MediaLibrary {
                 $fields = Session::get('formFields');
                 
                 $medialibraryType = $fields[$field]['allowed'];
+                
+                if ($medialibraryType === self::ALL_TYPE) {
+                        
+                        $extensions = array();
+                        
+                        foreach ($this->config['types'] as $ext)
+                        {
+                                $extensions = array_merge($extensions, $ext);
+                        }
+                        
+                        return $extensions;
+                }
                 
                 return $this->config['types'][$medialibraryType];
         }

@@ -11,6 +11,12 @@ use Psimone\PlatformCore\Libraries\UploadHandler;
 
 class MedialibraryController extends Controller {
 
+        public function __construct()
+        {
+                \Debugbar::disable();
+        }
+
+
         /**
          * Load the library interface
          * 
@@ -79,11 +85,16 @@ class MedialibraryController extends Controller {
         {
                 $path = Input::get('path');
                 
+                $field = Input::get('field');
+                
+                $allowed = Medialibrary::allowedExtensions($field);
+                
                 $options = array(
                     'script_url' => URL::route('medialibrary.upload') . '/',
                     'upload_dir' => public_path($path) . '/',
                     'upload_url' => asset($path) . '/',
-                    'image_versions' => array()
+                    'image_versions' => array(),
+                    'accept_file_types' => '@(\.|\/)(' . implode('|', $allowed) . ')$@i',
                 );
                 
                 $upload_handler = new UploadHandler($options);

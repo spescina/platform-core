@@ -20,7 +20,7 @@ return array(
             'mov',
             'wmv'
         ),
-        'docs' => array(
+        'doc' => array(
             'zip',
             'txt',
             'doc',
