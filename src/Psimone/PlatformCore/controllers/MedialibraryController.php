@@ -31,8 +31,10 @@ class MedialibraryController extends Controller {
         public function browse()
         {
                 $path = Input::get('path');
+                
+                $field = Input::get('field');
 
-                Medialibrary::browsePath($path);
+                Medialibrary::browsePath($path, $field);
 
                 $data = Medialibrary::getItems();
 

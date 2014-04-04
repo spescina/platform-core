@@ -7,7 +7,8 @@
                         medialibrary : {
                                 config: {{ PMedialibrary::configToJSON() }},
                                 field: '{{ $field }}',
-                                value: '{{ $value }}'
+                                value: '{{ $value }}',
+                                allowed: {{ PMedialibrary::jsonAllowedExtensions($field) }}
                         }
                 }
         };

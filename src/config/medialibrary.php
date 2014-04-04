@@ -1,7 +1,6 @@
 <?php
 return array(
     'basepath' => 'uploads',
-    'type' => 'image',
     'types' => array(
         'image' => array(
             'jpeg',

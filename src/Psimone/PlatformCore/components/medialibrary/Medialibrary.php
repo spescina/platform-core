@@ -1,15 +1,17 @@
 <?php namespace Psimone\PlatformCore\Components\MediaLibrary;
 
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Psimone\PlatformCore\Components\MediaLibrary\Item;
 use Psimone\PlatformCore\Facades\Language;
 use Psimone\PlatformCore\Facades\Platform;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
 
 class MediaLibrary {
 
         private $items = array();
         private $config;
+        private $field;
         private $path;
 
         public function __construct()
@@ -19,11 +21,12 @@ class MediaLibrary {
 
         /**
          * Return objects in the given path
-         *
+         * 
          * @param string $path
+         * @param string $field
          * @return boolean
          */
-        public function browsePath($path)
+        public function browsePath($path, $field)
         {
                 $realPath = public_path($path);
 
@@ -40,7 +43,7 @@ class MediaLibrary {
 
                 $files = self::getFiles($realPath);
 
-                $this->parseFiles($files);
+                $this->parseFiles($files, $field);
         }
 
         /**
@@ -124,14 +127,15 @@ class MediaLibrary {
          * Add files to the local item list
          * 
          * @param array $items
+         * @param string $field
          */
-        private function parseFiles($items)
+        private function parseFiles($items, $field)
         {
                 foreach ($items as $item)
                 {
                         $extension = self::extension($item);
 
-                        if ($this->allowed($extension))
+                        if ($this->allowed($extension, $field))
                         {
                                 $this->items[] = new Item($item);
                         }
@@ -170,13 +174,13 @@ class MediaLibrary {
         /**
          * Check if the resource is allowed
          * 
+         * @param string $extension
+         * @param string $field
          * @return bool
          */
-        private function allowed($extension)
+        private function allowed($extension, $field)
         {
-                $catalogType = $this->config['type'];
-
-                if (in_array($extension, $this->config['types'][$catalogType]))
+                if (in_array($extension, $this->allowedExtensions($field)))
                 {
                         return true;
                 }
@@ -305,6 +309,32 @@ class MediaLibrary {
                 File::delete($realPath);
                 
                 return true;
+        }
+        
+        /**
+         * Return allowed file extensions configured for the current field
+         * 
+         * @param string $field
+         * @return array
+         */
+        public function allowedExtensions($field)
+        {
+                $fields = Session::get('formFields');
+                
+                $medialibraryType = $fields[$field]['allowed'];
+                
+                return $this->config['types'][$medialibraryType];
+        }
+        
+        /**
+         * Return the json formatted allowed file extensions
+         * 
+         * @param string $field
+         * @return string
+         */
+        public function jsonAllowedExtensions($field)
+        {
+                return json_encode($this->allowedExtensions($field));
         }
 
 }
