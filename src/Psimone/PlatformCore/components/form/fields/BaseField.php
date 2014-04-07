@@ -10,7 +10,7 @@ abstract class BaseField implements Displayable {
 
         use \Psimone\PlatformCore\Traits\Displayable;
 
-use \Psimone\PlatformCore\Traits\Slugable;
+        use \Psimone\PlatformCore\Traits\Slugable;
 
         protected $help;
         protected $label;

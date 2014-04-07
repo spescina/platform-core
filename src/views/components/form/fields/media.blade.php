@@ -8,3 +8,11 @@
         </span>
 </div>
 @overwrite
+
+@section ('extra')
+@if (!empty($obj->value()))
+<div class="col-md-2">
+      <img class="media-preview" src="{{ $obj->icon() }}" />  
+</div>
+@endif
+@overwrite

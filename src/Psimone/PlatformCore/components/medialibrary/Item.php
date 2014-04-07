@@ -112,7 +112,7 @@ class Item {
          *
          * @return string
          */
-        private function icon()
+        public function icon($w = 120, $h = 120)
         {
                 $preview = array('png', 'jpg', 'gif', 'bmp');
 
@@ -143,7 +143,7 @@ class Item {
                         }
                 }
 
-                return Timthumb::link($url, 150, 150);
+                return Timthumb::link($url, $w, $h);
         }
 
         /**
