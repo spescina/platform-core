@@ -185,6 +185,31 @@ class Form implements Displayable {
 
                 return $collection;
         }
+        
+        /**
+         * Convert a collection in a multi list oriented collection
+         *
+         * @param Model $model
+         * @param string $labelField
+         * @param string $valueField
+         * @return Collection type
+         */
+        public function modelToList($model, $labelField, $valueField = 'id')
+        {
+                $collection = array();
+
+                foreach ($model as $record)
+                {
+                        $item = new \stdClass;
+                        
+                        $item->value = $record->$valueField;
+                        $item->label = $record->$labelField;
+                        
+                        $collection[] = $item;
+                }
+
+                return $collection;
+        }
 
         /**
          * Return the fixed data taken from post
