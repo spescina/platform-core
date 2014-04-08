@@ -8,7 +8,7 @@ interface Repository {
 
         public function find($id);
 
-        public function all();
+        public function paginated();
 
         public function store(array $data, $id = null);
 

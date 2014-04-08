@@ -36,7 +36,7 @@ class Fluent implements Repository {
                 return $this->result;
         }
 
-        public function all()
+        public function paginated()
         {
                 $query = DB::table($this->table)
                         ->orderBy(Order::column(), Order::sort());

@@ -37,7 +37,7 @@ class Table implements Displayable {
 
         public function __construct()
         {
-                $this->results = Model::all();
+                $this->results = Model::paginated();
         }
 
         public function fields(array $fields)
