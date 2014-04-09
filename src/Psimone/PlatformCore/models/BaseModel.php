@@ -51,5 +51,30 @@ abstract class BaseModel {
         {
                 return $this->source->entries($this->order);
         }
+        
+        public function sync($id, $multifields, $data)
+        {
+                foreach ($multifields as $field => $options)
+                {
+                        if (method_exists($this, $field))
+                        {
+                                $vals = isset($data['multi_' . $field]) ? $data['multi_' . $field] : array();
+                                
+                                self::syncPivot($id, $vals, $this->$field());
+                        }
+                }
+                
+                return true;
+        }
+        
+        public function pivot($id, $field)
+        {
+                if (method_exists($this, $field))
+                {
+                        return self::getPivot($id, $this->$field());
+                }
+                
+                return false;
+        }
 
 }

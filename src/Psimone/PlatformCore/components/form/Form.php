@@ -221,8 +221,10 @@ class Form implements Displayable {
                 $data = $this->fieldsData();
 
                 $fixed = $this->fixCheckbox($data);
+                
+                $clean = $this->filterData($fixed);
 
-                return $fixed;
+                return $clean;
         }
 
         /**
@@ -268,5 +270,109 @@ class Form implements Displayable {
         {
                 return $this->allFields;
         }
-
+        
+        /**
+         * Filter data
+         * 
+         * @return array
+         */
+        public function filterData(array $data)
+        {
+                $data = $this->filterOutMulti($data);
+                
+                return $data;
+        }
+        
+        /**
+         * Filter out multi field related input data
+         * 
+         * @param array $data
+         * @return array
+         */
+        public function filterOutMulti(array $data)
+        {
+                foreach ($this->multiFields() as $field => $options)
+                {
+                        unset($data['multi_' . $field]);
+                }
+                
+                return $data;
+        }
+        
+        /**
+         * Keep only multi field related input data
+         * 
+         * @param array $data
+         * @return array
+         */
+        public function filterOnlyMulti()
+        {
+                $multiFields = $this->multiFields();
+                
+                $data = $this->fieldsData();
+                
+                foreach ($data as $field => $value)
+                {
+                        $name = $this->cleanMultiFieldName($field);
+                        
+                        if (!array_key_exists($name, $multiFields)) {
+                                unset($data[$field]);
+                        }
+                }
+                
+                return $data;
+        }
+        
+        public function cleanMultiFieldName($field)
+        {
+                $prefix = 'multi_';
+                
+                if (substr($field, 0, strlen($prefix)) == $prefix) {
+                        $field = substr($field, strlen($prefix));
+                }
+                
+                return $field;
+        }
+        
+        public function multiFields()
+        {
+                $fields = $this->mapToAllFields(function($field, $options) {
+                        if ($options['type'] === 'multi') {
+                                return true;
+                        }
+                        
+                        return false;
+                });
+                
+                return $fields;
+        }
+        
+        private function mapToAllFields($callback)
+        {
+                $fields = array();
+                
+                foreach ($this->allFields as $field => $options)
+                {
+                        if (call_user_func_array($callback, array($field, $options))) {
+                                $fields[$field] = $options;
+                        }
+                }
+                
+                return $fields;
+        }
+        
+        public function getFieldsFromSession()
+        {
+                $this->allFields = Session::get('formFields');
+        }
+        
+        public function putFieldsInSession()
+        {
+                Session::put('formFields', $this->allFields);
+        }
+        
+        public function multiFieldData($field)
+        {
+                return Model::pivot($this->id, $field);
+        }
 }

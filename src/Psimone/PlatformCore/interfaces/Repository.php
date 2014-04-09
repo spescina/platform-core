@@ -11,5 +11,9 @@ interface Repository {
         public function paginated();
 
         public function store(array $data, $id = null);
+        
+        public function syncPivot($id, array $data, array $relation);
+        
+        public function getPivot($id, array $relation);
 
 }

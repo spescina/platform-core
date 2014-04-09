@@ -78,5 +78,10 @@ abstract class BaseField implements Displayable {
         {
                 return $this->value() == $value;
         }
+        
+        public function multiFieldData()
+        {
+                return Form::multiFieldData($this->slug);
+        }
 
 }

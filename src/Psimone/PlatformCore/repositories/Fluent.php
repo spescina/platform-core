@@ -90,5 +90,44 @@ class Fluent implements Repository {
 
                 return $query->paginate($paging);
         }
+        
+        public function syncPivot($id, array $data, array $relation)
+        {
+                DB::table($relation[1])
+                        ->where($relation[2], $id)
+                        ->delete();
+                
+                $links = array();
+                
+                foreach ($data as $val) {
+                        $links[] = array(
+                                $relation[2] => $id,
+                                $relation[3] => $val
+                        );
+                }
+                
+                if (count($links)) {
+                        return $this->result = DB::table($relation[1])
+                                ->insert($links);
+                }
+                
+                return;
+        }
+        
+        public function getPivot($id, array $relation)
+        {
+                $this->result = DB::table($relation[1])
+                        ->where($relation[2], $id)
+                        ->get();
+                
+                $ids = array();
+                
+                foreach ($this->result as $record)
+                {
+                        $ids[] = $record->{$relation[3]};
+                }
+                
+                return $ids;
+        }
 
 }

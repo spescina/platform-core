@@ -3,6 +3,8 @@
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
 
 class Multi extends BaseField {
+        
+        private $value;
 
         protected $view = 'components/form/fields/multi';
         
@@ -13,7 +15,11 @@ class Multi extends BaseField {
         
         public function value()
         {
-                return array(1,3);
+                if (!is_array($this->value)) {
+                        $this->value = $this->multiFieldData();
+                }
+                
+                return $this->value;
         }
 
 }

@@ -29,7 +29,7 @@ abstract class BaseController extends Controller {
         {
                 Form::load($id);
 
-                Session::put('formFields', Form::allFields());
+                Form::putFieldsInSession();
 
                 return View::make(Platform::getPackageName() . '::edit');
         }
@@ -46,6 +46,8 @@ abstract class BaseController extends Controller {
 
         protected function doStore($id)
         {
+                Form::getFieldsFromSession();
+                
                 $data = Form::data();
 
                 $validator = Validator::make($data, Form::rules());
@@ -58,6 +60,8 @@ abstract class BaseController extends Controller {
                 }
 
                 $objId = Model::store($data, $id);
+                
+                Model::sync($id, Form::multiFields(), Form::filterOnlyMulti());
 
                 if ($id)
                 {
