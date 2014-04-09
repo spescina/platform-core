@@ -10,6 +10,19 @@
   |
  */
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
+use Psimone\PlatformCore\Facades\Platform;
+
+App::before(function($request)
+{
+	Route::match(array('GET', 'POST'), '{model}/{action?}/{id?}', array(
+                'as' => 'module', function($module, $action = 'listing', $id = null) {
+                        return Platform::runModule($module, $action, $id);
+                }
+        ))->where(array('model' => '[a-z]+', 'action' => '[a-z]+', 'id' => '[0-9]+'));
+});
+
 Route::filter('platform-core', function() {
         
 });

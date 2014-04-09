@@ -1,19 +1,18 @@
 <?php namespace Psimone\PlatformCore;
 
-use Psimone\PlatformCore\Components\Breadcrumbs\Breadcrumbs;
-use Psimone\PlatformCore\Components\Form\Form;
-use Psimone\PlatformCore\Components\MediaLibrary\MediaLibrary;
-use Psimone\PlatformCore\Components\Navigation\Navigation;
-use Psimone\PlatformCore\Components\Page\Page;
-use Psimone\PlatformCore\Components\Platform;
-use Psimone\PlatformCore\Components\Table\Table;
-use Psimone\PlatformCore\Components\Table\Filter;
-use Psimone\PlatformCore\Components\Table\Order;
-use Psimone\PlatformCore\Helpers\Timthumb;
-use Psimone\PlatformCore\Localization\Language;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
+use Psimone\PlatformCore\Components\Breadcrumbs\Breadcrumbs;
+use Psimone\PlatformCore\Components\Form\Form;
+use Psimone\PlatformCore\Components\Navigation\Navigation;
+use Psimone\PlatformCore\Components\Page\Page;
+use Psimone\PlatformCore\Components\Platform;
+use Psimone\PlatformCore\Components\Table\Filter;
+use Psimone\PlatformCore\Components\Table\Order;
+use Psimone\PlatformCore\Components\Table\Table;
+use Psimone\PlatformCore\Helpers\Timthumb;
+use Psimone\PlatformCore\Localization\Language;
 
 class PlatformCoreServiceProvider extends ServiceProvider {
 
@@ -71,7 +70,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                     'platform.core',
                     'platform.core.components.breadcrumbs',
                     'platform.core.components.form',
-                    'platform.core.components.medialibrary',
                     'platform.core.components.navigation',
                     'platform.core.components.table',
                     'platform.core.components.table.filter',
@@ -87,7 +85,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                 AliasLoader::getInstance()->alias('Platform', 'Psimone\PlatformCore\Facades\Platform');
                 AliasLoader::getInstance()->alias('PBreadcrumbs', 'Psimone\PlatformCore\Facades\Breadcrumbs');
                 AliasLoader::getInstance()->alias('PForm', 'Psimone\PlatformCore\Facades\Form');
-                AliasLoader::getInstance()->alias('PMedialibrary', 'Psimone\PlatformCore\Facades\Medialibrary');
                 AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
                 AliasLoader::getInstance()->alias('PPage', 'Psimone\PlatformCore\Facades\Page');
                 AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
@@ -110,10 +107,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 
                 $this->app['platform.core.components.form'] = $this->app->share(function($app) {
                         return new Form();
-                });
-
-                $this->app['platform.core.components.medialibrary'] = $this->app->share(function($app) {
-                        return new Medialibrary();
                 });
 
                 $this->app['platform.core.components.navigation'] = $this->app->share(function($app) {
