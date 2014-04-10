@@ -13,7 +13,8 @@
 	},
         "suggest": {
                 "teepluss/asset": "Required",
-                "psimone/mediabrowser": "Allows use of media input fields"
+                "psimone/mediabrowser": "Allows use of media input fields",
+                "psimone/imgproxy": "Allows use of the image proxy for resizing on the fly"
         },
 	"autoload": {
 		"psr-0": {

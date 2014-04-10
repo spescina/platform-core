@@ -11,7 +11,6 @@ use Psimone\PlatformCore\Components\Platform;
 use Psimone\PlatformCore\Components\Table\Filter;
 use Psimone\PlatformCore\Components\Table\Order;
 use Psimone\PlatformCore\Components\Table\Table;
-use Psimone\PlatformCore\Helpers\Timthumb;
 use Psimone\PlatformCore\Localization\Language;
 
 class PlatformCoreServiceProvider extends ServiceProvider {
@@ -55,8 +54,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                 $this->registerServices();
 
                 $this->registerAlias();
-
-                $this->registerDependencies();
         }
 
         /**
@@ -74,7 +71,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                     'platform.core.components.table',
                     'platform.core.components.table.filter',
                     'platform.core.components.table.order',
-                    'platform.core.helpers.timthumb',
                     'platform.core.language',
                     'platform.core.page'
                 );
@@ -88,15 +84,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                 AliasLoader::getInstance()->alias('PNavigation', 'Psimone\PlatformCore\Facades\Navigation');
                 AliasLoader::getInstance()->alias('PPage', 'Psimone\PlatformCore\Facades\Page');
                 AliasLoader::getInstance()->alias('PTable', 'Psimone\PlatformCore\Facades\Table');
-                AliasLoader::getInstance()->alias('Timthumb', 'Psimone\PlatformCore\Facades\Timthumb');
-
-                AliasLoader::getInstance()->alias('Asset', 'Teepluss\Asset\Facades\Asset');
-                AliasLoader::getInstance()->alias('Debugbar', 'Barryvdh\Debugbar\Facade');
-        }
-
-        private function registerDependencies()
-        {
-                $this->app->register('Teepluss\Asset\AssetServiceProvider');
         }
 
         private function registerServices()
@@ -123,10 +110,6 @@ class PlatformCoreServiceProvider extends ServiceProvider {
 
                 $this->app['platform.core.components.table.order'] = $this->app->share(function($app) {
                         return new Order();
-                });
-
-                $this->app['platform.core.helpers.timthumb'] = $this->app->share(function($app) {
-                        return new Timthumb();
                 });
 
                 $this->app['platform.core.language'] = $this->app->share(function($app) {
