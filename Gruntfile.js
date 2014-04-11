@@ -21,7 +21,6 @@ module.exports = function(grunt) {
                             'bower_components/bootstrap/dist/js/bootstrap.js',
                             'bower_components/moment/moment.js',
                             'bower_components/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
-                            'bower_components/fancybox/source/jquery.fancybox.js',
                             'bower_components/summernote/dist/summernote.js',
                         ],
                         dest: 'public/src/js/vendor',
@@ -32,8 +31,6 @@ module.exports = function(grunt) {
                         src: [
                             'bower_components/bootstrap/dist/css/bootstrap.css',
                             'bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
-                            'bower_components/fancybox/source/jquery.fancybox.css',
-                            'bower_components/font-awesome/css/font-awesome.css',
                             'bower_components/summernote/dist/summernote.css',
                         ],
                         dest: 'public/src/css/vendor',
@@ -44,18 +41,6 @@ module.exports = function(grunt) {
                         cwd: 'bower_components/bootstrap/dist',
                         src: ['fonts/*'],
                         dest: 'public/src/css'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'bower_components/font-awesome',
-                        src: ['fonts/*'],
-                        dest: 'public/src/css'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'bower_components/fancybox/source',
-                        src: ['*.gif', '*.png'],
-                        dest: 'public/src/img/vendor'
                     }
                 ]
             }

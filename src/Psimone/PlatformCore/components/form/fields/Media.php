@@ -1,7 +1,7 @@
 <?php namespace Psimone\PlatformCore\Components\Form\Fields;
 
 use Psimone\PlatformCore\Components\Form\Fields\BaseField;
-use Psimone\Mediabrowser\Classes\Item;
+use Spescina\Mediabrowser\Item;
 
 class Media extends BaseField {
 
