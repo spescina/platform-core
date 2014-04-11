@@ -7,8 +7,8 @@ class Media extends BaseField {
 
         protected $view = 'components/form/fields/media';
         
-        public function icon()
+        public function thumb()
         {
-                return with(new Item($this->value()))->icon(90, 0);
+                return with(new Item($this->value()))->thumbUrl(90, 0);
         }
 }

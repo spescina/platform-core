@@ -12,7 +12,7 @@
 @section ('extra')
 @if (!empty($obj->value()))
 <div class="col-md-2">
-      <img class="media-preview" src="{{ ImgProxy::link($obj->icon(),120,120) }}" />  
+      <img class="media-preview" src="{{ $obj->thumb() }}" />  
 </div>
 @endif
 @overwrite
