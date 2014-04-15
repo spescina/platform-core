@@ -54,6 +54,9 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                 $this->registerServices();
 
                 $this->registerAlias();
+                
+                $this->registerDependencies();
+
         }
 
         /**
@@ -84,6 +87,8 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                 AliasLoader::getInstance()->alias('PNavigation', 'Spescina\PlatformCore\Facades\Navigation');
                 AliasLoader::getInstance()->alias('PPage', 'Spescina\PlatformCore\Facades\Page');
                 AliasLoader::getInstance()->alias('PTable', 'Spescina\PlatformCore\Facades\Table');
+                
+                AliasLoader::getInstance()->alias('Asset', 'Dragonfire1119\Asset\Facades\Asset');
         }
 
         private function registerServices()
@@ -124,6 +129,12 @@ class PlatformCoreServiceProvider extends ServiceProvider {
                         return new Platform();
                 });
         }
+        
+        private function registerDependencies()
+        {
+                $this->app->register('Dragonfire1119\Asset\AssetServiceProvider');
+        }
+
 
         private function addNamespaces()
         {

@@ -15,19 +15,13 @@
 	"require": {
 		"php": ">=5.4.0",
 		"illuminate/support": "4.1.*",
-                "teepluss/asset": "dev-master"
+                "dragonfire1119/asset": "dev-master"
 	},
         "require-dev": {
                 "mockery/mockery": "0.9.*",
                 "anlutro/l4-testing": "0.2.x",
                 "satooshi/php-coveralls": "dev-master"
         },
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/antoniofrignani/laravel4-asset.git"
-		}
-	],
         "suggest": {
                 "spescina/mediabrowser": "Allows use of media input fields",
                 "spescina/imgproxy": "Allows use of the image proxy for resizing on the fly"
