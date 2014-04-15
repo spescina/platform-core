@@ -1,24 +1,40 @@
 {
-	"name": "psimone/platform-core",
-	"description": "",
-	"authors": [
+	"name": "spescina/platform-core",
+        "description": "CMS Framework",
+        "keywords": ["laravel", "CMS", "framework"],
+        "authors": [
+                {
+                        "name": "Simone Pescina",
+                        "email": "s.pescina@gmail.com"
+                }
+        ],
+        "license": "MIT",
+        "support": {
+                "issues": "https://github.com/spescina/platform-core/issues"
+        },
+	"require": {
+		"php": ">=5.4.0",
+		"illuminate/support": "4.1.*",
+                "teepluss/asset": "dev-master"
+	},
+        "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "anlutro/l4-testing": "0.2.x",
+                "satooshi/php-coveralls": "dev-master"
+        },
+	"repositories": [
 		{
-			"name": "Simone Pescina",
-			"email": "s.pescina@gmail.com"
+			"type": "vcs",
+			"url": "https://github.com/antoniofrignani/laravel4-asset.git"
 		}
 	],
-	"require": {
-		"php": ">=5.3.0",
-		"illuminate/support": "4.1.*"		
-	},
         "suggest": {
-                "teepluss/asset": "Required",
-                "psimone/mediabrowser": "Allows use of media input fields",
-                "psimone/imgproxy": "Allows use of the image proxy for resizing on the fly"
+                "spescina/mediabrowser": "Allows use of media input fields",
+                "spescina/imgproxy": "Allows use of the image proxy for resizing on the fly"
         },
 	"autoload": {
 		"psr-0": {
-			"Psimone\\PlatformCore": "src/"
+			"Spescina\\PlatformCore": "src/"
 		}
 	},
 	"minimum-stability": "stable"

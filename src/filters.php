@@ -12,7 +12,7 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Psimone\PlatformCore\Facades\Platform;
+use Spescina\PlatformCore\Facades\Platform;
 
 App::before(function($request)
 {

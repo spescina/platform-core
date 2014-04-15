@@ -6,4 +6,4 @@
   |
  */
 
-View::composer(Platform::getPackageName() . '::module', 'Psimone\\PlatformCore\\Composers\\ModuleComposer');
+View::composer(Platform::getPackageName() . '::module', 'Spescina\\PlatformCore\\Composers\\ModuleComposer');
